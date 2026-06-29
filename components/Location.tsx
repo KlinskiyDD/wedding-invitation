@@ -28,9 +28,9 @@ export function Location({ event }: LocationProps) {
               href={event.mapUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex h-12 items-center justify-center bg-[#e9cfae] px-6 text-sm font-semibold text-[#1d2b24] transition hover:bg-[#f7dfbd] focus:outline-none focus:ring-2 focus:ring-[#f7dfbd] focus:ring-offset-2 focus:ring-offset-[#1d2b24]"
+            className="mt-8 inline-flex h-12 items-center justify-center bg-[#e9cfae] px-6 text-sm font-semibold text-[#1d2b24] transition hover:bg-[#f7dfbd] focus:outline-none focus:ring-2 focus:ring-[#f7dfbd] focus:ring-offset-2 focus:ring-offset-[#1d2b24]"
             >
-              Открыть карту
+              Открыть сайт локации
             </a>
           ) : (
             <p className="mt-8 inline-flex min-h-12 items-center border border-white/30 px-6 text-sm font-semibold text-[#e9cfae]">
@@ -40,11 +40,13 @@ export function Location({ event }: LocationProps) {
         </div>
         <div className="grid min-h-72 place-items-center border border-white/18 bg-white/7 p-8">
           <div className="max-w-md text-center">
-            <p className="text-6xl font-semibold text-[#e9cfae]">24</p>
-            <p className="mt-3 text-xl font-semibold">августа</p>
+            <p className="text-6xl font-semibold text-[#e9cfae]">
+              {event.dayNumber}
+            </p>
+            <p className="mt-3 text-xl font-semibold">{event.monthLabel}</p>
             <p className="mt-4 text-sm leading-6 text-[#d9e4db]">
-              Добавьте дату в календарь и заложите немного времени на дорогу.
-              Финальные детали маршрута появятся здесь ближе к событию.
+              Начало в {event.timeLabel}. Заложите немного времени на дорогу до
+              деревни Пирогово.
             </p>
           </div>
         </div>

@@ -26,10 +26,10 @@ export function Hero({ couple, event, rsvp }: HeroProps) {
       <div className="relative z-10 mx-auto flex min-h-[92svh] w-full max-w-6xl items-center px-5 py-16 sm:px-8 lg:px-10">
         <div className="max-w-2xl text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#e9cfae]">
-            Свадебное приглашение
-          </p>
-          <h1 className="mt-5 text-5xl font-semibold leading-none sm:text-7xl lg:text-8xl">
             {couple.names}
+          </p>
+          <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
+            {couple.headline}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-[#f8f1e8] sm:text-xl">
             {couple.subtitle}

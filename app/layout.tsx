@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Анна & Дмитрий | Свадебное приглашение",
-  description: "Свадебное приглашение Анны и Дмитрия.",
+  title: "Марина & Дмитрий | Свадебное приглашение",
+  description: "Приглашение на свадьбу Марины и Дмитрия.",
 };
 
 export default function RootLayout({

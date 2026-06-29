@@ -21,9 +21,18 @@ export function Rsvp({ rsvp }: RsvpProps) {
           Нам важно знать, что вы будете рядом
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#56645c]">
-          {rsvp.deadline}. Так мы сможем подготовить посадку, меню и маленькие
-          детали вечера.
+          {rsvp.deadline}. {rsvp.description}
         </p>
+        <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-left md:grid-cols-2">
+          {rsvp.questions.map((question) => (
+            <div
+              key={question}
+              className="border border-[#dcc8aa] bg-white/55 p-4 text-sm font-medium leading-6 text-[#1d2b24]"
+            >
+              {question}
+            </div>
+          ))}
+        </div>
         {hasUrl ? (
           <a
             href={rsvp.url}
