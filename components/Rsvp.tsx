@@ -1,59 +1,150 @@
+"use client";
+
+import { useState } from "react";
+
 import type { WeddingContent } from "@/content/wedding";
 
 type RsvpProps = {
+  guestForm: WeddingContent["guestForm"];
   rsvp: WeddingContent["rsvp"];
 };
 
-export function Rsvp({ rsvp }: RsvpProps) {
-  const hasUrl = rsvp.url.trim().length > 0;
+type OptionGroupProps = {
+  title: string;
+  name: string;
+  options: string[];
+  type: "radio" | "checkbox";
+  columns?: boolean;
+  wide?: boolean;
+  note?: string;
+};
+
+function OptionGroup({
+  title,
+  name,
+  options,
+  type,
+  columns = false,
+  wide = false,
+  note,
+}: OptionGroupProps) {
+  return (
+    <fieldset className={wide ? "form-fieldset form-fieldset-wide" : "form-fieldset"}>
+      <legend>{title}</legend>
+      {note ? <p className="form-note">{note}</p> : null}
+      <div className={columns ? "option-grid" : "option-list"}>
+        {options.map((option, index) => {
+          const id = `${name}-${index}`;
+
+          return (
+            <label key={option} htmlFor={id} className="choice-row">
+              <input
+                id={id}
+                name={name}
+                type={type}
+                value={option}
+                defaultChecked={type === "radio" && index === 0}
+              />
+              <span>{option}</span>
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  );
+}
+
+export function Rsvp({ guestForm, rsvp }: RsvpProps) {
+  const [message, setMessage] = useState("");
 
   return (
-    <section
-      id="rsvp"
-      data-testid="rsvp"
-      className="bg-[#f4e6d3] px-5 py-20 sm:px-8 lg:px-10"
-    >
-      <div className="mx-auto max-w-4xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7d5538]">
-          RSVP
-        </p>
-        <h2 className="mt-3 text-3xl font-semibold text-[#1d2b24] sm:text-5xl">
-          Нам важно знать, что вы будете рядом
-        </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#56645c]">
-          {rsvp.deadline}. {rsvp.description}
-        </p>
-        <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-left md:grid-cols-2">
-          {rsvp.questions.map((question) => (
-            <div
-              key={question}
-              className="border border-[#dcc8aa] bg-white/55 p-4 text-sm font-medium leading-6 text-[#1d2b24]"
-            >
-              {question}
-            </div>
-          ))}
-        </div>
-        {hasUrl ? (
-          <a
-            href={rsvp.url}
-            data-testid="rsvp-link"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-9 inline-flex h-12 items-center justify-center bg-[#1d2b24] px-8 text-sm font-semibold text-white transition hover:bg-[#2f4438] focus:outline-none focus:ring-2 focus:ring-[#1d2b24] focus:ring-offset-2 focus:ring-offset-[#f4e6d3]"
-          >
-            Заполнить форму
-          </a>
-        ) : (
-          <button
-            type="button"
-            data-testid="rsvp-placeholder"
-            disabled
-            className="mt-9 inline-flex h-12 cursor-not-allowed items-center justify-center bg-[#8d9b8d] px-8 text-sm font-semibold text-white"
-          >
-            Форма скоро появится
-          </button>
-        )}
+    <section id="rsvp" data-testid="rsvp" className="guest-form-section vintage-panel">
+      <div className="section-heading">
+        <h2>Анкета гостя</h2>
+        <div className="ornament-divider" aria-hidden="true" />
       </div>
+
+      <form
+        className="guest-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          setMessage(guestForm.submitMessage);
+        }}
+      >
+        <div className="form-block">
+          <label htmlFor="guest-name">Ваше имя</label>
+          <input id="guest-name" name="guestName" placeholder="Введите ваше имя" />
+        </div>
+
+        <OptionGroup
+          title="Вы придёте?"
+          name="attendance"
+          options={guestForm.attendance}
+          type="radio"
+        />
+
+        <OptionGroup
+          title="Со спутником?"
+          name="companions"
+          options={guestForm.companions}
+          type="radio"
+        />
+
+        <OptionGroup
+          title="На роспись?"
+          name="ceremony"
+          options={guestForm.ceremony}
+          type="radio"
+        />
+
+        <OptionGroup
+          title="Что будете есть?"
+          name="food"
+          options={guestForm.food}
+          type="checkbox"
+          columns
+          wide
+          note="Можно выбрать несколько вариантов"
+        />
+
+        <OptionGroup
+          title="Что будете пить?"
+          name="drinks"
+          options={guestForm.drinks}
+          type="checkbox"
+          columns
+          wide
+          note="Можно выбрать несколько вариантов"
+        />
+
+        <div className="form-block form-block-wide">
+          <label htmlFor="food-restrictions">
+            Продукты, которые вы не едите
+          </label>
+          <textarea
+            id="food-restrictions"
+            name="foodRestrictions"
+            placeholder="Введите текст"
+          />
+        </div>
+
+        <div className="form-block form-block-wide">
+          <label htmlFor="guest-comment">Дополнительные пожелания</label>
+          <textarea id="guest-comment" name="comment" placeholder="Введите текст" />
+        </div>
+
+        <div className="form-submit">
+          <button type="submit" data-testid="rsvp-submit">
+            Отправить анкету
+          </button>
+          <p>{rsvp.deadline}</p>
+          {message ? (
+            <p data-testid="rsvp-message" className="form-status" aria-live="polite">
+              {message}
+            </p>
+          ) : null}
+        </div>
+      </form>
     </section>
   );
 }

@@ -60,43 +60,24 @@ export function Countdown({ target }: CountdownProps) {
   }, [targetDate]);
 
   const items = [
-    ["дней", countdown?.timeLeft.days],
-    ["часов", countdown?.timeLeft.hours],
-    ["минут", countdown?.timeLeft.minutes],
-    ["секунд", countdown?.timeLeft.seconds],
+    ["дней", countdown?.timeLeft.days, "days"],
+    ["часов", countdown?.timeLeft.hours, "hours"],
+    ["минут", countdown?.timeLeft.minutes, "minutes"],
+    ["секунд", countdown?.timeLeft.seconds, "seconds"],
   ] as const;
 
   return (
-    <section
-      data-testid="countdown"
-      className="bg-[#1d2b24] px-5 py-12 text-white sm:px-8 lg:px-10"
-    >
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#e9cfae]">
-            До свадьбы
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-            Считаем дни до встречи
-          </h2>
-        </div>
+    <section data-testid="countdown" className="countdown-section">
+      <div className="countdown-frame">
+        <p className="section-kicker">До нашей свадьбы осталось</p>
         {countdown?.isPast ? (
-          <p className="text-xl font-semibold text-[#e9cfae]">
-            Наш праздник уже состоялся
-          </p>
+          <p className="countdown-finished">Наш праздник уже состоялся</p>
         ) : (
-          <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {items.map(([label, value]) => (
-              <div
-                key={label}
-                className="min-w-28 border border-white/18 bg-white/7 px-5 py-4 text-center"
-              >
-                <dt className="text-3xl font-semibold text-[#e9cfae]">
-                  {value ?? "—"}
-                </dt>
-                <dd className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#d9e4db]">
-                  {label}
-                </dd>
+          <dl className="countdown-grid">
+            {items.map(([label, value, id]) => (
+              <div key={label} className="countdown-item">
+                <dt data-testid={`countdown-${id}`}>{value ?? "—"}</dt>
+                <dd>{label}</dd>
               </div>
             ))}
           </dl>
