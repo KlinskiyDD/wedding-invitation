@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import type { WeddingContent } from "@/content/wedding";
 
 type DetailsFaqProps = {
@@ -7,29 +5,53 @@ type DetailsFaqProps = {
   faq: WeddingContent["faq"];
 };
 
+type ColorListProps = {
+  label: string;
+  colors: WeddingContent["dressCode"]["stopColors"];
+};
+
+function ColorList({ label, colors }: ColorListProps) {
+  return (
+    <div className="dress-palette">
+      <p>{label}</p>
+      <div className="color-dots">
+        {colors.map((color) => (
+          <span
+            key={color.name}
+            title={color.name}
+            aria-label={color.name}
+            className={
+              color.texture === "speckled"
+                ? "color-swatch color-swatch-speckled"
+                : "color-swatch"
+            }
+            style={{
+              backgroundColor: color.value,
+              borderColor: color.border ?? color.value,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function DetailsFaq({ dressCode, faq }: DetailsFaqProps) {
   return (
-    <section data-testid="details-faq" className="details-faq-section vintage-panel">
-      <div data-testid="dress-code" className="dress-code-compact">
-        <h2>Дресс-код</h2>
-        <div className="color-dots" aria-label={dressCode.title}>
-          {dressCode.stopColors.map((color) => (
-            <span
-              key={color.name}
-              title={color.name}
-              aria-label={color.name}
-              style={{
-                backgroundColor: color.value,
-                borderColor: color.border ?? color.value,
-              }}
-            />
-          ))}
-        </div>
-        <p>{dressCode.description}</p>
-      </div>
+    <>
+      <section
+        id="dress-code"
+        data-testid="dress-code"
+        className="dress-code-section vintage-panel"
+      >
+        <h2>{dressCode.title}</h2>
+        <div className="section-divider" aria-hidden="true" />
+        <ColorList label={dressCode.avoidDescription} colors={dressCode.stopColors} />
+      </section>
 
-      <div id="faq" data-testid="faq" className="faq-compact">
-        <h2>Частые вопросы</h2>
+      <section id="faq" data-testid="faq" className="faq-section">
+        <h2>Часто задаваемые вопросы</h2>
+        <div className="section-divider" aria-hidden="true" />
         <div className="faq-list">
           {faq.map((item) => (
             <details key={item.question}>
@@ -38,16 +60,7 @@ export function DetailsFaq({ dressCode, faq }: DetailsFaqProps) {
             </details>
           ))}
         </div>
-      </div>
-
-      <div className="flower-sketch" aria-hidden="true">
-        <Image
-          src="/images/vintage/branch-flower.png"
-          alt=""
-          width={145}
-          height={145}
-        />
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

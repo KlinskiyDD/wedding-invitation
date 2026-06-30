@@ -7,13 +7,14 @@ export type ScheduleItem = {
   time: string;
   title: string;
   description: string;
-  icon: "venue" | "rings" | "arch" | "glasses";
+  icon: "rings" | "heart" | "glasses" | "cloche";
 };
 
-export type DressCodeStopColor = {
+export type DressCodeColor = {
   name: string;
   value: string;
   border?: string;
+  texture?: "speckled";
 };
 
 export type FaqItem = {
@@ -24,7 +25,7 @@ export type FaqItem = {
 export type PhotoItem = {
   src: string;
   alt: string;
-  tone: "warm" | "cream" | "olive" | "sunset";
+  tone: "couple" | "field" | "portrait" | "walk" | "kiss";
 };
 
 export type GuestFormContent = {
@@ -70,7 +71,10 @@ export type WeddingContent = {
   dressCode: {
     title: string;
     description: string;
-    stopColors: DressCodeStopColor[];
+    preferredDescription: string;
+    avoidDescription: string;
+    preferredColors: DressCodeColor[];
+    stopColors: DressCodeColor[];
   };
   photoStory: {
     title: string;
@@ -83,11 +87,12 @@ export type WeddingContent = {
 
 export const weddingContent: WeddingContent = {
   navigation: [
-    { label: "Приглашение", href: "#invitation" },
-    { label: "Тайминг", href: "#timing" },
-    { label: "Детали", href: "#details" },
-    { label: "Анкета", href: "#rsvp" },
+    { label: "ГЛАВНАЯ", href: "#invitation" },
+    { label: "ТАЙМИНГ", href: "#timing" },
+    { label: "МЕСТО", href: "#place" },
+    { label: "ДРЕСС-КОД", href: "#dress-code" },
     { label: "FAQ", href: "#faq" },
+    { label: "АНКЕТА ГОСТЯ", href: "#rsvp" },
   ],
   greeting: [
     "Дорогие гости!",
@@ -97,11 +102,12 @@ export const weddingContent: WeddingContent = {
   ],
   couple: {
     names: "Дмитрий и Марина",
-    headline: "Приглашение на свадьбу Марины и Дмитрия",
-    subtitle: "Будем рады видеть вас рядом в день нашей свадьбы",
+    headline: "Дмитрий и Марина",
+    subtitle:
+      "Мы создаём день, полный любви и радости, и будем счастливы разделить его с вами!",
     groomName: "Дмитрий",
     brideName: "Марина",
-    monogram: "Д | М",
+    monogram: "Д / М",
   },
   event: {
     dateLabel: "22 августа 2026",
@@ -111,7 +117,7 @@ export const weddingContent: WeddingContent = {
     timeLabel: "15:30",
     placeName: "Ресторан «Пироговский дворик»",
     address:
-      "МО, Мытищинский городской округ, деревня Пирогово, ул. Центральная, д. 100Б",
+      "Московская область, Мытищинский район, д. Пирогово, ул. Центральная, 100Б",
     mapUrl:
       "https://yandex.ru/maps/?text=Ресторан%20Пироговский%20дворик%20Пирогово%20Центральная%20100Б",
     websiteUrl: "https://dvorik-rest.ru/",
@@ -119,90 +125,85 @@ export const weddingContent: WeddingContent = {
   },
   rsvp: {
     url: "",
-    deadline: "Пожалуйста, подтвердите присутствие до 1 августа",
+    deadline:
+      "Пожалуйста, подтвердите своё присутствие до 1 июля 2026 года.",
     description:
-      "Позже мы отправим каждому гостю персональную ссылку для подтверждения.",
+      "Персональная анкета будет доступна по вашей ссылке. Сейчас ответы не сохраняются.",
     questions: [
-      "Придете ли вы на свадьбу?",
-      "Поедете ли вы на роспись или приедете сразу на банкет?",
-      "Какой алкоголь предпочитаете? В форме есть вариант «не пью».",
-      "Какие продукты вы не едите?",
+      "Подтверждаю участие",
+      "Количество гостей",
+      "Предпочтение по еде",
+      "Ограничения по блюдам / аллергии",
+      "Предпочтение по алкоголю",
     ],
   },
-  scheduleIntro:
-    "Мы подготовили программу дня, чтобы вы заранее знали, как будет проходить наш праздник.",
+  scheduleIntro: "Мы будем рядом на каждом этапе этого особенного дня.",
   schedule: [
     {
       time: "15:30",
       title: "Сбор гостей",
-      description: "Встречаемся, знакомимся и готовимся к началу торжества.",
-      icon: "venue",
-    },
-    {
-      time: "15:45",
-      title: "Церемония",
-      description: "Торжественная часть и первые поздравления.",
+      description: "и приветственный фуршет",
       icon: "rings",
     },
     {
       time: "16:00",
-      title: "Время для фотографий",
-      description: "Памятные кадры с родными и друзьями.",
-      icon: "arch",
+      title: "Церемония",
+      description: "бракосочетания",
+      icon: "heart",
+    },
+    {
+      time: "16:30",
+      title: "Поздравления",
+      description: "и фотосессия",
+      icon: "glasses",
     },
     {
       time: "18:00",
-      title: "Ресторан",
-      description: "Праздничный ужин, поздравления и вечерняя программа.",
-      icon: "glasses",
+      title: "Праздничный",
+      description: "ужин",
+      icon: "cloche",
     },
   ],
   dressCode: {
-    title: "Стоп-цвета",
+    title: "Дресс-код",
     description:
-      "Стоп-цвета: просим избегать в образах красного, белого и total black.",
+      "Просим воздержаться от следующих цветов:",
+    preferredDescription:
+      "Нежные природные оттенки для гостей:",
+    avoidDescription: "Просим воздержаться от следующих цветов:",
+    preferredColors: [],
     stopColors: [
-      {
-        name: "Красный",
-        value: "#b44a3c",
-      },
-      {
-        name: "Белый",
-        value: "#ffffff",
-        border: "#d8cabb",
-      },
-      {
-        name: "Total black",
-        value: "#18140f",
-      },
+      { name: "Белый", value: "#ffffff", border: "#bcae99" },
+      { name: "Чёрный", value: "#020604" },
+      { name: "Красный", value: "#c9161c" },
     ],
   },
   photoStory: {
-    title: "Наши фотографии",
+    title: "Наша история в кадрах",
     description:
-      "Здесь будет место для любимых кадров Марины и Дмитрия.",
+      "Место для любимых фотографий Марины и Дмитрия.",
     photos: [
-      { src: "", alt: "Первый кадр фотоленты", tone: "warm" },
-      { src: "", alt: "Второй кадр фотоленты", tone: "cream" },
-      { src: "", alt: "Третий кадр фотоленты", tone: "olive" },
-      { src: "", alt: "Четвертый кадр фотоленты", tone: "sunset" },
+      { src: "", alt: "Полароидный кадр пары", tone: "couple" },
+      { src: "", alt: "Полароидный кадр прогулки", tone: "field" },
+      { src: "", alt: "Полароидный портрет", tone: "portrait" },
+      { src: "", alt: "Полароидный кадр со спины", tone: "walk" },
+      { src: "", alt: "Полароидный свадебный кадр", tone: "kiss" },
     ],
   },
   guestForm: {
-    attendance: ["С радостью приду!", "Не смогу присутствовать"],
-    companions: ["Приду один(а)", "+1 спутник", "+2 спутника"],
+    attendance: ["Подтверждаю участие", "Не смогу присутствовать"],
+    companions: ["1 гость", "2 гостя", "3 гостя"],
     ceremony: ["Поеду на роспись", "Приеду сразу на банкет"],
     food: [
+      "Без предпочтений",
       "Мясо",
       "Птица",
       "Рыба",
       "Морепродукты",
-      "Салаты",
-      "Овощи",
       "Вегетарианское",
-      "Диетическое",
     ],
     drinks: [
+      "Без предпочтений",
       "Шампанское",
       "Вино белое",
       "Вино красное",
@@ -216,9 +217,24 @@ export const weddingContent: WeddingContent = {
   },
   faq: [
     {
+      question: "Можно ли взять с собой плюс-один?",
+      answer:
+        "Пожалуйста, согласуйте это с нами заранее, чтобы мы корректно подготовили рассадку и банкет.",
+    },
+    {
+      question: "Во сколько завершится мероприятие?",
+      answer:
+        "Основная программа рассчитана до позднего вечера. Точное время завершения мы сообщим ближе к дате.",
+    },
+    {
       question: "Будет ли трансфер?",
       answer:
-        "Пока планируем, что гости добираются самостоятельно. Если решение изменится, мы заранее сообщим.",
+        "Пока гости добираются самостоятельно. Если появится общий трансфер, мы заранее сообщим детали.",
+    },
+    {
+      question: "Есть ли парковка на территории?",
+      answer:
+        "У ресторана есть место для автомобилей. Лучше заложить немного времени на дорогу и парковку.",
     },
     {
       question: "Можно ли подарить подарок в конверте?",
@@ -226,14 +242,9 @@ export const weddingContent: WeddingContent = {
         "Да, мы будем благодарны за вклад в бюджет нашей молодой семьи.",
     },
     {
-      question: "Что с цветами?",
+      question: "Что делать, если у меня аллергия / ограничения в еде?",
       answer:
-        "Будем признательны, если вместо большого количества цветов вы подарите бутылку вина.",
-    },
-    {
-      question: "Где припарковаться?",
-      answer:
-        "У ресторана есть место для автомобилей. Лучше заложить немного времени на дорогу и парковку.",
+        "Укажите это в анкете гостя, и мы постараемся учесть ваши пожелания при согласовании меню.",
     },
   ],
 };

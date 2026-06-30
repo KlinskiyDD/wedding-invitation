@@ -15,15 +15,14 @@ export default function Home() {
         <Hero
           couple={weddingContent.couple}
           event={weddingContent.event}
-          greeting={weddingContent.greeting}
           navigation={weddingContent.navigation}
         />
         <Countdown target={weddingContent.event.countdownTarget} />
+        <PhotoStory photoStory={weddingContent.photoStory} />
         <Schedule
           items={weddingContent.schedule}
           intro={weddingContent.scheduleIntro}
         />
-        <PhotoStory photoStory={weddingContent.photoStory} />
         <Location event={weddingContent.event} />
         <DetailsFaq
           dressCode={weddingContent.dressCode}

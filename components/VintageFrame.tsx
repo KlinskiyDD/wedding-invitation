@@ -9,38 +9,33 @@ export function VintageFrame({ children }: VintageFrameProps) {
   return (
     <div className="vintage-shell">
       <div className="vintage-page">
-        <span className="corner corner-top-left" aria-hidden="true">
+        <span className="page-branch page-branch-left" aria-hidden="true">
           <Image
-            src="/images/vintage/corner-top-left.png"
+            src="/images/editorial/branch-left.png"
             alt=""
             fill
-            sizes="96px"
+            sizes="220px"
           />
         </span>
-        <span className="corner corner-top-right" aria-hidden="true">
+        <span className="page-branch page-branch-right" aria-hidden="true">
           <Image
-            src="/images/vintage/corner-top-right.png"
+            src="/images/editorial/branch-right.png"
             alt=""
             fill
-            sizes="96px"
+            sizes="220px"
           />
         </span>
-        <span className="corner corner-bottom-left" aria-hidden="true">
+        <span className="page-branch page-branch-bottom" aria-hidden="true">
           <Image
-            src="/images/vintage/corner-bottom-left.png"
+            src="/images/editorial/branch-left.png"
             alt=""
             fill
-            sizes="96px"
+            sizes="180px"
           />
         </span>
-        <span className="corner corner-bottom-right" aria-hidden="true">
-          <Image
-            src="/images/vintage/corner-bottom-right.png"
-            alt=""
-            fill
-            sizes="96px"
-          />
-        </span>
+        <span className="gold-dust gold-dust-left" aria-hidden="true" />
+        <span className="gold-dust gold-dust-right" aria-hidden="true" />
+        <span className="gold-dust gold-dust-bottom" aria-hidden="true" />
         {children}
       </div>
     </div>

@@ -9,15 +9,14 @@ type PhotoStoryProps = {
 export function PhotoStory({ photoStory }: PhotoStoryProps) {
   return (
     <section data-testid="photo-strip" className="photo-strip-section">
-      <div className="side-leaf side-leaf-left" aria-hidden="true">
-        <Image src="/images/vintage/branch-side.png" alt="" fill sizes="90px" />
-      </div>
       <div className="photo-strip" aria-label={photoStory.title}>
         {photoStory.photos.map((photo, index) => (
           <figure
             key={`${photo.alt}-${index}`}
             data-testid="photo-slot"
-            className={`photo-slot photo-slot-${photo.tone}`}
+            className={`photo-slot photo-slot-${photo.tone} photo-polaroid-${
+              index + 1
+            }`}
           >
             {photo.src ? (
               <Image
@@ -28,14 +27,15 @@ export function PhotoStory({ photoStory }: PhotoStoryProps) {
                 className="photo-image"
               />
             ) : (
-              <span role="img" aria-label={photo.alt} />
+              <span className="photo-placeholder" role="img" aria-label={photo.alt} />
             )}
+            <figcaption className="sr-only">{photo.alt}</figcaption>
           </figure>
         ))}
       </div>
-      <div className="side-leaf side-leaf-right" aria-hidden="true">
-        <Image src="/images/vintage/branch-side.png" alt="" fill sizes="90px" />
-      </div>
+      <span className="photo-heart" aria-hidden="true">
+        ♡
+      </span>
     </section>
   );
 }

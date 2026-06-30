@@ -9,51 +9,6 @@ type RsvpProps = {
   rsvp: WeddingContent["rsvp"];
 };
 
-type OptionGroupProps = {
-  title: string;
-  name: string;
-  options: string[];
-  type: "radio" | "checkbox";
-  columns?: boolean;
-  wide?: boolean;
-  note?: string;
-};
-
-function OptionGroup({
-  title,
-  name,
-  options,
-  type,
-  columns = false,
-  wide = false,
-  note,
-}: OptionGroupProps) {
-  return (
-    <fieldset className={wide ? "form-fieldset form-fieldset-wide" : "form-fieldset"}>
-      <legend>{title}</legend>
-      {note ? <p className="form-note">{note}</p> : null}
-      <div className={columns ? "option-grid" : "option-list"}>
-        {options.map((option, index) => {
-          const id = `${name}-${index}`;
-
-          return (
-            <label key={option} htmlFor={id} className="choice-row">
-              <input
-                id={id}
-                name={name}
-                type={type}
-                value={option}
-                defaultChecked={type === "radio" && index === 0}
-              />
-              <span>{option}</span>
-            </label>
-          );
-        })}
-      </div>
-    </fieldset>
-  );
-}
-
 export function Rsvp({ guestForm, rsvp }: RsvpProps) {
   const [message, setMessage] = useState("");
 
@@ -61,7 +16,8 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
     <section id="rsvp" data-testid="rsvp" className="guest-form-section vintage-panel">
       <div className="section-heading">
         <h2>Анкета гостя</h2>
-        <div className="ornament-divider" aria-hidden="true" />
+        <div className="section-divider" aria-hidden="true" />
+        <p>{rsvp.deadline}</p>
       </div>
 
       <form
@@ -71,73 +27,91 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
           setMessage(guestForm.submitMessage);
         }}
       >
-        <div className="form-block">
-          <label htmlFor="guest-name">Ваше имя</label>
-          <input id="guest-name" name="guestName" placeholder="Введите ваше имя" />
-        </div>
-
-        <OptionGroup
-          title="Вы придёте?"
-          name="attendance"
-          options={guestForm.attendance}
-          type="radio"
-        />
-
-        <OptionGroup
-          title="Со спутником?"
-          name="companions"
-          options={guestForm.companions}
-          type="radio"
-        />
-
-        <OptionGroup
-          title="На роспись?"
-          name="ceremony"
-          options={guestForm.ceremony}
-          type="radio"
-        />
-
-        <OptionGroup
-          title="Что будете есть?"
-          name="food"
-          options={guestForm.food}
-          type="checkbox"
-          columns
-          wide
-          note="Можно выбрать несколько вариантов"
-        />
-
-        <OptionGroup
-          title="Что будете пить?"
-          name="drinks"
-          options={guestForm.drinks}
-          type="checkbox"
-          columns
-          wide
-          note="Можно выбрать несколько вариантов"
-        />
-
-        <div className="form-block form-block-wide">
-          <label htmlFor="food-restrictions">
-            Продукты, которые вы не едите
-          </label>
-          <textarea
-            id="food-restrictions"
-            name="foodRestrictions"
-            placeholder="Введите текст"
+        <label className="compact-field">
+          <span className="field-icon" aria-hidden="true">
+            ♙
+          </span>
+          <span className="sr-only">Имя и фамилия</span>
+          <input
+            id="guest-name"
+            name="guestName"
+            autoComplete="name"
+            placeholder="Имя и фамилия"
           />
-        </div>
+        </label>
 
-        <div className="form-block form-block-wide">
-          <label htmlFor="guest-comment">Дополнительные пожелания</label>
-          <textarea id="guest-comment" name="comment" placeholder="Введите текст" />
-        </div>
+        <label className="compact-field">
+          <span className="field-icon" aria-hidden="true">
+            ✉
+          </span>
+          <span className="sr-only">Подтверждение участия</span>
+          <select name="attendance" defaultValue={guestForm.attendance[0]}>
+            {guestForm.attendance.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="compact-field">
+          <span className="field-icon" aria-hidden="true">
+            ♙
+          </span>
+          <span className="sr-only">Количество гостей</span>
+          <select name="companions" defaultValue={guestForm.companions[0]}>
+            {guestForm.companions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="compact-field">
+          <span className="field-icon" aria-hidden="true">
+            ◇
+          </span>
+          <span className="sr-only">Предпочтение по еде</span>
+          <select name="foodPreference" defaultValue={guestForm.food[0]}>
+            {guestForm.food.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="compact-field">
+          <span className="field-icon" aria-hidden="true">
+            ♡
+          </span>
+          <span className="sr-only">Предпочтение по алкоголю</span>
+          <select name="drinkPreference" defaultValue={guestForm.drinks[0]}>
+            {guestForm.drinks.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="compact-field compact-field-wide compact-field-textarea">
+          <span className="field-icon" aria-hidden="true">
+            !
+          </span>
+          <span className="sr-only">Ограничения по блюдам / аллергии</span>
+          <textarea
+            name="foodRestrictions"
+            placeholder="Ограничения по блюдам / аллергии"
+          />
+        </label>
 
         <div className="form-submit">
           <button type="submit" data-testid="rsvp-submit">
-            Отправить анкету
+            <span>Отправить ответ</span>
+            <span aria-hidden="true">♡</span>
           </button>
-          <p>{rsvp.deadline}</p>
           {message ? (
             <p data-testid="rsvp-message" className="form-status" aria-live="polite">
               {message}
@@ -145,6 +119,8 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
           ) : null}
         </div>
       </form>
+
+      <p className="signature">♡ С любовью, Дима и Марина ♥</p>
     </section>
   );
 }

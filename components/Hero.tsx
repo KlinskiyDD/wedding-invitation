@@ -5,11 +5,10 @@ import type { WeddingContent } from "@/content/wedding";
 type HeroProps = {
   couple: WeddingContent["couple"];
   event: WeddingContent["event"];
-  greeting: WeddingContent["greeting"];
   navigation: WeddingContent["navigation"];
 };
 
-export function Hero({ couple, event, greeting, navigation }: HeroProps) {
+export function Hero({ couple, event, navigation }: HeroProps) {
   const leftNavigation = navigation.slice(0, 3);
   const rightNavigation = navigation.slice(3);
 
@@ -25,10 +24,11 @@ export function Hero({ couple, event, greeting, navigation }: HeroProps) {
         </div>
         <div className="monogram" aria-label={`Монограмма ${couple.monogram}`}>
           <Image
-            src="/images/vintage/monogram.png"
+            src="/images/editorial/monogram.png"
             alt=""
-            fill
-            sizes="104px"
+            width={180}
+            height={135}
+            className="monogram-image"
             priority
           />
           <span className="sr-only">{couple.monogram}</span>
@@ -42,47 +42,14 @@ export function Hero({ couple, event, greeting, navigation }: HeroProps) {
         </div>
       </nav>
 
-      <div className="hero-composition">
-        <div className="hero-art hero-art-left">
-          <Image
-            src="/images/vintage/building-large.png"
-            alt="Декоративная иллюстрация здания"
-            width={300}
-            height={240}
-            priority
-            className="hero-sketch-image"
-          />
-        </div>
-
-        <div className="hero-copy">
-          <p className="hero-eyebrow">{couple.headline}</p>
-          <h1 className="hero-title">
-            <span>{couple.groomName}</span>
-            <em>и</em>
-            <span>{couple.brideName}</span>
-          </h1>
-          <p className="hero-date">{event.dateLabel}</p>
-          <div className="ornament-divider" aria-hidden="true" />
-          <div className="hero-greeting">
-            {greeting.map((paragraph, index) =>
-              index === 0 ? (
-                <h2 key={paragraph}>{paragraph}</h2>
-              ) : (
-                <p key={paragraph}>{paragraph}</p>
-              ),
-            )}
-          </div>
-        </div>
-
-        <div className="hero-art hero-art-right">
-          <Image
-            src="/images/vintage/branch-hero.png"
-            alt=""
-            width={235}
-            height={318}
-            className="hero-botanical-image"
-          />
-        </div>
+      <div className="hero-copy">
+        <h1 className="hero-title">{couple.names}</h1>
+        <div className="hero-divider" aria-hidden="true" />
+        <p className="hero-date">{event.dateLabel}</p>
+        <p className="hero-subtitle">{couple.subtitle}</p>
+        <span className="hero-heart" aria-hidden="true">
+          ♡
+        </span>
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { WeddingContent } from "@/content/wedding";
 
 type LocationProps = {
@@ -7,39 +9,50 @@ type LocationProps = {
 export function Location({ event }: LocationProps) {
   return (
     <section
-      id="details"
+      id="place"
       data-testid="location"
       className="venue-section vintage-panel"
     >
+      <div className="venue-photo" aria-hidden="true">
+        <Image
+          src="/images/editorial/venue-courtyard.jpg"
+          alt=""
+          fill
+          sizes="(min-width: 900px) 52vw, 100vw"
+          className="venue-photo-image"
+        />
+      </div>
+
       <div className="venue-copy">
-        <p className="section-kicker">Место проведения</p>
         <h2>{event.placeName}</h2>
-        <p>{event.address}</p>
+        <p className="venue-address">
+          <Image
+            src="/images/editorial/pin.png"
+            alt=""
+            width={28}
+            height={28}
+            aria-hidden="true"
+          />
+          <span>{event.address}</span>
+        </p>
         <div className="venue-actions">
-          <a href={event.mapUrl} target="_blank" rel="noreferrer">
-            Как добраться
-          </a>
-          <a href={event.websiteUrl} target="_blank" rel="noreferrer">
-            Сайт ресторана
+          <a
+            href={event.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Открыть в Яндекс Картах"
+          >
+            <span>Посмотреть на карте</span>
+            <Image
+              src="/images/editorial/arrow.png"
+              alt=""
+              width={24}
+              height={24}
+              aria-hidden="true"
+            />
           </a>
         </div>
       </div>
-
-      <a
-        href={event.mapUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="map-preview"
-        aria-label="Открыть в Яндекс Картах"
-      >
-        <span className="map-river" aria-hidden="true" />
-        <span className="map-road map-road-one" aria-hidden="true" />
-        <span className="map-road map-road-two" aria-hidden="true" />
-        <span className="map-road map-road-three" aria-hidden="true" />
-        <span className="map-pin" aria-hidden="true" />
-        <span className="map-label">Пироговский дворик</span>
-        <span className="map-button">Открыть в Яндекс Картах</span>
-      </a>
     </section>
   );
 }

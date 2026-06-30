@@ -1,72 +1,87 @@
 import { expect, test } from "@playwright/test";
 
-test("renders the vintage wedding invitation homepage", async ({ page }) => {
+test("renders the modern editorial wedding invitation homepage", async ({ page }) => {
   await page.goto("/");
 
   await expect(page).toHaveTitle(/Свадебное приглашение/);
 
   const hero = page.getByTestId("hero");
-  await expect(hero).toContainText("Дмитрий");
-  await expect(hero).toContainText("Марина");
+  await expect(hero).toContainText("Дмитрий и Марина");
   await expect(hero).toContainText("22 августа 2026");
-  await expect(hero).toContainText("Дорогие гости!");
   await expect(hero).toContainText(
-    "С любовью приглашаем вас на день рождения нашей семьи!",
+    "Мы создаём день, полный любви и радости",
   );
-  await expect(page.getByRole("link", { name: "Приглашение" })).toHaveAttribute(
+
+  await expect(page.getByRole("link", { name: "ГЛАВНАЯ" })).toHaveAttribute(
     "href",
     "#invitation",
   );
-  await expect(page.getByRole("link", { name: "FAQ" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "МЕСТО" })).toHaveAttribute(
     "href",
-    "#faq",
+    "#place",
   );
-  await expect
-    .poll(async () =>
-      page
-        .locator(".vintage-page")
-        .evaluate((element) => getComputedStyle(element).backgroundImage),
-    )
-    .not.toContain("linear-gradient");
+  await expect(page.getByRole("link", { name: "ДРЕСС-КОД" })).toHaveAttribute(
+    "href",
+    "#dress-code",
+  );
+  await expect(
+    page.getByRole("link", { name: "АНКЕТА ГОСТЯ" }),
+  ).toHaveAttribute("href", "#rsvp");
 
   await expect(page.getByTestId("countdown")).toContainText(
     "До нашей свадьбы осталось",
   );
 
+  await expect(page.getByTestId("photo-slot")).toHaveCount(5);
+
   const schedule = page.getByTestId("schedule");
   await expect(schedule).toContainText("Тайминг дня");
   await expect(schedule).toContainText("15:30");
-  await expect(schedule).toContainText("15:45");
   await expect(schedule).toContainText("16:00");
+  await expect(schedule).toContainText("16:30");
   await expect(schedule).toContainText("18:00");
-
-  await expect(page.getByTestId("photo-slot")).toHaveCount(4);
+  await expect(schedule).not.toContainText("20:00");
+  await expect(schedule).not.toContainText("Танцы");
 
   const location = page.getByTestId("location");
-  await expect(location).toContainText("Место проведения");
   await expect(location).toContainText("Ресторан «Пироговский дворик»");
-  await expect(location).toContainText("деревня Пирогово");
+  await expect(location).toContainText("Пирогово");
   await expect(page.getByLabel("Открыть в Яндекс Картах")).toHaveAttribute(
     "href",
     /yandex\.ru\/maps/,
   );
 
   const dressCode = page.getByTestId("dress-code");
-  await expect(dressCode).toContainText("Стоп-цвета");
-  await expect(dressCode).toContainText("total black");
+  await expect(dressCode).toContainText("Дресс-код");
+  await expect(dressCode.getByLabel("Белый")).toBeVisible();
+  await expect(dressCode.getByLabel("Чёрный")).toBeVisible();
+  await expect(dressCode.getByLabel("Красный")).toBeVisible();
+  await expect(dressCode.getByLabel("Молочный")).toHaveCount(0);
+  await expect(dressCode.getByLabel("Золото/блёстки")).toHaveCount(0);
 
   const faq = page.getByTestId("faq");
-  await expect(faq).toContainText("Частые вопросы");
-  await expect(faq).toContainText("Что с цветами?");
-  await expect(faq).toContainText("бутылку вина");
+  await expect(faq).toContainText("Часто задаваемые вопросы");
+  await expect(faq.locator("details")).toHaveCount(6);
   await expect(faq).not.toContainText("детей");
+  await faq.getByText("Можно ли подарить подарок в конверте?").click();
+  await expect(faq).toContainText("вклад в бюджет нашей молодой семьи");
 
   const rsvp = page.getByTestId("rsvp");
   await expect(rsvp).toContainText("Анкета гостя");
-  await expect(rsvp).toContainText("С радостью приду!");
-  await expect(rsvp).toContainText("Приеду сразу на банкет");
-  await expect(rsvp).toContainText("Не пью");
-  await expect(rsvp).toContainText("Продукты, которые вы не едите");
+  await expect(rsvp).toContainText(
+    "подтвердите своё присутствие до 1 июля 2026 года",
+  );
+  await expect(page.getByPlaceholder("Имя и фамилия")).toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Подтверждение участия" }))
+    .toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Количество гостей" }))
+    .toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Предпочтение по еде" }))
+    .toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Предпочтение по алкоголю" }))
+    .toBeVisible();
+  await expect(page.getByPlaceholder("Ограничения по блюдам / аллергии"))
+    .toBeVisible();
 
   await page.getByTestId("rsvp-submit").click();
   await expect(page.getByTestId("rsvp-message")).toContainText(

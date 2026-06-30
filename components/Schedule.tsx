@@ -8,21 +8,21 @@ type ScheduleProps = {
 };
 
 const scheduleIcons: Record<ScheduleItem["icon"], { src: string; alt: string }> = {
-  venue: {
-    src: "/images/vintage/building-small.png",
-    alt: "Декоративная иллюстрация здания",
-  },
   rings: {
-    src: "/images/vintage/rings.png",
+    src: "/images/editorial/rings.png",
     alt: "Декоративная иконка колец",
   },
-  arch: {
-    src: "/images/vintage/arch.png",
-    alt: "Декоративная свадебная арка",
+  heart: {
+    src: "/images/editorial/heart.png",
+    alt: "Декоративная иконка сердца",
   },
   glasses: {
-    src: "/images/vintage/glasses.png",
+    src: "/images/editorial/glasses.png",
     alt: "Декоративная иконка бокалов",
+  },
+  cloche: {
+    src: "/images/editorial/cloche.png",
+    alt: "Декоративная иконка праздничного ужина",
   },
 };
 
@@ -45,8 +45,8 @@ export function Schedule({ items, intro }: ScheduleProps) {
     <section id="timing" data-testid="schedule" className="schedule-section">
       <div className="section-heading">
         <h2>Тайминг дня</h2>
-        <div className="ornament-divider" aria-hidden="true" />
-        <p>{intro}</p>
+        <div className="section-divider" aria-hidden="true" />
+        <p className="sr-only">{intro}</p>
       </div>
 
       <div className="schedule-line" role="list">
