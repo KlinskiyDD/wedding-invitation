@@ -99,76 +99,86 @@ img {
   pointer-events: none;
 }
 
-.vintage-page > *:not(.page-branch):not(.gold-dust) {
+.vintage-page > *:not(.page-branch):not(.page-corner):not(.gold-dust) {
   position: relative;
   z-index: 1;
 }
 
 .page-branch,
+.page-corner,
 .gold-dust {
   position: absolute;
   z-index: 0;
   pointer-events: none;
 }
 
-.page-branch img {
+.page-branch img,
+.page-corner img {
   object-fit: contain;
 }
 
 .page-branch-left {
-  top: 145px;
-  left: -28px;
-  width: 152px;
-  height: 220px;
-  opacity: 0.82;
-  transform: rotate(-8deg);
+  top: 136px;
+  left: 18px;
+  width: 176px;
+  height: 260px;
+  opacity: 0.78;
+  transform: rotate(-7deg);
 }
 
 .page-branch-right {
-  top: 235px;
-  right: -26px;
-  width: 150px;
-  height: 220px;
-  opacity: 0.82;
-  transform: rotate(8deg);
+  top: 136px;
+  right: 18px;
+  width: 176px;
+  height: 260px;
+  opacity: 0.78;
+  transform: rotate(7deg);
 }
 
 .page-branch-bottom {
-  right: -22px;
-  bottom: 72px;
-  width: 145px;
-  height: 196px;
-  opacity: 0.74;
-  transform: rotate(8deg);
+  right: 44px;
+  bottom: 78px;
+  width: 160px;
+  height: 160px;
+  opacity: 0.36;
+  transform: rotate(5deg);
+}
+
+.page-corner-top-left {
+  top: 15px;
+  left: 14px;
+  width: 170px;
+  height: 170px;
+  opacity: 0.12;
+}
+
+.page-corner-bottom-right {
+  right: 12px;
+  bottom: 12px;
+  width: 190px;
+  height: 190px;
+  opacity: 0.14;
 }
 
 .gold-dust {
-  width: 120px;
-  height: 170px;
-  background-image:
-    radial-gradient(circle, rgba(195, 152, 70, 0.92) 0 1.2px, transparent 1.8px),
-    radial-gradient(circle, rgba(195, 152, 70, 0.55) 0 1px, transparent 1.7px);
-  background-position:
-    12px 18px,
-    41px 53px;
-  background-size:
-    36px 45px,
-    47px 57px;
-  opacity: 0.68;
+  width: 170px;
+  height: 240px;
+  background: url("/images/generated/gold-dust-sprinkle.png") center / contain no-repeat;
+  opacity: 0.52;
 }
 
 .gold-dust-left {
-  top: 98px;
-  left: 20px;
+  top: 96px;
+  left: 36px;
 }
 
 .gold-dust-right {
-  top: 148px;
-  right: 18px;
+  top: 96px;
+  right: 36px;
 }
 
 .gold-dust-bottom {
-  right: 34px;
+  right: 74px;
   bottom: 88px;
 }
 
@@ -241,23 +251,10 @@ img {
 .hero-divider,
 .section-divider {
   display: block;
-  width: 72px;
-  height: 13px;
+  width: 150px;
+  height: 28px;
   margin: 18px auto 0;
-  background:
-    linear-gradient(var(--gold), var(--gold)) center / 100% 1px no-repeat;
-}
-
-.hero-divider::before,
-.section-divider::before {
-  display: block;
-  width: 8px;
-  height: 8px;
-  margin: 2px auto 0;
-  border: 1px solid var(--gold);
-  background: var(--paper);
-  content: "";
-  transform: rotate(45deg);
+  background: url("/images/generated/divider-floral-small.png") center / contain no-repeat;
 }
 
 .hero-date {
@@ -278,9 +275,9 @@ img {
 .hero-heart,
 .photo-heart {
   display: block;
-  color: var(--gold);
-  font-size: 1.55rem;
-  line-height: 1;
+  width: 24px;
+  height: 24px;
+  background: url("/images/generated/heart-tiny-gold.png") center / contain no-repeat;
 }
 
 .hero-heart {
@@ -303,67 +300,18 @@ img {
   max-width: 890px;
   margin: 0 auto;
   border-radius: 18px;
-  background:
-    linear-gradient(
-      115deg,
-      #424832 0%,
-      #646a4c 28%,
-      #4e543a 48%,
-      #7a7248 67%,
-      #454b34 100%
-    );
-  background-size: 220% 220%;
+  background: url("/images/generated/countdown-panel-bg-clean-v3.png") center / 100% 100% no-repeat;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 14px 36px rgba(62, 65, 48, 0.2);
+    0 14px 36px rgba(62, 65, 48, 0.18);
   color: var(--white);
-  padding: 26px 64px 28px;
+  padding: 32px 74px 34px;
   text-align: center;
-  animation: countdown-shimmer 8s ease-in-out infinite;
-}
-
-.countdown-frame::before {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      105deg,
-      transparent 0 36%,
-      rgba(239, 217, 160, 0.18) 47%,
-      transparent 60% 100%
-    );
-  content: "";
-  transform: translateX(-55%);
-  animation: countdown-sheen 5.8s ease-in-out infinite;
-  pointer-events: none;
 }
 
 .countdown-frame > * {
   position: relative;
   z-index: 1;
-}
-
-@keyframes countdown-shimmer {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes countdown-sheen {
-  0%,
-  30% {
-    transform: translateX(-65%);
-  }
-
-  70%,
-  100% {
-    transform: translateX(65%);
-  }
 }
 
 .section-kicker {
@@ -379,7 +327,7 @@ img {
   max-width: 710px;
   margin: 17px auto 0;
   border-top: 1px solid rgba(195, 152, 70, 0.58);
-  padding-top: 17px;
+  padding-top: 19px;
 }
 
 .countdown-item {
@@ -405,10 +353,12 @@ img {
 
 .countdown-heart {
   position: absolute;
-  right: 38px;
-  bottom: 28px;
-  color: var(--gold-soft);
-  font-size: 1.5rem;
+  right: 44px;
+  bottom: 32px;
+  width: 22px;
+  height: 22px;
+  background: url("/images/generated/heart-tiny-gold.png") center / contain no-repeat;
+  opacity: 0.72;
 }
 
 .countdown-finished {
@@ -420,7 +370,8 @@ img {
 .photo-strip-section {
   display: grid;
   justify-items: center;
-  gap: 7px;
+  gap: 12px;
+  padding-block: 8px 0;
 }
 
 .photo-strip {
@@ -438,8 +389,55 @@ img {
   margin: 0;
   border: 1px solid rgba(223, 216, 204, 0.95);
   background: #fff;
-  box-shadow: 0 12px 22px rgba(56, 50, 42, 0.12);
+  box-shadow: none;
   padding: 10px 10px 17px;
+}
+
+.photo-slot::before {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  z-index: 2;
+  width: 76px;
+  height: 28px;
+  background: url("/images/generated/photo-tape-soft.png") center / contain no-repeat;
+  content: "";
+  opacity: 0.72;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.photo-image-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1.46;
+  background: var(--paper-deep);
+}
+
+.photo-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-slot-couple .photo-image {
+  object-position: 50% 52%;
+}
+
+.photo-slot-field .photo-image {
+  object-position: 50% 50%;
+}
+
+.photo-slot-portrait .photo-image {
+  object-position: 50% 48%;
+}
+
+.photo-slot-walk .photo-image {
+  object-position: 36% 50%;
+}
+
+.photo-slot-kiss .photo-image {
+  object-position: 50% 42%;
 }
 
 .photo-polaroid-1 {
@@ -466,7 +464,7 @@ img {
 .photo-placeholder {
   display: block;
   width: 100%;
-  aspect-ratio: 1.46;
+  height: 100%;
   filter: grayscale(1);
 }
 
@@ -534,24 +532,32 @@ img {
 .vintage-panel {
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: rgba(255, 253, 248, 0.34);
+  background: rgba(255, 253, 248, 0.56);
 }
 
 .schedule-section {
+  position: relative;
+  overflow: hidden;
   max-width: 1130px;
   margin-right: auto;
   margin-left: auto;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: rgba(255, 253, 248, 0.38);
-  padding: 24px 45px 28px;
+  background:
+    url("/images/generated/section-bg-timing-v3.png") center / 100% 100% no-repeat,
+    rgba(255, 253, 248, 0.72);
+  padding: 32px 52px 34px;
+}
+
+.schedule-section .section-heading {
+  margin-bottom: 28px;
 }
 
 .schedule-line {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 34px;
+  gap: 46px;
 }
 
 .schedule-line::before {
@@ -568,8 +574,9 @@ img {
   position: relative;
   z-index: 1;
   display: grid;
+  grid-template-rows: 58px auto auto auto;
   min-width: 0;
-  min-height: 184px;
+  min-height: 154px;
   align-content: center;
   justify-items: center;
   border: 1px solid var(--line-strong);
@@ -577,14 +584,14 @@ img {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.12)),
     var(--paper);
-  padding: 18px 14px;
+  padding: 16px 14px 14px;
   text-align: center;
 }
 
 .schedule-event::after {
   position: absolute;
   top: 50%;
-  right: -23px;
+  right: -29px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -600,18 +607,20 @@ img {
 .schedule-icon {
   display: grid;
   place-items: center;
-  height: 50px;
-  margin-bottom: 11px;
+  width: 64px;
+  height: 58px;
+  margin-bottom: 8px;
 }
 
 .schedule-icon-image {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
 }
 
 .schedule-event time {
   display: block;
+  font-weight: 600;
   font-size: 1.28rem;
   line-height: 1.1;
 }
@@ -640,11 +649,16 @@ img {
   margin-right: auto;
   margin-left: auto;
   overflow: hidden;
+  padding: 16px;
+  gap: 0;
 }
 
 .venue-photo {
   position: relative;
-  min-height: 250px;
+  min-height: 292px;
+  overflow: hidden;
+  border: 1px solid rgba(213, 199, 174, 0.74);
+  border-radius: 12px;
   background: var(--paper-deep);
 }
 
@@ -657,18 +671,15 @@ img {
   display: grid;
   align-content: center;
   min-width: 0;
-  padding: 32px 66px;
+  margin-left: 22px;
+  padding: 32px 54px;
+  background:
+    url("/images/generated/section-bg-venue-v3.png") right center / contain no-repeat,
+    rgba(255, 253, 248, 0.26);
 }
 
 .venue-copy::after {
-  position: absolute;
-  right: 23px;
-  bottom: 22px;
-  width: 92px;
-  height: 120px;
-  background: url("/images/editorial/branch-right.png") center / contain no-repeat;
-  content: "";
-  opacity: 0.38;
+  display: none;
 }
 
 .venue-copy h2 {
@@ -708,12 +719,17 @@ img {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  border: 1px solid var(--olive-dark);
-  border-radius: 5px;
+  border: 2px solid rgba(221, 195, 144, 0.78);
+  border-radius: 4px;
   background: var(--olive);
   color: var(--white);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.96rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 253, 248, 0.18),
+    0 6px 14px rgba(76, 81, 57, 0.15);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0;
   text-transform: uppercase;
   transition:
     background 160ms ease,
@@ -721,15 +737,15 @@ img {
 }
 
 .venue-actions a {
-  gap: 20px;
+  gap: 18px;
   min-width: 294px;
-  padding: 0 26px;
+  padding: 0 22px;
 }
 
 .venue-actions img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) invert(1);
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
 }
 
 .venue-actions a:hover,
@@ -742,10 +758,15 @@ img {
 }
 
 .dress-code-section {
+  position: relative;
+  overflow: hidden;
   max-width: 1130px;
   margin-right: auto;
   margin-left: auto;
-  padding: 24px 46px 27px;
+  background:
+    url("/images/generated/section-bg-dresscode-v3.png") center / 100% 100% no-repeat,
+    rgba(255, 253, 248, 0.68);
+  padding: 34px 46px 35px;
   text-align: center;
 }
 
@@ -774,12 +795,16 @@ img {
 }
 
 .color-swatch {
+  position: relative;
   display: block;
-  width: 53px;
-  height: 53px;
-  border: 1px solid;
+  width: 58px;
+  height: 58px;
+  border: 2px solid;
   border-radius: 50%;
-  box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 0 0 5px rgba(255, 253, 248, 0.92),
+    0 0 0 7px rgba(195, 152, 70, 0.58),
+    inset 0 1px 5px rgba(255, 255, 255, 0.25);
 }
 
 .color-swatch-speckled {
@@ -792,24 +817,31 @@ img {
 }
 
 .faq-section {
+  position: relative;
+  overflow: hidden;
   max-width: 1130px;
   margin-right: auto;
   margin-left: auto;
+  background:
+    url("/images/generated/section-bg-faq-v3.png") center 52px / 100% 255px no-repeat,
+    rgba(255, 253, 248, 0.56);
+  padding: 34px 36px 30px;
   text-align: center;
 }
 
 .faq-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px 20px;
-  margin-top: 17px;
+  gap: 10px 54px;
+  max-width: 1045px;
+  margin: 22px auto 0;
 }
 
 .faq-list details {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: rgba(255, 253, 248, 0.56);
+  background: rgba(255, 253, 248, 0.78);
   text-align: left;
 }
 
@@ -852,22 +884,15 @@ img {
 
 .guest-form-section {
   position: relative;
+  overflow: hidden;
   max-width: 1130px;
   margin-right: auto;
   margin-left: auto;
-  padding: 26px 50px 17px;
+  background:
+    url("/images/generated/section-bg-rsvp-v3.png") center / 100% 100% no-repeat,
+    rgba(255, 253, 248, 0.66);
+  padding: 34px 50px 25px;
   text-align: center;
-}
-
-.guest-form-section::after {
-  position: absolute;
-  right: 20px;
-  bottom: 18px;
-  width: 100px;
-  height: 135px;
-  background: url("/images/editorial/branch-right.png") center / contain no-repeat;
-  content: "";
-  opacity: 0.45;
 }
 
 .guest-form {
@@ -875,27 +900,33 @@ img {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 15px 20px;
+  gap: 16px 26px;
   max-width: 960px;
-  margin: 12px auto 0;
+  margin: 18px auto 0;
 }
 
 .compact-field {
   display: grid;
-  grid-template-columns: 26px 1fr;
+  grid-template-columns: 30px 1fr;
   align-items: center;
   min-width: 0;
   min-height: 48px;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: rgba(255, 253, 248, 0.72);
+  background: rgba(255, 253, 248, 0.82);
   padding: 0 12px;
 }
 
 .field-icon {
-  color: var(--muted);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.08rem;
+  display: grid;
+  place-items: center;
+}
+
+.field-icon img {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+  opacity: 0.56;
 }
 
 .compact-field input,
@@ -912,9 +943,9 @@ img {
 }
 
 .compact-field textarea {
-  min-height: 86px;
+  min-height: 58px;
   resize: vertical;
-  padding: 14px 0;
+  padding: 16px 0 8px;
 }
 
 .compact-field-wide {
@@ -923,7 +954,7 @@ img {
 
 .compact-field-textarea {
   align-items: start;
-  min-height: 96px;
+  min-height: 60px;
   padding-top: 0;
 }
 
@@ -938,17 +969,24 @@ img {
 }
 
 .form-submit {
-  grid-column: 1 / -1;
+  grid-column: span 1;
   display: grid;
-  justify-items: center;
+  justify-items: stretch;
   gap: 10px;
   min-width: 0;
 }
 
 .form-submit button {
-  gap: 34px;
-  min-width: 300px;
+  gap: 28px;
+  min-width: 0;
+  min-height: 60px;
   padding: 0 28px;
+}
+
+.form-submit button img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
 }
 
 .form-status {
@@ -963,10 +1001,9 @@ img {
 .signature {
   position: relative;
   z-index: 1;
-  margin: 16px 0 0;
+  margin: 20px 0 0;
   color: #9d7440;
-  font-size: 1.08rem;
-  font-style: italic;
+  font-size: 1.12rem;
 }
 
 @media (max-width: 1040px) {
@@ -1016,8 +1053,14 @@ img {
   .page-branch-left,
   .page-branch-right,
   .page-branch-bottom,
+  .page-corner,
   .gold-dust {
     opacity: 0.36;
+  }
+
+  .page-branch-left,
+  .page-branch-right {
+    display: none;
   }
 
   .vintage-nav {
@@ -1057,7 +1100,12 @@ img {
 
   .countdown-frame {
     border-radius: 8px;
-    padding: 22px 18px 24px;
+    padding: 26px 20px 28px;
+  }
+
+  .countdown-frame::before,
+  .countdown-frame::after {
+    display: none;
   }
 
   .countdown-grid {
@@ -1138,6 +1186,26 @@ img {
 
   .venue-copy {
     padding: 26px 22px 30px;
+    margin-left: 0;
+  }
+
+  .venue-actions a {
+    gap: 10px !important;
+    padding-inline: 14px !important;
+    font-size: 0.76rem !important;
+  }
+
+  .venue-actions a span {
+    white-space: nowrap !important;
+  }
+
+  .venue-actions {
+    width: 100%;
+  }
+
+  .venue-actions img {
+    width: 22px;
+    height: 22px;
   }
 
   .dress-code-section {
@@ -1189,7 +1257,11 @@ img {
   }
 
   .countdown-item dt {
-    font-size: 2.25rem;
+    font-size: 2.05rem;
+  }
+
+  .countdown-item dd {
+    font-size: 0.72rem;
   }
 
   .schedule-event {

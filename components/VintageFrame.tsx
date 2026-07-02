@@ -11,26 +11,42 @@ export function VintageFrame({ children }: VintageFrameProps) {
       <div className="vintage-page">
         <span className="page-branch page-branch-left" aria-hidden="true">
           <Image
-            src="/images/editorial/branch-left.png"
+            src="/images/generated/botanical-spray-left.png"
             alt=""
             fill
-            sizes="220px"
+            sizes="420px"
           />
         </span>
         <span className="page-branch page-branch-right" aria-hidden="true">
           <Image
-            src="/images/editorial/branch-right.png"
+            src="/images/generated/botanical-spray-right.png"
             alt=""
             fill
-            sizes="220px"
+            sizes="420px"
           />
         </span>
         <span className="page-branch page-branch-bottom" aria-hidden="true">
           <Image
-            src="/images/editorial/branch-left.png"
+            src="/images/generated/hero-sprig-right.png"
             alt=""
             fill
-            sizes="180px"
+            sizes="260px"
+          />
+        </span>
+        <span className="page-corner page-corner-top-left" aria-hidden="true">
+          <Image
+            src="/images/generated/corner-floral-top-left.png"
+            alt=""
+            fill
+            sizes="240px"
+          />
+        </span>
+        <span className="page-corner page-corner-bottom-right" aria-hidden="true">
+          <Image
+            src="/images/generated/corner-floral-bottom-right.png"
+            alt=""
+            fill
+            sizes="260px"
           />
         </span>
         <span className="gold-dust gold-dust-left" aria-hidden="true" />

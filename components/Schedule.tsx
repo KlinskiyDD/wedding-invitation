@@ -9,19 +9,19 @@ type ScheduleProps = {
 
 const scheduleIcons: Record<ScheduleItem["icon"], { src: string; alt: string }> = {
   rings: {
-    src: "/images/editorial/rings.png",
+    src: "/images/generated/icon-rings-premium.png",
     alt: "Декоративная иконка колец",
   },
   heart: {
-    src: "/images/editorial/heart.png",
+    src: "/images/generated/icon-heart-premium.png",
     alt: "Декоративная иконка сердца",
   },
   glasses: {
-    src: "/images/editorial/glasses.png",
+    src: "/images/generated/icon-glasses-premium.png",
     alt: "Декоративная иконка бокалов",
   },
   cloche: {
-    src: "/images/editorial/cloche.png",
+    src: "/images/generated/icon-cloche-premium.png",
     alt: "Декоративная иконка праздничного ужина",
   },
 };

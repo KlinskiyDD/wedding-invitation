@@ -1,0 +1,1849 @@
+{
+  "version": 1,
+  "stage": 3,
+  "status": "integrated-local-verified",
+  "project": "wedding-invitation",
+  "generatedAssetsDirectory": "public/images/generated",
+  "previewDirectory": "design/previews",
+  "notes": [
+    "Stage 2 generated real PNG files under public/images/generated.",
+    "Stage 2 revision v2 addresses user feedback: replaced top branches, detailed the D/M monogram, aligned countdown/timing blocks, strengthened location/dress-code backgrounds, and redrew button icon contrast.",
+    "Stage 2 revision v3 addresses additional user feedback: richer RSVP/dress-code backgrounds, centered FAQ, shadowless photo strip, improved timing background/text alignment, and rounded venue photo card.",
+    "Transparent assets were generated on #ff00ff chroma-key sheets, cropped, alpha-cleaned, and color-normalized locally.",
+    "No site code has been changed yet; integration waits for explicit design approval.",
+    "Stage 3 integrated the generated PNG assets into the live Next.js components and CSS.",
+    "Desktop and mobile verification screenshots are saved in test-results/stage3-implementation.",
+    "Post-integration fix: removed duplicated divider ornaments from timing/FAQ section background PNGs.",
+    "Post-integration fix: added countdown-panel-bg-clean-v3.png and switched Countdown to the clean single-outline panel background."
+  ],
+  "styleGuide": {
+    "direction": "quiet premium botanical editorial wedding",
+    "lineColors": [
+      "#5d6247",
+      "#6d6f51",
+      "#8f7d4e"
+    ],
+    "goldColors": [
+      "#c39846",
+      "#ddc390"
+    ],
+    "paperColors": [
+      "#fbf8f2",
+      "#f6efe6",
+      "#fffdf8"
+    ],
+    "shadow": "soft warm shadow, rgba(61, 49, 34, 0.12-0.22)",
+    "avoid": [
+      "bright yellow gold",
+      "heavy baroque ornament",
+      "cartoon icons",
+      "stock-photo look",
+      "text or watermark inside PNG assets"
+    ]
+  },
+  "existingAssetsAudited": [
+    {
+      "file": "public/images/editorial/branch-left.png",
+      "size": "220x294",
+      "transparent": true,
+      "currentUse": "left page branch"
+    },
+    {
+      "file": "public/images/editorial/branch-right.png",
+      "size": "220x294",
+      "transparent": true,
+      "currentUse": "right page branch and section accents"
+    },
+    {
+      "file": "public/images/editorial/monogram.png",
+      "size": "180x135",
+      "transparent": true,
+      "currentUse": "hero monogram"
+    },
+    {
+      "file": "public/images/editorial/rings.png",
+      "size": "220x220",
+      "transparent": true,
+      "currentUse": "schedule icon"
+    },
+    {
+      "file": "public/images/editorial/heart.png",
+      "size": "220x220",
+      "transparent": true,
+      "currentUse": "schedule icon"
+    },
+    {
+      "file": "public/images/editorial/glasses.png",
+      "size": "220x220",
+      "transparent": true,
+      "currentUse": "schedule icon"
+    },
+    {
+      "file": "public/images/editorial/cloche.png",
+      "size": "220x220",
+      "transparent": true,
+      "currentUse": "schedule icon"
+    },
+    {
+      "file": "public/images/editorial/pin.png",
+      "size": "180x180",
+      "transparent": true,
+      "currentUse": "venue address icon"
+    },
+    {
+      "file": "public/images/editorial/arrow.png",
+      "size": "180x180",
+      "transparent": true,
+      "currentUse": "map button arrow"
+    },
+    {
+      "file": "public/images/editorial/venue-courtyard.jpg",
+      "size": "900x506",
+      "transparent": false,
+      "currentUse": "venue photo"
+    }
+  ],
+  "plannedAssets": [
+    {
+      "id": "botanical-spray-left",
+      "file": "public/images/generated/botanical-spray-left.png",
+      "status": "generated",
+      "category": "botanical-frame",
+      "purpose": "Large airy left-side botanical branch for the page frame and hero area.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/branch-left.png"
+      ],
+      "targetSize": {
+        "width": 420,
+        "height": 620
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, delicate premium wedding botanical branch leaning upward, thin olive line art, muted sage leaves, tiny champagne-gold flower buds, airy negative space, hand-drawn editorial invitation style, no text, no background.",
+      "styleNotes": "Must be lighter and more elegant than the current branch, with enough whitespace for hero placement.",
+      "actualSize": {
+        "width": 420,
+        "height": 620
+      },
+      "bytes": 168684,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 43847,
+        "empty": false
+      },
+      "generationRunId": "top-botanical-v2",
+      "sourceFile": "test-results/stage2-generated-assets/top-botanical-v2-sheet-source.png",
+      "generationPrompt": "Transparent PNG, delicate premium wedding botanical branch leaning upward, thin olive line art, muted sage leaves, tiny champagne-gold flower buds, airy negative space, hand-drawn editorial invitation style, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "botanical-spray-right",
+      "file": "public/images/generated/botanical-spray-right.png",
+      "status": "generated",
+      "category": "botanical-frame",
+      "purpose": "Large airy right-side botanical branch for the page frame and hero area.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/branch-right.png"
+      ],
+      "targetSize": {
+        "width": 420,
+        "height": 620
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, delicate premium wedding botanical branch leaning upward to the left, thin olive line art, muted sage leaves, tiny champagne-gold flower buds, airy editorial invitation style, no text, no background.",
+      "styleNotes": "Separate right asset instead of mirroring if leaf direction looks unnatural.",
+      "actualSize": {
+        "width": 420,
+        "height": 620
+      },
+      "bytes": 172553,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 44886,
+        "empty": false
+      },
+      "generationRunId": "top-botanical-v2",
+      "sourceFile": "test-results/stage2-generated-assets/top-botanical-v2-sheet-source.png",
+      "generationPrompt": "Transparent PNG, delicate premium wedding botanical branch leaning upward to the left, thin olive line art, muted sage leaves, tiny champagne-gold flower buds, airy editorial invitation style, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "hero-sprig-left",
+      "file": "public/images/generated/hero-sprig-left.png",
+      "status": "generated",
+      "category": "botanical-hero",
+      "purpose": "Smaller left top sprig for the hero area, generated after the first top branches felt too heavy.",
+      "usage": [
+        "components/Hero.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/branch-left.png"
+      ],
+      "targetSize": {
+        "width": 260,
+        "height": 260
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, small airy premium wedding sprig for the top hero corners, muted sage leaves, champagne-gold buds, hand-drawn editorial line art, no text, no background.",
+      "styleNotes": "Use in the very top composition so branches do not overlap or crowd the names.",
+      "actualSize": {
+        "width": 260,
+        "height": 260
+      },
+      "bytes": 37723,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 8969,
+        "empty": false
+      },
+      "generationRunId": "top-botanical-v2",
+      "sourceFile": "test-results/stage2-generated-assets/top-botanical-v2-sheet-source.png",
+      "generationPrompt": "Transparent PNG, small airy premium wedding sprig for the top hero corners, muted sage leaves, champagne-gold buds, hand-drawn editorial line art, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "hero-sprig-right",
+      "file": "public/images/generated/hero-sprig-right.png",
+      "status": "generated",
+      "category": "botanical-hero",
+      "purpose": "Smaller right top sprig for the hero area, paired with hero-sprig-left.",
+      "usage": [
+        "components/Hero.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/branch-right.png"
+      ],
+      "targetSize": {
+        "width": 260,
+        "height": 260
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, small airy premium wedding sprig for the top hero corners, muted sage leaves, champagne-gold buds, hand-drawn editorial line art, no text, no background.",
+      "styleNotes": "Use opposite the left top sprig to keep the hero balanced without crowding the title.",
+      "actualSize": {
+        "width": 260,
+        "height": 260
+      },
+      "bytes": 40946,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 9786,
+        "empty": false
+      },
+      "generationRunId": "top-botanical-v2",
+      "sourceFile": "test-results/stage2-generated-assets/top-botanical-v2-sheet-source.png",
+      "generationPrompt": "Transparent PNG, small airy premium wedding sprig for the top hero corners, muted sage leaves, champagne-gold buds, hand-drawn editorial line art, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "corner-floral-top-left",
+      "file": "public/images/generated/corner-floral-top-left.png",
+      "status": "generated",
+      "category": "corner-decor",
+      "purpose": "Soft floral corner for the inner paper frame.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/vintage/corner-top-left.png"
+      ],
+      "targetSize": {
+        "width": 360,
+        "height": 360
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, subtle top-left corner botanical ornament for premium wedding invitation, fine olive and warm gold line art, light leaves and small blossoms, not baroque, no text, no background.",
+      "styleNotes": "Keep very light; should not compete with hero title.",
+      "actualSize": {
+        "width": 360,
+        "height": 360
+      },
+      "bytes": 51391,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 11348,
+        "empty": false
+      },
+      "generationRunId": "botanical-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "generationPrompt": "Transparent PNG, subtle top-left corner botanical ornament for premium wedding invitation, fine olive and warm gold line art, light leaves and small blossoms, not baroque, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "corner-floral-top-right",
+      "file": "public/images/generated/corner-floral-top-right.png",
+      "status": "generated",
+      "category": "corner-decor",
+      "purpose": "Soft floral corner for the inner paper frame.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/vintage/corner-top-right.png"
+      ],
+      "targetSize": {
+        "width": 360,
+        "height": 360
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, subtle top-right corner botanical ornament for premium wedding invitation, fine olive and warm gold line art, light leaves and small blossoms, not baroque, no text, no background.",
+      "styleNotes": "Should visually pair with top-left without looking copied.",
+      "actualSize": {
+        "width": 360,
+        "height": 360
+      },
+      "bytes": 53617,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 11754,
+        "empty": false
+      },
+      "generationRunId": "botanical-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "generationPrompt": "Transparent PNG, subtle top-right corner botanical ornament for premium wedding invitation, fine olive and warm gold line art, light leaves and small blossoms, not baroque, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "corner-floral-bottom-left",
+      "file": "public/images/generated/corner-floral-bottom-left.png",
+      "status": "generated",
+      "category": "corner-decor",
+      "purpose": "Soft bottom floral corner for RSVP/footer area.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/vintage/corner-bottom-left.png"
+      ],
+      "targetSize": {
+        "width": 360,
+        "height": 360
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, subtle bottom-left corner botanical ornament, premium wedding invitation style, thin olive line art, muted gold accents, small leaves and blossoms, no text, no background.",
+      "styleNotes": "Use at low opacity around lower page or RSVP block.",
+      "actualSize": {
+        "width": 360,
+        "height": 360
+      },
+      "bytes": 49934,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 11197,
+        "empty": false
+      },
+      "generationRunId": "botanical-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "generationPrompt": "Transparent PNG, subtle bottom-left corner botanical ornament, premium wedding invitation style, thin olive line art, muted gold accents, small leaves and blossoms, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "corner-floral-bottom-right",
+      "file": "public/images/generated/corner-floral-bottom-right.png",
+      "status": "generated",
+      "category": "corner-decor",
+      "purpose": "Soft bottom floral corner for RSVP/footer area.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/vintage/corner-bottom-right.png"
+      ],
+      "targetSize": {
+        "width": 360,
+        "height": 360
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, subtle bottom-right corner botanical ornament, premium wedding invitation style, thin olive line art, muted gold accents, small leaves and blossoms, no text, no background.",
+      "styleNotes": "Use at low opacity around lower page or RSVP block.",
+      "actualSize": {
+        "width": 360,
+        "height": 360
+      },
+      "bytes": 50571,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 11264,
+        "empty": false
+      },
+      "generationRunId": "botanical-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "generationPrompt": "Transparent PNG, subtle bottom-right corner botanical ornament, premium wedding invitation style, thin olive line art, muted gold accents, small leaves and blossoms, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "divider-floral-small",
+      "file": "public/images/generated/divider-floral-small.png",
+      "status": "generated",
+      "category": "divider",
+      "purpose": "Small floral divider replacing text/CSS diamond dividers.",
+      "usage": [
+        "components/Hero.tsx",
+        "components/Schedule.tsx",
+        "components/DetailsFaq.tsx",
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "CSS .section-divider",
+        "CSS .hero-divider"
+      ],
+      "targetSize": {
+        "width": 520,
+        "height": 90
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, small horizontal floral divider for wedding invitation, thin olive line, tiny gold diamond at center, two minimal leaves on each side, elegant editorial style, no text, no background.",
+      "styleNotes": "Should remain readable at 72-120px CSS width.",
+      "actualSize": {
+        "width": 520,
+        "height": 90
+      },
+      "bytes": 32543,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 10584,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, small horizontal floral divider for wedding invitation, thin olive line, tiny gold diamond at center, two minimal leaves on each side, elegant editorial style, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "divider-floral-long",
+      "file": "public/images/generated/divider-floral-long.png",
+      "status": "generated",
+      "category": "divider",
+      "purpose": "Long section divider for wide panels and countdown top line.",
+      "usage": [
+        "components/Countdown.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "CSS countdown-grid border-top"
+      ],
+      "targetSize": {
+        "width": 960,
+        "height": 80
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, long thin horizontal ornamental divider, warm gold hairline, tiny olive leaves near the center, premium wedding editorial style, no text, no background.",
+      "styleNotes": "Designed for wide blocks; can be cropped or scaled.",
+      "actualSize": {
+        "width": 960,
+        "height": 80
+      },
+      "bytes": 23511,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 7884,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, long thin horizontal ornamental divider, warm gold hairline, tiny olive leaves near the center, premium wedding editorial style, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "monogram-premium",
+      "file": "public/images/generated/monogram-premium.png",
+      "status": "generated",
+      "category": "hero",
+      "purpose": "Updated premium monogram D/M for hero navigation center.",
+      "usage": [
+        "components/Hero.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/monogram.png"
+      ],
+      "targetSize": {
+        "width": 360,
+        "height": 270
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, elegant Cyrillic wedding monogram with letters Д and М, thin classic serif strokes in antique gold, small olive botanical sprig crossing the letters, airy premium invitation style, no extra text, no background.",
+      "styleNotes": "Only asset allowed to contain letters. Must be legible at 118-150px CSS width.",
+      "actualSize": {
+        "width": 360,
+        "height": 270
+      },
+      "bytes": 86404,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 23467,
+        "empty": false
+      },
+      "generationRunId": "monogram-v2",
+      "sourceFile": "test-results/stage2-generated-assets/monogram-premium-v2-source.png",
+      "generationPrompt": "Transparent PNG, elegant Cyrillic wedding monogram with letters Д and М, thin classic serif strokes in antique gold, small olive botanical sprig crossing the letters, airy premium invitation style, no extra text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "heart-tiny-gold",
+      "file": "public/images/generated/heart-tiny-gold.png",
+      "status": "generated",
+      "category": "micro-decor",
+      "purpose": "Tiny gold heart accent replacing repeated text hearts.",
+      "usage": [
+        "components/Hero.tsx",
+        "components/Countdown.tsx",
+        "components/PhotoStory.tsx",
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbols ♡ and ♥"
+      ],
+      "targetSize": {
+        "width": 96,
+        "height": 96
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny hand-drawn heart outline, antique gold line, premium wedding invitation style, minimal, no text, no background.",
+      "styleNotes": "Should be clean at 14-24px CSS size.",
+      "actualSize": {
+        "width": 96,
+        "height": 96
+      },
+      "bytes": 1713,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 336,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny hand-drawn heart outline, antique gold line, premium wedding invitation style, minimal, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "button-heart-light",
+      "file": "public/images/generated/button-heart-light.png",
+      "status": "generated",
+      "category": "icon-button",
+      "purpose": "High-contrast heart outline icon for the RSVP submit button on dark olive background.",
+      "usage": [
+        "components/Rsvp.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "heart-tiny-gold.png"
+      ],
+      "targetSize": {
+        "width": 96,
+        "height": 96
+      },
+      "transparent": true,
+      "promptDraft": "Derived from the generated heart system as an off-white line icon for button contrast; no text, no background.",
+      "styleNotes": "Created after review because the first RSVP button icon was not visible enough.",
+      "actualSize": {
+        "width": 96,
+        "height": 96
+      },
+      "bytes": 1024,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 1358,
+        "empty": false
+      },
+      "generationRunId": "button-light-derived-v2",
+      "sourceFile": "public/images/generated/heart-tiny-gold.png",
+      "generationPrompt": "Derived locally from the generated button/heart visual system to create a readable off-white outline heart for dark olive CTA buttons.",
+      "postProcessing": [
+        "parametric line icon created to match generated button contrast",
+        "saved on transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "countdown-panel-bg",
+      "file": "public/images/generated/countdown-panel-bg.png",
+      "status": "generated",
+      "category": "countdown",
+      "purpose": "Main ornamental background for the countdown block.",
+      "usage": [
+        "components/Countdown.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "CSS .countdown-frame gradient"
+      ],
+      "targetSize": {
+        "width": 1400,
+        "height": 380
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, wide rounded rectangle wedding countdown panel, deep muted olive paper texture, thin antique gold inner border, very soft warm shadow, subtle satin sheen, tiny botanical corner details, no text, no numbers, premium editorial invitation style.",
+      "styleNotes": "The center must remain calm and dark enough for white HTML digits.",
+      "actualSize": {
+        "width": 1400,
+        "height": 380
+      },
+      "bytes": 743917,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 475399,
+        "empty": false
+      },
+      "generationRunId": "countdown-panel-v1",
+      "sourceFile": "test-results/stage2-generated-assets/countdown-panel-source.png",
+      "generationPrompt": "Transparent PNG, wide rounded rectangle wedding countdown panel, deep muted olive paper texture, thin antique gold inner border, very soft warm shadow, subtle satin sheen, tiny botanical corner details, no text, no numbers, premium editorial invitation style.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "countdown-unit-frame",
+      "file": "public/images/generated/countdown-unit-frame.png",
+      "status": "generated",
+      "category": "countdown",
+      "purpose": "Reusable subtle frame for each countdown time unit.",
+      "usage": [
+        "components/Countdown.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "CSS .countdown-item borders"
+      ],
+      "targetSize": {
+        "width": 280,
+        "height": 170
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, minimal rounded countdown number frame, thin antique gold lines, faint olive glass/paper shadow, premium wedding invitation style, empty center, no text, no numbers.",
+      "styleNotes": "Must work behind dynamic HTML numbers.",
+      "actualSize": {
+        "width": 280,
+        "height": 170
+      },
+      "bytes": 8842,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 2699,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, minimal rounded countdown number frame, thin antique gold lines, faint olive glass/paper shadow, premium wedding invitation style, empty center, no text, no numbers.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "countdown-corner-sprig",
+      "file": "public/images/generated/countdown-corner-sprig.png",
+      "status": "generated",
+      "category": "countdown",
+      "purpose": "Small botanical sprig for countdown panel corners.",
+      "usage": [
+        "components/Countdown.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "text countdown heart"
+      ],
+      "targetSize": {
+        "width": 220,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny botanical corner sprig for dark olive wedding panel, thin muted gold and sage lines, elegant, no text, no background.",
+      "styleNotes": "Use sparingly at 40-90px CSS width.",
+      "actualSize": {
+        "width": 220,
+        "height": 160
+      },
+      "bytes": 15267,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 3181,
+        "empty": false
+      },
+      "generationRunId": "botanical-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny botanical corner sprig for dark olive wedding panel, thin muted gold and sage lines, elegant, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-rings-premium",
+      "file": "public/images/generated/icon-rings-premium.png",
+      "status": "generated",
+      "category": "icon-schedule",
+      "purpose": "Schedule icon for guest gathering / wedding rings.",
+      "usage": [
+        "components/Schedule.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/rings.png"
+      ],
+      "targetSize": {
+        "width": 256,
+        "height": 256
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, premium wedding rings icon, fine olive line art with tiny antique gold highlights, minimal botanical detail, centered, no text, no background.",
+      "styleNotes": "Must match all other premium icons.",
+      "actualSize": {
+        "width": 256,
+        "height": 256
+      },
+      "bytes": 28848,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 6713,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, premium wedding rings icon, fine olive line art with tiny antique gold highlights, minimal botanical detail, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-heart-premium",
+      "file": "public/images/generated/icon-heart-premium.png",
+      "status": "generated",
+      "category": "icon-schedule",
+      "purpose": "Schedule icon for ceremony.",
+      "usage": [
+        "components/Schedule.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/heart.png"
+      ],
+      "targetSize": {
+        "width": 256,
+        "height": 256
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, premium heart icon for wedding ceremony, fine olive line art, tiny gold sparkle and small leaf, centered, no text, no background.",
+      "styleNotes": "Line weight must match rings/glasses/cloche.",
+      "actualSize": {
+        "width": 256,
+        "height": 256
+      },
+      "bytes": 35057,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 8321,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, premium heart icon for wedding ceremony, fine olive line art, tiny gold sparkle and small leaf, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-glasses-premium",
+      "file": "public/images/generated/icon-glasses-premium.png",
+      "status": "generated",
+      "category": "icon-schedule",
+      "purpose": "Schedule icon for congratulations and toast.",
+      "usage": [
+        "components/Schedule.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/glasses.png"
+      ],
+      "targetSize": {
+        "width": 256,
+        "height": 256
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, two champagne glasses wedding icon, fine olive line art with muted gold bubbles, elegant editorial style, centered, no text, no background.",
+      "styleNotes": "Avoid cartoon proportions.",
+      "actualSize": {
+        "width": 256,
+        "height": 256
+      },
+      "bytes": 32893,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 7702,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, two champagne glasses wedding icon, fine olive line art with muted gold bubbles, elegant editorial style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-cloche-premium",
+      "file": "public/images/generated/icon-cloche-premium.png",
+      "status": "generated",
+      "category": "icon-schedule",
+      "purpose": "Schedule icon for festive dinner.",
+      "usage": [
+        "components/Schedule.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/cloche.png"
+      ],
+      "targetSize": {
+        "width": 256,
+        "height": 256
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, elegant dinner cloche icon, fine olive line art with tiny antique gold highlight, premium wedding invitation style, centered, no text, no background.",
+      "styleNotes": "Must remain readable at 46-56px CSS size.",
+      "actualSize": {
+        "width": 256,
+        "height": 256
+      },
+      "bytes": 21970,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 6092,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, elegant dinner cloche icon, fine olive line art with tiny antique gold highlight, premium wedding invitation style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-pin-premium",
+      "file": "public/images/generated/icon-pin-premium.png",
+      "status": "generated",
+      "category": "icon-location",
+      "purpose": "Venue address icon.",
+      "usage": [
+        "components/Location.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/pin.png"
+      ],
+      "targetSize": {
+        "width": 192,
+        "height": 192
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, elegant map pin icon, fine olive line art, tiny gold center dot, premium wedding invitation style, no text, no background.",
+      "styleNotes": "Should align with address text at 20-26px CSS size.",
+      "actualSize": {
+        "width": 192,
+        "height": 192
+      },
+      "bytes": 23307,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 5399,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, elegant map pin icon, fine olive line art, tiny gold center dot, premium wedding invitation style, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-arrow-premium",
+      "file": "public/images/generated/icon-arrow-premium.png",
+      "status": "generated",
+      "category": "icon-button",
+      "purpose": "Arrow icon for map button and possible CTA buttons.",
+      "usage": [
+        "components/Location.tsx",
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "public/images/editorial/arrow.png"
+      ],
+      "targetSize": {
+        "width": 192,
+        "height": 192
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, refined right arrow with tiny leaf flourish, antique gold and off-white line version suitable for dark olive button, premium wedding invitation style, no text, no background.",
+      "styleNotes": "Need enough contrast on olive button.",
+      "actualSize": {
+        "width": 192,
+        "height": 192
+      },
+      "bytes": 11930,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 2945,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, refined right arrow with tiny leaf flourish, antique gold and off-white line version suitable for dark olive button, premium wedding invitation style, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-user-premium",
+      "file": "public/images/generated/icon-user-premium.png",
+      "status": "generated",
+      "category": "icon-form",
+      "purpose": "RSVP field icon for guest name.",
+      "usage": [
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbol ♙"
+      ],
+      "targetSize": {
+        "width": 160,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny elegant guest/person icon, fine olive line art with small gold dot, premium wedding invitation style, centered, no text, no background.",
+      "styleNotes": "Must be clear at 18-22px CSS size.",
+      "actualSize": {
+        "width": 160,
+        "height": 160
+      },
+      "bytes": 15248,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 3683,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny elegant guest/person icon, fine olive line art with small gold dot, premium wedding invitation style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-arrow-light",
+      "file": "public/images/generated/icon-arrow-light.png",
+      "status": "generated",
+      "category": "icon-button",
+      "purpose": "High-contrast light arrow icon for the map button on dark olive background.",
+      "usage": [
+        "components/Location.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "icon-arrow-premium.png"
+      ],
+      "targetSize": {
+        "width": 192,
+        "height": 192
+      },
+      "transparent": true,
+      "promptDraft": "Derived from icon-arrow-premium as an off-white button variant with the same shape and transparent background.",
+      "styleNotes": "Created after review because the first map button arrow needed clearer contrast.",
+      "actualSize": {
+        "width": 192,
+        "height": 192
+      },
+      "bytes": 5949,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 2945,
+        "empty": false
+      },
+      "generationRunId": "button-light-derived-v2",
+      "sourceFile": "public/images/generated/icon-arrow-premium.png",
+      "generationPrompt": "Derived locally from the generated premium arrow icon to create a readable off-white line variant for dark olive CTA buttons.",
+      "postProcessing": [
+        "recolored generated arrow artwork into off-white line art",
+        "saved on transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-envelope-premium",
+      "file": "public/images/generated/icon-envelope-premium.png",
+      "status": "generated",
+      "category": "icon-form",
+      "purpose": "RSVP field icon for attendance confirmation.",
+      "usage": [
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbol ✉"
+      ],
+      "targetSize": {
+        "width": 160,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny elegant envelope invitation icon, fine olive line art with antique gold seal, premium wedding style, centered, no text, no background.",
+      "styleNotes": "Use in compact input field.",
+      "actualSize": {
+        "width": 160,
+        "height": 160
+      },
+      "bytes": 17510,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 4929,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny elegant envelope invitation icon, fine olive line art with antique gold seal, premium wedding style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-guests-premium",
+      "file": "public/images/generated/icon-guests-premium.png",
+      "status": "generated",
+      "category": "icon-form",
+      "purpose": "RSVP field icon for companion count.",
+      "usage": [
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbol ♙ for companions"
+      ],
+      "targetSize": {
+        "width": 160,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny elegant two-person guest icon, fine olive line art, small gold accent, premium wedding invitation style, centered, no text, no background.",
+      "styleNotes": "Should be distinct from single user icon.",
+      "actualSize": {
+        "width": 160,
+        "height": 160
+      },
+      "bytes": 13652,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 3285,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny elegant two-person guest icon, fine olive line art, small gold accent, premium wedding invitation style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-food-premium",
+      "file": "public/images/generated/icon-food-premium.png",
+      "status": "generated",
+      "category": "icon-form",
+      "purpose": "RSVP field icon for food preference.",
+      "usage": [
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbol ◇"
+      ],
+      "targetSize": {
+        "width": 160,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny elegant fork and leaf or small plate icon, fine olive line art with muted gold accent, premium wedding style, centered, no text, no background.",
+      "styleNotes": "Must not look like restaurant app icon; keep invitation-like.",
+      "actualSize": {
+        "width": 160,
+        "height": 160
+      },
+      "bytes": 20853,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 4887,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny elegant fork and leaf or small plate icon, fine olive line art with muted gold accent, premium wedding style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-drink-premium",
+      "file": "public/images/generated/icon-drink-premium.png",
+      "status": "generated",
+      "category": "icon-form",
+      "purpose": "RSVP field icon for drink preference.",
+      "usage": [
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbol ♡ for drink field"
+      ],
+      "targetSize": {
+        "width": 160,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny elegant wine glass icon, fine olive line art, tiny antique gold highlight, premium wedding style, centered, no text, no background.",
+      "styleNotes": "Should be simpler than schedule champagne icon.",
+      "actualSize": {
+        "width": 160,
+        "height": 160
+      },
+      "bytes": 13386,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 3402,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny elegant wine glass icon, fine olive line art, tiny antique gold highlight, premium wedding style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "icon-note-premium",
+      "file": "public/images/generated/icon-note-premium.png",
+      "status": "generated",
+      "category": "icon-form",
+      "purpose": "RSVP field icon for allergies and notes.",
+      "usage": [
+        "components/Rsvp.tsx"
+      ],
+      "replacesOrComplements": [
+        "text symbol !"
+      ],
+      "targetSize": {
+        "width": 160,
+        "height": 160
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, tiny elegant note card with small leaf icon, fine olive line art, muted gold accent, premium wedding invitation style, centered, no text, no background.",
+      "styleNotes": "Avoid warning-sign feeling.",
+      "actualSize": {
+        "width": 160,
+        "height": 160
+      },
+      "bytes": 12270,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 3075,
+        "empty": false
+      },
+      "generationRunId": "icons-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "generationPrompt": "Transparent PNG, tiny elegant note card with small leaf icon, fine olive line art, muted gold accent, premium wedding invitation style, centered, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "button-ornament-left",
+      "file": "public/images/generated/button-ornament-left.png",
+      "status": "generated",
+      "category": "button",
+      "purpose": "Left decorative flourish inside premium CTA buttons.",
+      "usage": [
+        "components/Location.tsx",
+        "components/Rsvp.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "plain button styling"
+      ],
+      "targetSize": {
+        "width": 180,
+        "height": 80
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, small horizontal botanical flourish for left side of dark olive wedding button, off-white and antique gold thin line art, no text, no background.",
+      "styleNotes": "Use as decorative accent, not as button label.",
+      "actualSize": {
+        "width": 180,
+        "height": 80
+      },
+      "bytes": 7951,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 1849,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, small horizontal botanical flourish for left side of dark olive wedding button, off-white and antique gold thin line art, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "button-ornament-right",
+      "file": "public/images/generated/button-ornament-right.png",
+      "status": "generated",
+      "category": "button",
+      "purpose": "Right decorative flourish inside premium CTA buttons.",
+      "usage": [
+        "components/Location.tsx",
+        "components/Rsvp.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "plain button styling"
+      ],
+      "targetSize": {
+        "width": 180,
+        "height": 80
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, small horizontal botanical flourish for right side of dark olive wedding button, off-white and antique gold thin line art, no text, no background.",
+      "styleNotes": "Pair with left ornament.",
+      "actualSize": {
+        "width": 180,
+        "height": 80
+      },
+      "bytes": 7458,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 1735,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, small horizontal botanical flourish for right side of dark olive wedding button, off-white and antique gold thin line art, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "gold-dust-sprinkle",
+      "file": "public/images/generated/gold-dust-sprinkle.png",
+      "status": "generated",
+      "category": "micro-decor",
+      "purpose": "Subtle gold dust cluster replacing CSS radial dot fields.",
+      "usage": [
+        "components/VintageFrame.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "CSS .gold-dust"
+      ],
+      "targetSize": {
+        "width": 320,
+        "height": 460
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, very subtle sparse antique gold dust speckles, warm champagne tone, premium wedding paper texture accent, no text, no background.",
+      "styleNotes": "Must be sparse; avoid glitter look.",
+      "actualSize": {
+        "width": 320,
+        "height": 460
+      },
+      "bytes": 18617,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 3170,
+        "empty": false
+      },
+      "generationRunId": "botanical-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "generationPrompt": "Transparent PNG, very subtle sparse antique gold dust speckles, warm champagne tone, premium wedding paper texture accent, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "photo-tape-soft",
+      "file": "public/images/generated/photo-tape-soft.png",
+      "status": "generated",
+      "category": "photo-detail",
+      "purpose": "Soft paper tape accent for polaroid photos.",
+      "usage": [
+        "components/PhotoStory.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "plain photo-slot shadow"
+      ],
+      "targetSize": {
+        "width": 260,
+        "height": 90
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, soft translucent warm paper tape strip for wedding polaroid photo, subtle fiber texture, very light beige, no text, no background.",
+      "styleNotes": "Should look gentle, not scrapbook-heavy.",
+      "actualSize": {
+        "width": 260,
+        "height": 90
+      },
+      "bytes": 21490,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 11250,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, soft translucent warm paper tape strip for wedding polaroid photo, subtle fiber texture, very light beige, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "photo-corner-shadow",
+      "file": "public/images/generated/photo-corner-shadow.png",
+      "status": "generated",
+      "category": "photo-detail",
+      "purpose": "Reusable soft corner shadow/accent for polaroid cards.",
+      "usage": [
+        "components/PhotoStory.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "plain photo-slot box-shadow"
+      ],
+      "targetSize": {
+        "width": 220,
+        "height": 220
+      },
+      "transparent": true,
+      "promptDraft": "Transparent PNG, subtle warm paper corner shadow for polaroid photo card, soft realistic paper lift, no text, no background.",
+      "styleNotes": "Use carefully so photos still feel clean.",
+      "actualSize": {
+        "width": 220,
+        "height": 220
+      },
+      "bytes": 34353,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 25991,
+        "empty": false
+      },
+      "generationRunId": "ui-decor-sheet-v1",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "generationPrompt": "Transparent PNG, subtle warm paper corner shadow for polaroid photo card, soft realistic paper lift, no text, no background.",
+      "postProcessing": [
+        "copied generated source from C:/Users/Dmitriy/.codex/generated_images",
+        "cropped from source sheet where applicable",
+        "removed #ff00ff chroma-key background to alpha",
+        "normalized pink/coral generation artifacts into antique-gold palette",
+        "resized onto transparent canvas at actualSize"
+      ]
+    },
+    {
+      "id": "section-bg-timing-v3",
+      "file": "public/images/generated/section-bg-timing-v3.png",
+      "category": "section-background",
+      "purpose": "Transparent decorative background overlay for the timing section, adding a softer premium paper-and-botanical feel.",
+      "usage": [
+        "components/Schedule.tsx",
+        "app/globals.css"
+      ],
+      "targetSize": {
+        "width": 1120,
+        "height": 340
+      },
+      "styleNotes": "Use under the timing cards at low opacity so centered icons and text stay readable.",
+      "status": "generated",
+      "transparent": true,
+      "transparentBackground": true,
+      "promptDraft": "Transparent PNG section background overlay composed from generated botanical wedding assets, antique gold dust, muted sage foliage, no text, no watermark.",
+      "actualSize": {
+        "width": 1120,
+        "height": 340
+      },
+      "bytes": 32422,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 5955,
+        "empty": false
+      },
+      "generationRunId": "section-backgrounds-v3",
+      "sourceFile": "public/images/generated/corner-floral-*.png, public/images/generated/botanical-spray-*.png, public/images/generated/gold-dust-sprinkle.png, public/images/generated/divider-floral-*.png",
+      "generationPrompt": "Create transparent reusable section background overlays from the generated botanical system: timing, venue, dress-code, FAQ, and RSVP overlays with subtle sage foliage, antique-gold dust, and airy premium wedding spacing.",
+      "postProcessing": [
+        "composited locally from generated PNG assets",
+        "kept text out of the PNG so headings, controls, and labels remain HTML in Stage 3",
+        "saved as transparent RGBA overlay at actualSize",
+        "post-integration cleanup removed central divider to prevent duplicate ornaments behind HTML section divider"
+      ]
+    },
+    {
+      "id": "section-bg-venue-v3",
+      "file": "public/images/generated/section-bg-venue-v3.png",
+      "category": "section-background",
+      "purpose": "Transparent decorative overlay for the restaurant information side of the venue card.",
+      "usage": [
+        "components/Location.tsx",
+        "app/globals.css"
+      ],
+      "targetSize": {
+        "width": 560,
+        "height": 310
+      },
+      "styleNotes": "Pair with a rounded venue image and a straight premium CTA button.",
+      "status": "generated",
+      "transparent": true,
+      "transparentBackground": true,
+      "promptDraft": "Transparent PNG section background overlay composed from generated botanical wedding assets, antique gold dust, muted sage foliage, no text, no watermark.",
+      "actualSize": {
+        "width": 560,
+        "height": 310
+      },
+      "bytes": 51704,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 10540,
+        "empty": false
+      },
+      "generationRunId": "section-backgrounds-v3",
+      "sourceFile": "public/images/generated/corner-floral-*.png, public/images/generated/botanical-spray-*.png, public/images/generated/gold-dust-sprinkle.png, public/images/generated/divider-floral-*.png",
+      "generationPrompt": "Create transparent reusable section background overlays from the generated botanical system: timing, venue, dress-code, FAQ, and RSVP overlays with subtle sage foliage, antique-gold dust, and airy premium wedding spacing.",
+      "postProcessing": [
+        "composited locally from generated PNG assets",
+        "kept text out of the PNG so headings, controls, and labels remain HTML in Stage 3",
+        "saved as transparent RGBA overlay at actualSize"
+      ]
+    },
+    {
+      "id": "section-bg-dresscode-v3",
+      "file": "public/images/generated/section-bg-dresscode-v3.png",
+      "category": "section-background",
+      "purpose": "Transparent decorative background overlay for the dress-code block.",
+      "usage": [
+        "components/DetailsFaq.tsx",
+        "app/globals.css"
+      ],
+      "targetSize": {
+        "width": 1120,
+        "height": 270
+      },
+      "styleNotes": "Keep subtle so the outlined color circles remain the main control-like visual.",
+      "status": "generated",
+      "transparent": true,
+      "transparentBackground": true,
+      "promptDraft": "Transparent PNG section background overlay composed from generated botanical wedding assets, antique gold dust, muted sage foliage, no text, no watermark.",
+      "actualSize": {
+        "width": 1120,
+        "height": 270
+      },
+      "bytes": 35688,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 7215,
+        "empty": false
+      },
+      "generationRunId": "section-backgrounds-v3",
+      "sourceFile": "public/images/generated/corner-floral-*.png, public/images/generated/botanical-spray-*.png, public/images/generated/gold-dust-sprinkle.png, public/images/generated/divider-floral-*.png",
+      "generationPrompt": "Create transparent reusable section background overlays from the generated botanical system: timing, venue, dress-code, FAQ, and RSVP overlays with subtle sage foliage, antique-gold dust, and airy premium wedding spacing.",
+      "postProcessing": [
+        "composited locally from generated PNG assets",
+        "kept text out of the PNG so headings, controls, and labels remain HTML in Stage 3",
+        "saved as transparent RGBA overlay at actualSize"
+      ]
+    },
+    {
+      "id": "section-bg-faq-v3",
+      "file": "public/images/generated/section-bg-faq-v3.png",
+      "category": "section-background",
+      "purpose": "Transparent decorative background overlay for the FAQ block after centering and alignment correction.",
+      "usage": [
+        "components/DetailsFaq.tsx",
+        "app/globals.css"
+      ],
+      "targetSize": {
+        "width": 1120,
+        "height": 255
+      },
+      "styleNotes": "Very light; intended to support the centered FAQ grid without adding visual noise.",
+      "status": "generated",
+      "transparent": true,
+      "transparentBackground": true,
+      "promptDraft": "Transparent PNG section background overlay composed from generated botanical wedding assets, antique gold dust, muted sage foliage, no text, no watermark.",
+      "actualSize": {
+        "width": 1120,
+        "height": 255
+      },
+      "bytes": 22313,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 4290,
+        "empty": false
+      },
+      "generationRunId": "section-backgrounds-v3",
+      "sourceFile": "public/images/generated/corner-floral-*.png, public/images/generated/botanical-spray-*.png, public/images/generated/gold-dust-sprinkle.png, public/images/generated/divider-floral-*.png",
+      "generationPrompt": "Create transparent reusable section background overlays from the generated botanical system: timing, venue, dress-code, FAQ, and RSVP overlays with subtle sage foliage, antique-gold dust, and airy premium wedding spacing.",
+      "postProcessing": [
+        "composited locally from generated PNG assets",
+        "kept text out of the PNG so headings, controls, and labels remain HTML in Stage 3",
+        "saved as transparent RGBA overlay at actualSize",
+        "post-integration cleanup removed central divider to prevent duplicate ornaments behind HTML section divider"
+      ]
+    },
+    {
+      "id": "section-bg-rsvp-v3",
+      "file": "public/images/generated/section-bg-rsvp-v3.png",
+      "category": "section-background",
+      "purpose": "Transparent decorative background overlay for the guest form, adding more botanical elements without clipping the form.",
+      "usage": [
+        "components/Rsvp.tsx",
+        "app/globals.css"
+      ],
+      "targetSize": {
+        "width": 1120,
+        "height": 430
+      },
+      "styleNotes": "Use behind fields and CTA at low opacity; avoid covering field icons or the submit button.",
+      "status": "generated",
+      "transparent": true,
+      "transparentBackground": true,
+      "promptDraft": "Transparent PNG section background overlay composed from generated botanical wedding assets, antique gold dust, muted sage foliage, no text, no watermark.",
+      "actualSize": {
+        "width": 1120,
+        "height": 430
+      },
+      "bytes": 90460,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 18286,
+        "empty": false
+      },
+      "generationRunId": "section-backgrounds-v3",
+      "sourceFile": "public/images/generated/corner-floral-*.png, public/images/generated/botanical-spray-*.png, public/images/generated/gold-dust-sprinkle.png, public/images/generated/divider-floral-*.png",
+      "generationPrompt": "Create transparent reusable section background overlays from the generated botanical system: timing, venue, dress-code, FAQ, and RSVP overlays with subtle sage foliage, antique-gold dust, and airy premium wedding spacing.",
+      "postProcessing": [
+        "composited locally from generated PNG assets",
+        "kept text out of the PNG so headings, controls, and labels remain HTML in Stage 3",
+        "saved as transparent RGBA overlay at actualSize"
+      ]
+    },
+    {
+      "id": "countdown-panel-bg-clean-v3",
+      "file": "public/images/generated/countdown-panel-bg-clean-v3.png",
+      "status": "generated",
+      "category": "countdown",
+      "purpose": "Clean single-outline countdown panel background used in the live Countdown block after removing the overlapping outer outline.",
+      "usage": [
+        "components/Countdown.tsx",
+        "app/globals.css"
+      ],
+      "replacesOrComplements": [
+        "public/images/generated/countdown-panel-bg.png"
+      ],
+      "targetSize": {
+        "width": 1400,
+        "height": 380
+      },
+      "actualSize": {
+        "width": 1400,
+        "height": 380
+      },
+      "bytes": 727914,
+      "transparent": true,
+      "transparentBackground": true,
+      "alphaValidation": {
+        "hasAlpha": true,
+        "nonTransparentPixels": 475399,
+        "empty": false
+      },
+      "generationRunId": "countdown-cleanup-v3",
+      "sourceFile": "public/images/generated/countdown-panel-bg.png",
+      "generationPrompt": "Derived locally from the generated countdown panel to keep the olive texture and botanical corners while removing the duplicated outer gold outline.",
+      "postProcessing": [
+        "covered the old outer gold edge with dark olive surface tone",
+        "kept the inner gold line as the single visible countdown border",
+        "saved as a separate transparent PNG for the live Countdown block"
+      ]
+    }
+  ],
+  "stageGates": {
+    "stage1": "Show design map and wait for user confirmation.",
+    "stage2": "Generate PNG files, save them to disk, update this manifest, create design/previews/site-design-v3.png, then wait for design approval.",
+    "stage3": "Generated PNG assets are integrated in the live Next.js layout; local desktop/mobile screenshots and checks are complete."
+  },
+  "photoshopAvailability": {
+    "checked": true,
+    "status": "partial",
+    "availableUses": [
+      "background removal for existing images",
+      "background blur for existing images",
+      "undo non-generative edits"
+    ],
+    "stage2PrimaryPath": "image generation PNG files saved into public/images/generated"
+  },
+  "preview": {
+    "file": "design/previews/site-design-v3.png",
+    "previousFile": "design/previews/site-design-v2.png",
+    "purpose": "Revised desktop full-site design mockup composed from generated PNG assets after second feedback pass; not applied to live code yet.",
+    "status": "created"
+  },
+  "generationRuns": {
+    "botanical-sheet-v1": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/botanical-sheet-source.png",
+      "prompt": "Create 8 separate premium botanical wedding invitation ornaments on a flat #ff00ff chroma-key background, arranged in a 4x2 grid: left/right botanical sprays, four floral corners, gold dust, countdown corner sprig. Delicate hand-drawn editorial line art, muted olive/sage leaves, champagne antique-gold buds, no labels, no text, no watermark."
+    },
+    "icons-sheet-v1": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/icons-sheet-source.png",
+      "prompt": "Create 12 matching premium wedding line-art icons on a flat #ff00ff chroma-key background, arranged in a 4x3 grid: rings, heart, champagne glasses, cloche, pin, arrow, guest, envelope, guests, food, drink, note. Unified thin olive line art with antique gold highlights, no labels, no text, no watermark."
+    },
+    "ui-decor-sheet-v1": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/ui-decor-sheet-source.png",
+      "prompt": "Create 8 premium wedding UI decorative elements on a flat #ff00ff chroma-key background, arranged in a 4x2 grid: small divider, long divider, tiny heart, countdown unit frame, button ornaments left/right, photo tape, photo corner shadow. Delicate editorial style, antique gold, olive, warm off-white, no labels, no text, no watermark."
+    },
+    "countdown-panel-v1": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/countdown-panel-source.png",
+      "prompt": "Create one wide rounded rectangle countdown panel background on a flat #ff00ff chroma-key background. Deep muted olive paper/satin texture, thin antique gold inner border, tiny botanical corner details, calm dark center for white HTML countdown digits, no text, no numbers, no watermark."
+    },
+    "monogram-v1": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/monogram-premium-source.png",
+      "prompt": "Create one very delicate outline Cyrillic wedding monogram with exact letters Д and М only on a flat #ff00ff chroma-key background. Thin outline serif antique-gold line art, small muted olive botanical sprig, no extra text, no watermark."
+    },
+    "top-botanical-v2": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/top-botanical-v2-sheet-source.png",
+      "prompt": "Create refined premium wedding botanical ornaments for the very top of a Russian wedding invitation: lighter left/right sprays and smaller hero sprigs, delicate sage leaves, champagne-gold buds, airy spacing, editorial hand-drawn line art, transparent-ready chroma-key background, no labels, no text, no watermark."
+    },
+    "monogram-v2": {
+      "tool": "built-in image_gen",
+      "sourceFile": "test-results/stage2-generated-assets/monogram-premium-v2-source.png",
+      "prompt": "Create a more detailed premium Cyrillic wedding monogram with exact letters Д and М, thin elegant antique-gold serif strokes, diagonal separator, botanical sprig woven through the letters, transparent-ready chroma-key background, no extra text, no watermark."
+    },
+    "button-light-derived-v2": {
+      "tool": "local PNG derivation from generated assets",
+      "sourceFile": "public/images/generated/icon-arrow-premium.png and public/images/generated/heart-tiny-gold.png",
+      "prompt": "Create high-contrast off-white button icon variants from the generated arrow and heart visual system so the map and RSVP buttons read clearly on dark olive backgrounds."
+    },
+    "section-backgrounds-v3": {
+      "tool": "local PNG composition from generated assets",
+      "sourceFile": "public/images/generated/corner-floral-*.png, public/images/generated/botanical-spray-*.png, public/images/generated/gold-dust-sprinkle.png, public/images/generated/divider-floral-*.png",
+      "prompt": "Create transparent reusable section background overlays from the generated botanical system: timing, venue, dress-code, FAQ, and RSVP overlays with subtle sage foliage, antique-gold dust, and airy premium wedding spacing."
+    },
+    "countdown-cleanup-v3": {
+      "tool": "local PNG derivation from generated asset",
+      "sourceFile": "public/images/generated/countdown-panel-bg.png",
+      "prompt": "Create a clean single-outline countdown background from the generated panel by removing the extra outer gold edge while preserving texture and botanical decoration."
+    }
+  },
+  "stage2Revision": "v3",
+  "stage3Integration": {
+    "implemented": true,
+    "codeFilesChanged": [
+      "app/globals.css",
+      "components/VintageFrame.tsx",
+      "components/Hero.tsx",
+      "components/Countdown.tsx",
+      "components/PhotoStory.tsx",
+      "components/Schedule.tsx",
+      "components/Location.tsx",
+      "components/DetailsFaq.tsx",
+      "components/Rsvp.tsx"
+    ],
+    "usedGeneratedAssetsDirectory": "public/images/generated",
+    "visualVerification": [
+      "test-results/stage3-implementation/desktop-final.png",
+      "test-results/stage3-implementation/mobile-final.png"
+    ],
+    "checks": [
+      "npm run typecheck",
+      "npm run lint",
+      "npm run test:e2e",
+      "npm run build"
+    ]
+  }
+}

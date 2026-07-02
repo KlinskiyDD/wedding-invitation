@@ -82,9 +82,7 @@ export function Countdown({ target }: CountdownProps) {
             ))}
           </dl>
         )}
-        <span className="countdown-heart" aria-hidden="true">
-          ♡
-        </span>
+        <span className="countdown-heart" aria-hidden="true" />
       </div>
     </section>
   );

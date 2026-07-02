@@ -183,11 +183,31 @@ export const weddingContent: WeddingContent = {
     description:
       "Место для любимых фотографий Марины и Дмитрия.",
     photos: [
-      { src: "", alt: "Полароидный кадр пары", tone: "couple" },
-      { src: "", alt: "Полароидный кадр прогулки", tone: "field" },
-      { src: "", alt: "Полароидный портрет", tone: "portrait" },
-      { src: "", alt: "Полароидный кадр со спины", tone: "walk" },
-      { src: "", alt: "Полароидный свадебный кадр", tone: "kiss" },
+      {
+        src: "/images/couple/couple-ring-night.jpg",
+        alt: "Марина показывает помолвочное кольцо",
+        tone: "couple",
+      },
+      {
+        src: "/images/couple/couple-studio-seated.jpg",
+        alt: "Дмитрий и Марина в студии",
+        tone: "field",
+      },
+      {
+        src: "/images/couple/couple-brick-wall.jpg",
+        alt: "Дмитрий и Марина у кирпичной стены",
+        tone: "portrait",
+      },
+      {
+        src: "/images/couple/couple-lake-view.jpg",
+        alt: "Дмитрий и Марина на прогулке у воды",
+        tone: "walk",
+      },
+      {
+        src: "/images/couple/couple-helicopter-ring.jpg",
+        alt: "Дмитрий и Марина с помолвочным кольцом",
+        tone: "kiss",
+      },
     ],
   },
   guestForm: {

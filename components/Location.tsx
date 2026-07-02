@@ -15,7 +15,7 @@ export function Location({ event }: LocationProps) {
     >
       <div className="venue-photo" aria-hidden="true">
         <Image
-          src="/images/editorial/venue-courtyard.jpg"
+          src="/images/venue/restaurant-interior.png"
           alt=""
           fill
           sizes="(min-width: 900px) 52vw, 100vw"
@@ -27,7 +27,7 @@ export function Location({ event }: LocationProps) {
         <h2>{event.placeName}</h2>
         <p className="venue-address">
           <Image
-            src="/images/editorial/pin.png"
+            src="/images/generated/icon-pin-premium.png"
             alt=""
             width={28}
             height={28}
@@ -44,10 +44,10 @@ export function Location({ event }: LocationProps) {
           >
             <span>Посмотреть на карте</span>
             <Image
-              src="/images/editorial/arrow.png"
+              src="/images/generated/icon-arrow-light.png"
               alt=""
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               aria-hidden="true"
             />
           </a>

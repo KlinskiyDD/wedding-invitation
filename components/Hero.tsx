@@ -24,10 +24,10 @@ export function Hero({ couple, event, navigation }: HeroProps) {
         </div>
         <div className="monogram" aria-label={`Монограмма ${couple.monogram}`}>
           <Image
-            src="/images/editorial/monogram.png"
+            src="/images/generated/monogram-premium.png"
             alt=""
-            width={180}
-            height={135}
+            width={360}
+            height={270}
             className="monogram-image"
             priority
           />
@@ -47,9 +47,7 @@ export function Hero({ couple, event, navigation }: HeroProps) {
         <div className="hero-divider" aria-hidden="true" />
         <p className="hero-date">{event.dateLabel}</p>
         <p className="hero-subtitle">{couple.subtitle}</p>
-        <span className="hero-heart" aria-hidden="true">
-          ♡
-        </span>
+        <span className="hero-heart" aria-hidden="true" />
       </div>
     </section>
   );

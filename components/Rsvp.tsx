@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import type { WeddingContent } from "@/content/wedding";
@@ -29,7 +30,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
       >
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            ♙
+            <Image src="/images/generated/icon-user-premium.png" alt="" width={24} height={24} />
           </span>
           <span className="sr-only">Имя и фамилия</span>
           <input
@@ -42,7 +43,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            ✉
+            <Image src="/images/generated/icon-envelope-premium.png" alt="" width={24} height={24} />
           </span>
           <span className="sr-only">Подтверждение участия</span>
           <select name="attendance" defaultValue={guestForm.attendance[0]}>
@@ -56,7 +57,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            ♙
+            <Image src="/images/generated/icon-guests-premium.png" alt="" width={24} height={24} />
           </span>
           <span className="sr-only">Количество гостей</span>
           <select name="companions" defaultValue={guestForm.companions[0]}>
@@ -70,7 +71,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            ◇
+            <Image src="/images/generated/icon-food-premium.png" alt="" width={24} height={24} />
           </span>
           <span className="sr-only">Предпочтение по еде</span>
           <select name="foodPreference" defaultValue={guestForm.food[0]}>
@@ -84,7 +85,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            ♡
+            <Image src="/images/generated/icon-drink-premium.png" alt="" width={24} height={24} />
           </span>
           <span className="sr-only">Предпочтение по алкоголю</span>
           <select name="drinkPreference" defaultValue={guestForm.drinks[0]}>
@@ -98,7 +99,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field compact-field-wide compact-field-textarea">
           <span className="field-icon" aria-hidden="true">
-            !
+            <Image src="/images/generated/icon-note-premium.png" alt="" width={24} height={24} />
           </span>
           <span className="sr-only">Ограничения по блюдам / аллергии</span>
           <textarea
@@ -110,7 +111,13 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
         <div className="form-submit">
           <button type="submit" data-testid="rsvp-submit">
             <span>Отправить ответ</span>
-            <span aria-hidden="true">♡</span>
+            <Image
+              src="/images/generated/button-heart-light.png"
+              alt=""
+              width={28}
+              height={28}
+              aria-hidden="true"
+            />
           </button>
           {message ? (
             <p data-testid="rsvp-message" className="form-status" aria-live="polite">
@@ -120,7 +127,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
         </div>
       </form>
 
-      <p className="signature">♡ С любовью, Дима и Марина ♥</p>
+      <p className="signature">С любовью, Дима и Марина</p>
     </section>
   );
 }

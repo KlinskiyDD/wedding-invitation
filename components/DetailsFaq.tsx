@@ -49,7 +49,7 @@ export function DetailsFaq({ dressCode, faq }: DetailsFaqProps) {
         <ColorList label={dressCode.avoidDescription} colors={dressCode.stopColors} />
       </section>
 
-      <section id="faq" data-testid="faq" className="faq-section">
+      <section id="faq" data-testid="faq" className="faq-section vintage-panel">
         <h2>Часто задаваемые вопросы</h2>
         <div className="section-divider" aria-hidden="true" />
         <div className="faq-list">
