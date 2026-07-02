@@ -28,6 +28,12 @@ export type PhotoItem = {
   tone: "couple" | "field" | "portrait" | "walk" | "kiss";
 };
 
+export type CalendarLinks = {
+  label: string;
+  googleUrl: string;
+  appleUrl: string;
+};
+
 export type GuestFormContent = {
   attendance: string[];
   companions: string[];
@@ -59,6 +65,7 @@ export type WeddingContent = {
     mapUrl: string;
     websiteUrl: string;
     countdownTarget: string;
+    calendar: CalendarLinks;
   };
   rsvp: {
     url: string;
@@ -84,6 +91,21 @@ export type WeddingContent = {
   guestForm: GuestFormContent;
   faq: FaqItem[];
 };
+
+const eventAddress =
+  "Московская область, Мытищинский район, д. Пирогово, ул. Центральная, 100Б";
+
+const googleCalendarUrl = `https://calendar.google.com/calendar/render?${new URLSearchParams(
+  {
+    action: "TEMPLATE",
+    text: "Свадьба Дмитрия и Марины",
+    dates: "20260822T153000/20260822T233000",
+    ctz: "Europe/Moscow",
+    details:
+      "Сбор гостей и приветственный фуршет в 15:30. Ресторан «Пироговский дворик».",
+    location: eventAddress,
+  },
+).toString()}`;
 
 export const weddingContent: WeddingContent = {
   navigation: [
@@ -116,12 +138,16 @@ export const weddingContent: WeddingContent = {
     monthLabel: "августа",
     timeLabel: "15:30",
     placeName: "Ресторан «Пироговский дворик»",
-    address:
-      "Московская область, Мытищинский район, д. Пирогово, ул. Центральная, 100Б",
+    address: eventAddress,
     mapUrl:
       "https://yandex.ru/maps/?text=Ресторан%20Пироговский%20дворик%20Пирогово%20Центральная%20100Б",
     websiteUrl: "https://dvorik-rest.ru/",
     countdownTarget: "2026-08-22T15:30:00+03:00",
+    calendar: {
+      label: "Добавить в календарь",
+      googleUrl: googleCalendarUrl,
+      appleUrl: "/calendar/dmitriy-marina-wedding.ics",
+    },
   },
   rsvp: {
     url: "",

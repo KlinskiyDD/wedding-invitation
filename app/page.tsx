@@ -17,7 +17,10 @@ export default function Home() {
           event={weddingContent.event}
           navigation={weddingContent.navigation}
         />
-        <Countdown target={weddingContent.event.countdownTarget} />
+        <Countdown
+          target={weddingContent.event.countdownTarget}
+          calendar={weddingContent.event.calendar}
+        />
         <PhotoStory photoStory={weddingContent.photoStory} />
         <Schedule
           items={weddingContent.schedule}

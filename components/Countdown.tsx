@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import type { CalendarLinks } from "@/content/wedding";
 
 type CountdownProps = {
   target: string;
+  calendar: CalendarLinks;
 };
 
 type TimeLeft = {
@@ -46,7 +48,7 @@ function getCountdownState(targetDate: Date): CountdownState {
   };
 }
 
-export function Countdown({ target }: CountdownProps) {
+export function Countdown({ target, calendar }: CountdownProps) {
   const targetDate = useMemo(() => new Date(target), [target]);
   const [countdown, setCountdown] = useState<CountdownState | null>(null);
 
@@ -82,7 +84,31 @@ export function Countdown({ target }: CountdownProps) {
             ))}
           </dl>
         )}
-        <span className="countdown-heart" aria-hidden="true" />
+        {!countdown?.isPast && (
+          <nav
+            aria-label="Добавить свадьбу в календарь"
+            className="countdown-calendar"
+          >
+            <span className="countdown-calendar-label">{calendar.label}</span>
+            <a
+              aria-label="Добавить свадьбу в Google Calendar"
+              className="countdown-calendar-button countdown-calendar-button-primary"
+              href={calendar.googleUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Google
+            </a>
+            <a
+              aria-label="Скачать событие для Apple Calendar"
+              className="countdown-calendar-button"
+              download
+              href={calendar.appleUrl}
+            >
+              Apple
+            </a>
+          </nav>
+        )}
       </div>
     </section>
   );

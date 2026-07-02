@@ -117,6 +117,15 @@ img {
   object-fit: contain;
 }
 
+.page-branch-left {
+  top: 132px;
+  left: 22px;
+  width: 184px;
+  height: 272px;
+  opacity: 0.68;
+  transform: rotate(-7deg);
+}
+
 .page-branch-right {
   top: 136px;
   right: 18px;
@@ -292,7 +301,7 @@ img {
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 14px 36px rgba(62, 65, 48, 0.18);
   color: var(--white);
-  padding: 32px 74px 34px;
+  padding: 32px 74px 28px;
   text-align: center;
 }
 
@@ -338,14 +347,55 @@ img {
   text-transform: uppercase;
 }
 
-.countdown-heart {
-  position: absolute;
-  right: 44px;
-  bottom: 32px;
-  width: 22px;
-  height: 22px;
-  background: url("/images/generated/heart-tiny-gold.png") center / contain no-repeat;
-  opacity: 0.72;
+.countdown-calendar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+  border-top: 1px solid rgba(221, 195, 144, 0.42);
+  padding-top: 16px;
+}
+
+.countdown-calendar-label {
+  margin-right: 3px;
+  color: rgba(255, 253, 248, 0.8);
+  font-family: Arial, sans-serif;
+  font-size: 0.69rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.countdown-calendar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  min-height: 32px;
+  border: 1px solid rgba(221, 195, 144, 0.86);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.94);
+  color: var(--olive-dark);
+  font-family: Arial, sans-serif;
+  font-size: 0.69rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.countdown-calendar-button:hover,
+.countdown-calendar-button:focus-visible {
+  border-color: var(--gold-soft);
+  background: var(--white);
+  transform: translateY(-1px);
+}
+
+.countdown-calendar-button-primary {
+  background: var(--gold-soft);
+  color: #343624;
 }
 
 .countdown-finished {
@@ -525,26 +575,72 @@ img {
 .schedule-section {
   position: relative;
   overflow: hidden;
+  --schedule-gap: 46px;
+  --schedule-dot-offset: -23px;
   max-width: 1130px;
   margin-right: auto;
   margin-left: auto;
   border: 1px solid var(--line);
   border-radius: 6px;
   background:
-    url("/images/generated/section-bg-timing-v3.png") center / 100% 100% no-repeat,
+    radial-gradient(circle at 14% 100%, rgba(195, 152, 70, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 14%, rgba(221, 195, 144, 0.08), transparent 25%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.58), transparent 36%),
     rgba(255, 253, 248, 0.72);
   padding: 32px 52px 34px;
+}
+
+.schedule-section::before,
+.schedule-section::after {
+  position: absolute;
+  z-index: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+  pointer-events: none;
+}
+
+.schedule-section::before {
+  bottom: -35px;
+  left: -18px;
+  width: 185px;
+  height: 185px;
+  background-image: url("/images/generated/corner-floral-bottom-left.png");
+  opacity: 0.22;
+}
+
+.schedule-section::after {
+  right: -14px;
+  bottom: -31px;
+  width: 205px;
+  height: 205px;
+  background-image: url("/images/generated/corner-floral-bottom-right.png");
+  opacity: 0.24;
+}
+
+.schedule-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .schedule-section .section-heading {
   margin-bottom: 28px;
 }
 
+.schedule-section .section-divider {
+  width: 142px;
+  height: 1px;
+  margin-top: 13px;
+  background:
+    linear-gradient(90deg, transparent, rgba(195, 152, 70, 0.72), transparent);
+}
+
 .schedule-line {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 46px;
+  gap: var(--schedule-gap);
 }
 
 .schedule-line::before {
@@ -578,7 +674,7 @@ img {
 .schedule-event::after {
   position: absolute;
   top: 50%;
-  right: -29px;
+  right: var(--schedule-dot-offset);
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -614,9 +710,8 @@ img {
 
 .schedule-event h3 {
   margin: 7px 0 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.98rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -624,8 +719,7 @@ img {
   margin: 4px 0 0;
   max-width: 135px;
   color: #34302a;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   line-height: 1.25;
 }
 
@@ -1011,11 +1105,8 @@ img {
   }
 
   .schedule-line {
-    gap: 16px;
-  }
-
-  .schedule-event::after {
-    right: -13px;
+    --schedule-gap: 16px;
+    --schedule-dot-offset: -8px;
   }
 
   .venue-copy {
@@ -1087,7 +1178,7 @@ img {
 
   .countdown-frame {
     border-radius: 8px;
-    padding: 26px 20px 28px;
+    padding: 26px 20px 22px;
   }
 
   .countdown-grid {
@@ -1099,9 +1190,24 @@ img {
     border-left: 0;
   }
 
-  .countdown-heart {
-    right: 18px;
-    bottom: 17px;
+  .countdown-calendar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 9px;
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  .countdown-calendar-label {
+    grid-column: 1 / -1;
+    margin: 0 0 2px;
+    text-align: center;
+  }
+
+  .countdown-calendar-button {
+    width: 100%;
+    min-width: 0;
   }
 
   .photo-strip {

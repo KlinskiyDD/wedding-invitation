@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calendar Add Block Options</title>
+    <style>
+      :root {
+        --paper: #fbf8f2;
+        --paper-warm: #f6efe6;
+        --ink: #2d2a25;
+        --muted: #686156;
+        --line: #ded4c8;
+        --line-strong: #c8b58f;
+        --gold: #c39846;
+        --gold-soft: #ddc390;
+        --olive: #60654a;
+        --olive-dark: #4c5139;
+        --white: #fffdf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f5f1eb;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .board {
+        width: 1240px;
+        margin: 0 auto;
+        padding: 34px 34px 42px;
+      }
+
+      .board-title {
+        margin: 0 0 22px;
+        color: var(--gold);
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .option {
+        position: relative;
+        overflow: hidden;
+        width: 1120px;
+        min-height: 360px;
+        margin: 0 auto 30px;
+        border: 1px solid rgba(200, 181, 143, 0.62);
+        border-radius: 8px;
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.7), transparent 34%),
+          var(--paper);
+        box-shadow: 0 18px 42px rgba(79, 67, 50, 0.1);
+      }
+
+      .option-label {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        z-index: 3;
+        color: var(--gold);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .ornament {
+        width: 154px;
+        height: 36px;
+        margin: 13px auto 0;
+        background: url("../../public/images/generated/divider-floral-small.png") center / contain no-repeat;
+      }
+
+      .title {
+        margin: 0;
+        font-size: 38px;
+        font-weight: 500;
+        line-height: 1.08;
+        text-align: center;
+      }
+
+      .caption {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 198px;
+        min-height: 48px;
+        border: 1px solid rgba(195, 152, 70, 0.72);
+        border-radius: 999px;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .button-primary {
+        background: var(--olive-dark);
+        color: var(--white);
+        box-shadow: 0 12px 22px rgba(76, 81, 57, 0.17);
+      }
+
+      .button-secondary {
+        background: rgba(255, 253, 248, 0.82);
+        color: var(--olive-dark);
+      }
+
+      .calendar-icon {
+        position: relative;
+        width: 54px;
+        height: 58px;
+        margin: 0 auto 12px;
+        border: 1px solid var(--gold);
+        border-radius: 12px;
+        background: rgba(255, 253, 248, 0.72);
+        box-shadow: inset 0 16px 0 rgba(195, 152, 70, 0.14);
+      }
+
+      .calendar-icon::before,
+      .calendar-icon::after {
+        position: absolute;
+        top: -7px;
+        width: 7px;
+        height: 14px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+      }
+
+      .calendar-icon::before {
+        left: 13px;
+      }
+
+      .calendar-icon::after {
+        right: 13px;
+      }
+
+      .calendar-icon span {
+        display: block;
+        margin-top: 24px;
+        color: var(--gold);
+        font-size: 22px;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .option-1 {
+        display: grid;
+        grid-template-columns: 290px 1fr 290px;
+        align-items: center;
+        padding: 42px 54px;
+      }
+
+      .option-1::before,
+      .option-1::after {
+        position: absolute;
+        z-index: 0;
+        width: 190px;
+        height: 220px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        content: "";
+        pointer-events: none;
+      }
+
+      .option-1::before {
+        left: 10px;
+        bottom: 18px;
+        background-image: url("../../public/images/generated/hero-sprig-left.png");
+        opacity: 0.48;
+      }
+
+      .option-1::after {
+        top: 12px;
+        right: 6px;
+        background-image: url("../../public/images/generated/corner-floral-top-right.png");
+        opacity: 0.16;
+      }
+
+      .date-medallion {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        width: 178px;
+        height: 178px;
+        margin: 0 auto;
+        border: 1px solid rgba(195, 152, 70, 0.76);
+        border-radius: 999px;
+        background:
+          radial-gradient(circle, rgba(255, 253, 248, 0.94), rgba(246, 239, 230, 0.86)),
+          var(--paper-warm);
+        box-shadow:
+          inset 0 0 0 9px rgba(255, 253, 248, 0.68),
+          0 16px 34px rgba(79, 67, 50, 0.11);
+      }
+
+      .date-medallion strong {
+        display: block;
+        color: var(--gold);
+        font-size: 62px;
+        font-weight: 500;
+        line-height: 0.88;
+        text-align: center;
+      }
+
+      .date-medallion span {
+        display: block;
+        margin-top: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .option-1-content {
+        position: relative;
+        z-index: 2;
+        padding: 18px 54px;
+        border-inline: 1px solid rgba(195, 152, 70, 0.3);
+      }
+
+      .option-1 .mini-note {
+        margin-top: 12px;
+        color: var(--gold);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .option-2 {
+        padding: 42px 52px 38px;
+        background:
+          url("../../public/images/generated/section-bg-timing-v3.png") center / cover no-repeat,
+          linear-gradient(120deg, rgba(255, 255, 255, 0.72), transparent 34%),
+          var(--paper);
+      }
+
+      .option-2 .title {
+        margin-top: 6px;
+      }
+
+      .timing-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .timing-row::before {
+        position: absolute;
+        top: 57px;
+        right: 74px;
+        left: 74px;
+        height: 1px;
+        background: var(--line-strong);
+        content: "";
+      }
+
+      .timing-card {
+        position: relative;
+        z-index: 1;
+        min-height: 116px;
+        border: 1px solid rgba(195, 152, 70, 0.54);
+        border-radius: 6px;
+        background: rgba(255, 253, 248, 0.82);
+        padding: 18px 14px;
+        text-align: center;
+      }
+
+      .timing-card::before {
+        position: absolute;
+        top: 52px;
+        left: -10px;
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+      }
+
+      .timing-card:first-child::before {
+        display: none;
+      }
+
+      .timing-card strong {
+        display: block;
+        font-size: 24px;
+      }
+
+      .timing-card span {
+        display: block;
+        margin-top: 8px;
+        font-size: 16px;
+        line-height: 1.25;
+      }
+
+      .timing-calendar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 22px;
+        margin: 24px auto 0;
+        border: 1px solid rgba(195, 152, 70, 0.5);
+        border-radius: 8px;
+        background:
+          linear-gradient(90deg, rgba(76, 81, 57, 0.95), rgba(96, 101, 74, 0.9)),
+          var(--olive);
+        box-shadow: 0 14px 30px rgba(76, 81, 57, 0.14);
+        padding: 18px 22px 18px 26px;
+        color: var(--white);
+      }
+
+      .timing-calendar p {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.25;
+      }
+
+      .timing-calendar small {
+        display: block;
+        margin-top: 5px;
+        color: rgba(255, 253, 248, 0.78);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .timing-calendar .button {
+        min-width: 172px;
+        min-height: 42px;
+        background: rgba(255, 253, 248, 0.94);
+        color: var(--olive-dark);
+      }
+
+      .option-3 {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        min-height: 330px;
+        background:
+          url("../../public/images/generated/section-bg-rsvp-v3.png") right center / cover no-repeat,
+          var(--paper);
+      }
+
+      .option-3-side {
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 28% 18%, rgba(255, 253, 248, 0.12), transparent 28%),
+          linear-gradient(135deg, #3f4632, #60654a);
+        color: var(--white);
+        padding: 36px;
+      }
+
+      .option-3-side::after {
+        position: absolute;
+        right: -14px;
+        bottom: -42px;
+        width: 200px;
+        height: 240px;
+        background: url("../../public/images/generated/countdown-corner-sprig.png") center / contain no-repeat;
+        content: "";
+        opacity: 0.34;
+        transform: rotate(-18deg);
+      }
+
+      .side-date {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .side-date span {
+        display: block;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .side-date strong {
+        display: block;
+        margin: 10px 0;
+        color: var(--gold-soft);
+        font-size: 76px;
+        font-weight: 500;
+        line-height: 0.9;
+      }
+
+      .option-3-main {
+        position: relative;
+        padding: 58px 72px 46px;
+      }
+
+      .option-3-main::after {
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        width: 150px;
+        height: 120px;
+        background: url("../../public/images/generated/gold-dust-sprinkle.png") center / contain no-repeat;
+        content: "";
+        opacity: 0.28;
+      }
+
+      .option-3 .title,
+      .option-3 .caption {
+        text-align: left;
+      }
+
+      .option-3 .ornament {
+        margin: 16px 0 0;
+      }
+
+      .option-3 .buttons {
+        justify-content: flex-start;
+      }
+
+      .option-3 .button-primary {
+        min-width: 232px;
+      }
+
+      .small-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 13px;
+        color: var(--muted);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .small-links span {
+        border-bottom: 1px solid rgba(195, 152, 70, 0.48);
+        padding-bottom: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="board">
+      <h1 class="board-title">Варианты блока добавления в календарь</h1>
+
+      <section class="option option-1" id="option-1">
+        <div class="option-label">Вариант 1 / после таймера</div>
+        <div class="date-medallion" aria-hidden="true">
+          <div>
+            <strong>22</strong>
+            <span>августа</span>
+          </div>
+        </div>
+        <div class="option-1-content">
+          <div class="calendar-icon" aria-hidden="true"><span>+</span></div>
+          <h2 class="title">Сохраните дату</h2>
+          <p class="caption">
+            Добавьте свадьбу Дмитрия и Марины в календарь, чтобы день точно был рядом.
+          </p>
+          <div class="ornament" aria-hidden="true"></div>
+          <div class="buttons">
+            <div class="button button-primary">Google Calendar</div>
+            <div class="button button-secondary">Apple Calendar</div>
+          </div>
+          <div class="mini-note">22 августа 2026 · 15:30 · Пироговский дворик</div>
+        </div>
+        <div></div>
+      </section>
+
+      <section class="option option-2" id="option-2">
+        <div class="option-label">Вариант 2 / внутри тайминга</div>
+        <h2 class="title">Тайминг дня</h2>
+        <div class="ornament" aria-hidden="true"></div>
+        <div class="timing-row">
+          <div class="timing-card">
+            <strong>15:30</strong>
+            <span>Сбор гостей</span>
+          </div>
+          <div class="timing-card">
+            <strong>16:00</strong>
+            <span>Церемония</span>
+          </div>
+          <div class="timing-card">
+            <strong>16:30</strong>
+            <span>Поздравления</span>
+          </div>
+          <div class="timing-card">
+            <strong>18:00</strong>
+            <span>Праздничный ужин</span>
+          </div>
+        </div>
+        <div class="timing-calendar">
+          <p>
+            Сохраните весь свадебный день одним нажатием
+            <small>напоминание в календаре на 22 августа 2026</small>
+          </p>
+          <div class="buttons">
+            <div class="button">Google</div>
+            <div class="button">Apple</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="option option-3" id="option-3">
+        <div class="option-label">Вариант 3 / перед анкетой</div>
+        <div class="option-3-side">
+          <div class="side-date">
+            <span>свадьба</span>
+            <strong>22</strong>
+            <span>августа 2026</span>
+          </div>
+        </div>
+        <div class="option-3-main">
+          <div class="calendar-icon" aria-hidden="true"><span>+</span></div>
+          <h2 class="title">Добавьте событие в календарь</h2>
+          <p class="caption">
+            Небольшое напоминание перед анкетой гостя: дата, время и адрес сохранятся автоматически.
+          </p>
+          <div class="ornament" aria-hidden="true"></div>
+          <div class="buttons">
+            <div class="button button-primary">Добавить в календарь</div>
+            <div class="button button-secondary">Скачать .ics</div>
+          </div>
+          <div class="small-links">
+            <span>Google Calendar</span>
+            <span>Apple Calendar</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

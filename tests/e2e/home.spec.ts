@@ -31,6 +31,12 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(page.getByTestId("countdown")).toContainText(
     "До нашей свадьбы осталось",
   );
+  await expect(
+    page.getByRole("link", { name: "Добавить свадьбу в Google Calendar" }),
+  ).toHaveAttribute("href", /calendar\.google\.com/);
+  await expect(
+    page.getByRole("link", { name: "Скачать событие для Apple Calendar" }),
+  ).toHaveAttribute("href", "/calendar/dmitriy-marina-wedding.ics");
 
   await expect(page.getByTestId("photo-slot")).toHaveCount(5);
 
