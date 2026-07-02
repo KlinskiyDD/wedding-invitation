@@ -9,14 +9,6 @@ export function VintageFrame({ children }: VintageFrameProps) {
   return (
     <div className="vintage-shell">
       <div className="vintage-page">
-        <span className="page-branch page-branch-left" aria-hidden="true">
-          <Image
-            src="/images/generated/botanical-spray-left.png"
-            alt=""
-            fill
-            sizes="420px"
-          />
-        </span>
         <span className="page-branch page-branch-right" aria-hidden="true">
           <Image
             src="/images/generated/botanical-spray-right.png"
@@ -31,14 +23,6 @@ export function VintageFrame({ children }: VintageFrameProps) {
             alt=""
             fill
             sizes="260px"
-          />
-        </span>
-        <span className="page-corner page-corner-top-left" aria-hidden="true">
-          <Image
-            src="/images/generated/corner-floral-top-left.png"
-            alt=""
-            fill
-            sizes="240px"
           />
         </span>
         <span className="page-corner page-corner-bottom-right" aria-hidden="true">
