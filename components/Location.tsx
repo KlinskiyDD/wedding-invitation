@@ -11,6 +11,7 @@ export function Location({ event }: LocationProps) {
     <section
       id="place"
       data-testid="location"
+      data-motion-reveal
       className="venue-section vintage-panel"
     >
       <div className="venue-photo" aria-hidden="true">

@@ -2,6 +2,7 @@ import { Countdown } from "@/components/Countdown";
 import { DetailsFaq } from "@/components/DetailsFaq";
 import { Hero } from "@/components/Hero";
 import { Location } from "@/components/Location";
+import { MotionReveal } from "@/components/MotionReveal";
 import { PhotoStory } from "@/components/PhotoStory";
 import { Rsvp } from "@/components/Rsvp";
 import { Schedule } from "@/components/Schedule";
@@ -11,6 +12,7 @@ import { weddingContent } from "@/content/wedding";
 export default function Home() {
   return (
     <main className="vintage-root">
+      <MotionReveal />
       <VintageFrame>
         <Hero
           couple={weddingContent.couple}

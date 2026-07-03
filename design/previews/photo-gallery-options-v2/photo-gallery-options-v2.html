@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5 новых вариантов фотоколлажа</title>
+    <style>
+      :root {
+        --paper: #fffdf8;
+        --paper-deep: #f5efe4;
+        --ink: #312f2b;
+        --muted: #766d5e;
+        --olive: #586044;
+        --olive-dark: #3e4631;
+        --gold: #c39846;
+        --gold-soft: #dcc797;
+        --line: rgba(195, 152, 70, 0.44);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 34px;
+        background: #efe9df;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .board-title {
+        width: 1080px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
+      .board-title h1 {
+        margin: 0;
+        font-size: 50px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .board-title p {
+        margin: 12px auto 0;
+        max-width: 700px;
+        color: var(--muted);
+        font: 18px/1.45 Arial, sans-serif;
+      }
+
+      .options-stack {
+        display: grid;
+        gap: 34px;
+        justify-content: center;
+      }
+
+      .option {
+        position: relative;
+        overflow: hidden;
+        width: 1080px;
+        border: 1px solid rgba(195, 152, 70, 0.42);
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at 8% 12%, rgba(217, 195, 145, 0.22), transparent 28%),
+          radial-gradient(circle at 91% 88%, rgba(88, 96, 68, 0.1), transparent 28%),
+          linear-gradient(135deg, rgba(255, 253, 248, 0.96), rgba(247, 241, 230, 0.92));
+      }
+
+      .option::before,
+      .option::after {
+        position: absolute;
+        z-index: 0;
+        width: 240px;
+        height: 360px;
+        content: "";
+        background: url("../../../public/images/generated/hero-sprig-left.png") center / contain no-repeat;
+        opacity: 0.14;
+        pointer-events: none;
+      }
+
+      .option::before {
+        top: 42px;
+        left: -68px;
+        transform: rotate(-10deg);
+      }
+
+      .option::after {
+        right: -70px;
+        bottom: -38px;
+        transform: rotate(174deg);
+      }
+
+      .option-inner {
+        position: relative;
+        z-index: 1;
+        padding: 34px;
+      }
+
+      .option-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 24px;
+      }
+
+      .kicker {
+        display: block;
+        color: var(--gold);
+        font: 11px/1.2 Arial, sans-serif;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 6px 0 0;
+        font-size: 34px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .note {
+        max-width: 390px;
+        color: var(--muted);
+        font: 14px/1.4 Arial, sans-serif;
+        text-align: right;
+      }
+
+      .divider {
+        width: 142px;
+        height: 1px;
+        margin-top: 13px;
+        background: linear-gradient(90deg, transparent, rgba(195, 152, 70, 0.86), transparent);
+      }
+
+      .photo {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(195, 152, 70, 0.43);
+        background: #fff;
+      }
+
+      .photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .ring img {
+        object-position: 50% 48%;
+      }
+
+      .studio img {
+        object-position: 50% 44%;
+      }
+
+      .brick img {
+        object-position: 50% 48%;
+      }
+
+      .lake img {
+        object-position: 46% 50%;
+      }
+
+      .heli img {
+        object-position: 50% 44%;
+      }
+
+      .label {
+        color: var(--olive);
+        font: 11px/1.25 Arial, sans-serif;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .v11 .stage {
+        position: relative;
+        height: 650px;
+        border-radius: 28px;
+      }
+
+      .v11 .background-photo {
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+      }
+
+      .v11 .background-photo::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background:
+          linear-gradient(180deg, rgba(20, 23, 17, 0.15), rgba(20, 23, 17, 0.62)),
+          radial-gradient(circle at 16% 18%, rgba(255, 253, 248, 0.1), transparent 28%);
+      }
+
+      .v11 .background-photo img {
+        filter: saturate(0.95) contrast(0.96);
+      }
+
+      .v11 .float-panel {
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        left: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid rgba(220, 199, 151, 0.54);
+        border-radius: 24px;
+        background: rgba(255, 253, 248, 0.84);
+        backdrop-filter: blur(7px);
+      }
+
+      .v11 .float-panel .photo {
+        height: 172px;
+        border-radius: 18px;
+      }
+
+      .v11 .floating-title {
+        position: absolute;
+        left: 34px;
+        top: 34px;
+        max-width: 380px;
+        color: #fffdf8;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
+      }
+
+      .v11 .floating-title span {
+        color: var(--gold-soft);
+      }
+
+      .v11 .floating-title h3 {
+        margin: 8px 0 0;
+        font-size: 42px;
+        font-weight: 400;
+      }
+
+      .v12 .spread {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        min-height: 650px;
+      }
+
+      .v12 .page {
+        display: grid;
+        gap: 16px;
+        padding: 18px;
+        border: 1px solid rgba(195, 152, 70, 0.36);
+        border-radius: 28px;
+        background: rgba(255, 253, 248, 0.78);
+      }
+
+      .v12 .left-page {
+        grid-template-rows: 1fr 168px;
+      }
+
+      .v12 .right-page {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 1fr;
+      }
+
+      .v12 .photo {
+        border-radius: 20px;
+      }
+
+      .v12 .main {
+        min-height: 424px;
+      }
+
+      .v12 .wide {
+        grid-column: span 2;
+      }
+
+      .v13 .story-pages {
+        display: grid;
+        gap: 18px;
+      }
+
+      .v13 .page-row {
+        display: grid;
+        min-height: 320px;
+        gap: 18px;
+        padding: 16px;
+        border: 1px solid rgba(195, 152, 70, 0.34);
+        border-radius: 26px;
+        background: rgba(255, 253, 248, 0.72);
+      }
+
+      .v13 .row-one {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+
+      .v13 .row-two {
+        grid-template-columns: 0.85fr 1.15fr;
+      }
+
+      .v13 .row-three {
+        grid-template-columns: 1fr;
+      }
+
+      .v13 .photo {
+        border-radius: 22px;
+      }
+
+      .v13 .row-three .photo {
+        height: 330px;
+      }
+
+      .v13 .screen-mark {
+        align-self: end;
+        color: var(--gold);
+        font: 11px/1.2 Arial, sans-serif;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .v14 .mood {
+        position: relative;
+        min-height: 720px;
+        padding: 22px;
+        border-radius: 30px;
+        background: var(--olive-dark);
+      }
+
+      .v14 .mood-bg {
+        position: absolute;
+        inset: 0;
+        border-radius: 30px;
+        opacity: 0.28;
+      }
+
+      .v14 .mood-bg::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background:
+          linear-gradient(90deg, rgba(62, 70, 49, 0.86), rgba(62, 70, 49, 0.28)),
+          radial-gradient(circle at 82% 14%, rgba(220, 199, 151, 0.26), transparent 28%);
+      }
+
+      .v14 .mood-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.15fr 0.9fr 0.9fr;
+        grid-template-rows: 280px 340px;
+        gap: 18px;
+      }
+
+      .v14 .photo {
+        border-color: rgba(220, 199, 151, 0.5);
+        border-radius: 24px;
+      }
+
+      .v14 .feature {
+        grid-row: span 2;
+      }
+
+      .v14 .mood-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        min-height: 100%;
+        padding: 24px;
+        border: 1px solid rgba(220, 199, 151, 0.42);
+        border-radius: 24px;
+        background: rgba(255, 253, 248, 0.08);
+        color: #fffdf8;
+      }
+
+      .v14 .mood-copy h3 {
+        margin: 8px 0 0;
+        font-size: 30px;
+        font-weight: 400;
+      }
+
+      .v14 .mood-copy span {
+        color: var(--gold-soft);
+      }
+
+      .v15 .collage {
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr 0.88fr;
+        grid-template-rows: 240px 240px 190px;
+        gap: 18px;
+        min-height: 724px;
+      }
+
+      .v15 .photo {
+        border-radius: 24px;
+      }
+
+      .v15 .a {
+        grid-row: span 2;
+      }
+
+      .v15 .b {
+        grid-column: span 2;
+      }
+
+      .v15 .b img {
+        object-position: 50% 50%;
+      }
+
+      .v15 .e {
+        grid-column: span 3;
+      }
+
+      .v15 .e img {
+        object-position: 50% 36%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="board-title">
+      <h1>Ещё 5 вариантов фотоблока</h1>
+      <p>В каждом варианте используются все пять фотографий. Часть решений рассчитана на более высокий блок или несколько экранов.</p>
+    </header>
+
+    <main class="options-stack">
+      <section id="variant-11" class="option v11">
+        <div class="option-inner">
+          <div class="option-header">
+            <div>
+              <span class="kicker">Вариант 11</span>
+              <h2>Фоновый кадр + коллаж</h2>
+              <div class="divider"></div>
+            </div>
+            <p class="note">Одна фотография становится атмосферным фоном, остальные четыре собираются в крупную нижнюю галерею.</p>
+          </div>
+          <div class="stage">
+            <div class="photo background-photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+            <div class="floating-title">
+              <span class="label">Наша история</span>
+              <h3>Пять кадров в одном большом блоке</h3>
+            </div>
+            <div class="float-panel">
+              <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+              <div class="photo brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+              <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+              <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-12" class="option v12">
+        <div class="option-inner">
+          <div class="option-header">
+            <div>
+              <span class="kicker">Вариант 12</span>
+              <h2>Разворот фотоальбома</h2>
+              <div class="divider"></div>
+            </div>
+            <p class="note">Две “страницы” с крупными фото. Подходит, если хочется сохранить ощущение бумажного альбома.</p>
+          </div>
+          <div class="spread">
+            <div class="page left-page">
+              <div class="photo main studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+              <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+            </div>
+            <div class="page right-page">
+              <div class="photo wide brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+              <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+              <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-13" class="option v13">
+        <div class="option-inner">
+          <div class="option-header">
+            <div>
+              <span class="kicker">Вариант 13</span>
+              <h2>Фотографии на несколько экранов</h2>
+              <div class="divider"></div>
+            </div>
+            <p class="note">Блок становится мини-историей: при скролле гости видят крупные пары фотографий, а финальный кадр закрывает секцию.</p>
+          </div>
+          <div class="story-pages">
+            <div class="page-row row-one">
+              <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+              <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+              <span class="screen-mark">Экран 01</span>
+            </div>
+            <div class="page-row row-two">
+              <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+              <div class="photo brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+              <span class="screen-mark">Экран 02</span>
+            </div>
+            <div class="page-row row-three">
+              <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+              <span class="screen-mark">Финальный кадр</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-14" class="option v14">
+        <div class="option-inner">
+          <div class="option-header">
+            <div>
+              <span class="kicker">Вариант 14</span>
+              <h2>Темный премиальный фон</h2>
+              <div class="divider"></div>
+            </div>
+            <p class="note">Фотографии становятся ярче на оливковом фоне. Хорошо рифмуется с таймером.</p>
+          </div>
+          <div class="mood">
+            <div class="photo mood-bg heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+            <div class="mood-grid">
+              <div class="photo feature studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+              <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+              <div class="mood-copy">
+                <span class="label">Пять любимых моментов</span>
+                <h3>Более контрастный и вечерний фотоблок</h3>
+              </div>
+              <div class="photo brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+              <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-15" class="option v15">
+        <div class="option-inner">
+          <div class="option-header">
+            <div>
+              <span class="kicker">Вариант 15</span>
+              <h2>Большая асимметричная мозаика</h2>
+              <div class="divider"></div>
+            </div>
+            <p class="note">Все пять фото остаются в одном коллаже, но сетка уже не выглядит как ряд маленьких карточек.</p>
+          </div>
+          <div class="collage">
+            <div class="photo a studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+            <div class="photo b ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+            <div class="photo c brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+            <div class="photo d lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+            <div class="photo e heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

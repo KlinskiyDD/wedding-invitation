@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Превью фотоблока на сайте</title>
+    <style>
+      :root {
+        --paper: #fffdf8;
+        --paper-soft: #f7f1e8;
+        --ink: #312f2b;
+        --muted: #756b5c;
+        --olive: #586044;
+        --olive-dark: #3f472f;
+        --gold: #c39846;
+        --gold-soft: #dcc797;
+        --line: rgba(195, 152, 70, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #efe9df;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .site-preview {
+        position: relative;
+        overflow: hidden;
+        width: 1180px;
+        min-height: 1240px;
+        margin: 0 auto;
+        padding: 24px 32px 48px;
+        border-left: 1px solid rgba(195, 152, 70, 0.38);
+        border-right: 1px solid rgba(195, 152, 70, 0.38);
+        background:
+          radial-gradient(circle at 9% 11%, rgba(217, 195, 145, 0.16), transparent 24%),
+          radial-gradient(circle at 92% 82%, rgba(217, 195, 145, 0.13), transparent 23%),
+          var(--paper);
+      }
+
+      .site-preview::before {
+        position: absolute;
+        inset: 12px;
+        content: "";
+        border: 1px solid rgba(195, 152, 70, 0.34);
+        border-radius: 9px;
+        pointer-events: none;
+      }
+
+      .branch {
+        position: absolute;
+        z-index: 1;
+        width: 172px;
+        height: 260px;
+        opacity: 0.72;
+        background: center / contain no-repeat;
+        pointer-events: none;
+      }
+
+      .branch-left {
+        top: 128px;
+        left: 22px;
+        background-image: url("../../../public/images/generated/hero-sprig-left.png");
+      }
+
+      .branch-right {
+        top: 124px;
+        right: 24px;
+        background-image: url("../../../public/images/generated/hero-sprig-right.png");
+      }
+
+      .nav {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 160px 1fr;
+        align-items: center;
+        width: 820px;
+        margin: 6px auto 0;
+        color: #3d3b36;
+        font: 12px/1 Arial, sans-serif;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .nav-group {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+      }
+
+      .monogram {
+        width: 108px;
+        height: 108px;
+        margin: 0 auto;
+        object-fit: contain;
+      }
+
+      .hero {
+        position: relative;
+        z-index: 2;
+        padding-top: 22px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 12px 0 0;
+        font-size: 64px;
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .hero-line,
+      .section-line {
+        width: 142px;
+        height: 1px;
+        margin: 20px auto 0;
+        background: linear-gradient(90deg, transparent, rgba(195, 152, 70, 0.82), transparent);
+      }
+
+      .date {
+        margin: 18px 0 0;
+        color: var(--gold);
+        font-size: 29px;
+      }
+
+      .subtitle {
+        max-width: 580px;
+        margin: 14px auto 0;
+        font-size: 18px;
+        line-height: 1.42;
+      }
+
+      .countdown {
+        position: relative;
+        z-index: 2;
+        width: 820px;
+        margin: 72px auto 30px;
+        padding: 32px 44px 26px;
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.08)),
+          var(--olive);
+        color: #fffdf8;
+      }
+
+      .countdown h2 {
+        margin: 0;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .countdown-rule {
+        height: 1px;
+        margin: 19px auto 18px;
+        background: linear-gradient(90deg, transparent, rgba(220, 199, 151, 0.78), transparent);
+      }
+
+      .units {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center;
+      }
+
+      .unit + .unit {
+        border-left: 1px solid rgba(220, 199, 151, 0.45);
+      }
+
+      .unit strong {
+        display: block;
+        font-size: 42px;
+        line-height: 1;
+      }
+
+      .unit span {
+        display: block;
+        margin-top: 7px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .calendar-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 23px;
+      }
+
+      .calendar-row b {
+        margin-right: 6px;
+        font: 10px/1 Arial, sans-serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .calendar-button {
+        min-width: 96px;
+        padding: 9px 18px;
+        border: 1px solid rgba(220, 199, 151, 0.8);
+        border-radius: 999px;
+        background: #f1d49b;
+        color: #3e3a31;
+        font: 10px/1 Arial, sans-serif;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .calendar-button.alt {
+        background: #fffdf8;
+      }
+
+      .photo-section {
+        position: relative;
+        z-index: 2;
+        width: 980px;
+        margin: 0 auto 44px;
+      }
+
+      .photo-section-title {
+        margin: 0 0 16px;
+        text-align: center;
+      }
+
+      .photo-section-title span {
+        display: block;
+        color: var(--gold);
+        font: 11px/1 Arial, sans-serif;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .photo-section-title h2 {
+        margin: 7px 0 0;
+        font-size: 32px;
+        font-weight: 400;
+      }
+
+      .gallery-card {
+        position: relative;
+        overflow: hidden;
+        padding: 22px;
+        border: 1px solid rgba(195, 152, 70, 0.4);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 8% 8%, rgba(217, 195, 145, 0.22), transparent 24%),
+          radial-gradient(circle at 94% 86%, rgba(88, 96, 68, 0.08), transparent 22%),
+          linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(247, 241, 230, 0.92));
+      }
+
+      .gallery-card::before,
+      .gallery-card::after {
+        position: absolute;
+        z-index: 0;
+        width: 186px;
+        height: 250px;
+        content: "";
+        background: url("../../../public/images/generated/hero-sprig-left.png") center / contain no-repeat;
+        opacity: 0.16;
+        pointer-events: none;
+      }
+
+      .gallery-card::before {
+        top: -38px;
+        left: -56px;
+        transform: rotate(-11deg);
+      }
+
+      .gallery-card::after {
+        right: -52px;
+        bottom: -48px;
+        transform: rotate(174deg);
+      }
+
+      .gallery-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.08fr 0.9fr 0.9fr;
+        grid-template-rows: 248px 248px;
+        gap: 17px;
+      }
+
+      .photo {
+        overflow: hidden;
+        border: 1px solid rgba(195, 152, 70, 0.47);
+        border-radius: 24px;
+        background: #fff;
+      }
+
+      .photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .photo-main {
+        grid-row: span 2;
+      }
+
+      .studio img {
+        object-position: 50% 44%;
+      }
+
+      .ring img {
+        object-position: 50% 50%;
+      }
+
+      .heli img {
+        object-position: 50% 44%;
+      }
+
+      .brick img {
+        object-position: 50% 48%;
+      }
+
+      .lake img {
+        object-position: 46% 50%;
+      }
+
+      .next-section {
+        position: relative;
+        z-index: 2;
+        width: 1040px;
+        margin: 0 auto;
+        padding: 34px 34px 44px;
+        border: 1px solid rgba(195, 152, 70, 0.36);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 9% 86%, rgba(217, 195, 145, 0.12), transparent 22%),
+          rgba(255, 253, 248, 0.66);
+        text-align: center;
+      }
+
+      .next-section h2 {
+        margin: 0;
+        font-size: 34px;
+        font-weight: 400;
+      }
+
+      .timing-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-top: 34px;
+      }
+
+      .timing-card {
+        min-height: 124px;
+        padding: 20px 12px;
+        border: 1px solid rgba(195, 152, 70, 0.46);
+        border-radius: 8px;
+        background: rgba(255, 253, 248, 0.72);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site-preview">
+      <span class="branch branch-left"></span>
+      <span class="branch branch-right"></span>
+
+      <nav class="nav" aria-label="Навигация">
+        <div class="nav-group">
+          <span>Главная</span>
+          <span>Тайминг</span>
+          <span>Место</span>
+        </div>
+        <img class="monogram" src="../../../public/images/generated/monogram-premium.png" alt="" />
+        <div class="nav-group">
+          <span>Дресс-код</span>
+          <span>FAQ</span>
+          <span>Анкета гостя</span>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <h1>Дмитрий и Марина</h1>
+        <div class="hero-line"></div>
+        <p class="date">22 августа 2026</p>
+        <p class="subtitle">Мы создаём день, полный любви и радости, и будем счастливы разделить его с вами!</p>
+      </section>
+
+      <section class="countdown">
+        <h2>До нашей свадьбы осталось</h2>
+        <div class="countdown-rule"></div>
+        <div class="units">
+          <div class="unit"><strong>50</strong><span>дней</span></div>
+          <div class="unit"><strong>17</strong><span>часов</span></div>
+          <div class="unit"><strong>28</strong><span>минут</span></div>
+          <div class="unit"><strong>52</strong><span>секунд</span></div>
+        </div>
+        <div class="calendar-row">
+          <b>Добавить в календарь</b>
+          <span class="calendar-button">Google</span>
+          <span class="calendar-button alt">Apple</span>
+        </div>
+      </section>
+
+      <section class="photo-section">
+        <header class="photo-section-title">
+          <span>Пять любимых моментов</span>
+          <h2>Наша история в кадрах</h2>
+          <div class="section-line"></div>
+        </header>
+        <div class="gallery-card">
+          <div class="gallery-grid">
+            <div class="photo photo-main studio">
+              <img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" />
+            </div>
+            <div class="photo ring">
+              <img src="../../../public/images/couple/couple-ring-night.jpg" alt="" />
+            </div>
+            <div class="photo heli">
+              <img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" />
+            </div>
+            <div class="photo brick">
+              <img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" />
+            </div>
+            <div class="photo lake">
+              <img src="../../../public/images/couple/couple-lake-view.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="next-section">
+        <h2>Тайминг дня</h2>
+        <div class="section-line"></div>
+        <div class="timing-cards">
+          <div class="timing-card"></div>
+          <div class="timing-card"></div>
+          <div class="timing-card"></div>
+          <div class="timing-card"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

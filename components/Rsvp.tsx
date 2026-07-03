@@ -14,7 +14,12 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
   const [message, setMessage] = useState("");
 
   return (
-    <section id="rsvp" data-testid="rsvp" className="guest-form-section vintage-panel">
+    <section
+      id="rsvp"
+      data-testid="rsvp"
+      data-motion-reveal
+      className="guest-form-section vintage-panel"
+    >
       <div className="section-heading">
         <h2>Анкета гостя</h2>
         <div className="section-divider" aria-hidden="true" />

@@ -42,6 +42,7 @@ export function DetailsFaq({ dressCode, faq }: DetailsFaqProps) {
       <section
         id="dress-code"
         data-testid="dress-code"
+        data-motion-reveal
         className="dress-code-section vintage-panel"
       >
         <h2>{dressCode.title}</h2>
@@ -49,7 +50,12 @@ export function DetailsFaq({ dressCode, faq }: DetailsFaqProps) {
         <ColorList label={dressCode.avoidDescription} colors={dressCode.stopColors} />
       </section>
 
-      <section id="faq" data-testid="faq" className="faq-section vintage-panel">
+      <section
+        id="faq"
+        data-testid="faq"
+        data-motion-reveal
+        className="faq-section vintage-panel"
+      >
         <h2>Часто задаваемые вопросы</h2>
         <div className="section-divider" aria-hidden="true" />
         <div className="faq-list">

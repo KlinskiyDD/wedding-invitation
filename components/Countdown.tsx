@@ -69,7 +69,11 @@ export function Countdown({ target, calendar }: CountdownProps) {
   ] as const;
 
   return (
-    <section data-testid="countdown" className="countdown-section">
+    <section
+      data-testid="countdown"
+      data-motion-reveal
+      className="countdown-section"
+    >
       <div className="countdown-frame">
         <p className="section-kicker">До нашей свадьбы осталось</p>
         {countdown?.isPast ? (
@@ -78,7 +82,14 @@ export function Countdown({ target, calendar }: CountdownProps) {
           <dl className="countdown-grid">
             {items.map(([label, value, id]) => (
               <div key={label} className="countdown-item">
-                <dt data-testid={`countdown-${id}`}>{value ?? "—"}</dt>
+                <dt data-testid={`countdown-${id}`}>
+                  <span
+                    key={`${id}-${value ?? "empty"}`}
+                    className="countdown-value"
+                  >
+                    {value ?? "—"}
+                  </span>
+                </dt>
                 <dd>{label}</dd>
               </div>
             ))}

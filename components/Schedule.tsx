@@ -42,7 +42,12 @@ function ScheduleIcon({ type }: { type: ScheduleItem["icon"] }) {
 
 export function Schedule({ items, intro }: ScheduleProps) {
   return (
-    <section id="timing" data-testid="schedule" className="schedule-section">
+    <section
+      id="timing"
+      data-testid="schedule"
+      data-motion-reveal
+      className="schedule-section"
+    >
       <div className="section-heading">
         <h2>Тайминг дня</h2>
         <div className="section-divider" aria-hidden="true" />

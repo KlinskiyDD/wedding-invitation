@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Варианты блока с фотографиями</title>
+    <style>
+      :root {
+        --paper: #fffdf8;
+        --warm: #f6f1e8;
+        --ink: #312f2b;
+        --muted: #7c715f;
+        --olive: #586044;
+        --gold: #c39846;
+        --gold-soft: #d9c391;
+        --line: rgba(195, 152, 70, 0.48);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f1ece4;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        padding: 34px;
+      }
+
+      .board-title {
+        width: 1980px;
+        margin: 0 auto 26px;
+        text-align: center;
+      }
+
+      .board-title h1 {
+        margin: 0;
+        font-size: 54px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .board-title p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font: 18px/1.45 Arial, sans-serif;
+      }
+
+      .options-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 960px);
+        gap: 34px;
+        justify-content: center;
+      }
+
+      .option {
+        position: relative;
+        overflow: hidden;
+        width: 960px;
+        height: 620px;
+        padding: 30px;
+        border: 1px solid rgba(195, 152, 70, 0.42);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at 8% 9%, rgba(217, 195, 145, 0.22), transparent 28%),
+          radial-gradient(circle at 94% 92%, rgba(88, 96, 68, 0.1), transparent 25%),
+          linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(248, 243, 233, 0.9));
+      }
+
+      .option::before,
+      .option::after {
+        position: absolute;
+        z-index: 0;
+        width: 210px;
+        height: 320px;
+        content: "";
+        background: url("../../../public/images/generated/hero-sprig-left.png") center / contain no-repeat;
+        opacity: 0.18;
+        pointer-events: none;
+      }
+
+      .option::before {
+        top: 18px;
+        left: -54px;
+        transform: rotate(-11deg);
+      }
+
+      .option::after {
+        right: -54px;
+        bottom: -20px;
+        transform: rotate(174deg);
+      }
+
+      .option > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .option-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 20px;
+      }
+
+      .option-kicker {
+        display: block;
+        color: var(--gold);
+        font: 11px/1.2 Arial, sans-serif;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .option h2 {
+        margin: 5px 0 0;
+        font-size: 32px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .option-note {
+        max-width: 320px;
+        color: var(--muted);
+        font: 13px/1.4 Arial, sans-serif;
+        text-align: right;
+      }
+
+      .divider {
+        width: 142px;
+        height: 1px;
+        margin: 12px 0 0;
+        background: linear-gradient(90deg, transparent, rgba(195, 152, 70, 0.85), transparent);
+      }
+
+      .photo {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(195, 152, 70, 0.42);
+        background: #fff;
+      }
+
+      .photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .ring img {
+        object-position: 50% 48%;
+      }
+
+      .studio img {
+        object-position: 50% 44%;
+      }
+
+      .brick img {
+        object-position: 50% 48%;
+      }
+
+      .lake img {
+        object-position: 46% 50%;
+      }
+
+      .heli img {
+        object-position: 50% 44%;
+      }
+
+      .caption {
+        color: var(--olive);
+        font: 12px/1.3 Arial, sans-serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 7px 14px;
+        border: 1px solid rgba(195, 152, 70, 0.52);
+        border-radius: 999px;
+        background: rgba(255, 253, 248, 0.82);
+        color: var(--olive);
+        font: 11px/1 Arial, sans-serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .v1 .layout {
+        display: grid;
+        grid-template-columns: 1.55fr 0.95fr;
+        gap: 18px;
+      }
+
+      .v1 .main {
+        height: 430px;
+        border-radius: 26px;
+      }
+
+      .v1 .side {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 18px;
+        height: 430px;
+      }
+
+      .v1 .side .photo {
+        min-height: 0;
+        border-radius: 20px;
+      }
+
+      .v2 .layout {
+        display: grid;
+        grid-template-columns: 0.95fr 1.2fr;
+        gap: 18px;
+      }
+
+      .v2 .cover {
+        height: 430px;
+        border-radius: 220px 220px 26px 26px;
+      }
+
+      .v2 .right {
+        display: grid;
+        grid-template-rows: 1fr 120px;
+        gap: 16px;
+      }
+
+      .v2 .wide {
+        border-radius: 24px;
+      }
+
+      .v2 .thumbs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .v2 .thumbs .photo {
+        border-radius: 16px;
+      }
+
+      .v3 .layout {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 162px 118px 118px;
+        gap: 14px;
+      }
+
+      .v3 .photo {
+        border-radius: 18px;
+      }
+
+      .v3 .a {
+        grid-column: span 3;
+        grid-row: span 2;
+      }
+
+      .v3 .b {
+        grid-column: span 3;
+      }
+
+      .v3 .c,
+      .v3 .d,
+      .v3 .e {
+        grid-column: span 2;
+      }
+
+      .v4 .layout {
+        display: grid;
+        gap: 16px;
+      }
+
+      .v4 .hero-photo {
+        height: 292px;
+        border-radius: 28px;
+      }
+
+      .v4 .film {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        padding: 12px;
+        border: 1px solid rgba(195, 152, 70, 0.32);
+        border-radius: 24px;
+        background: rgba(255, 253, 248, 0.62);
+      }
+
+      .v4 .film .photo {
+        height: 132px;
+        border-radius: 16px;
+      }
+
+      .v5 .layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .v5 .double-card {
+        position: relative;
+        min-height: 420px;
+        padding: 14px;
+        border: 1px solid rgba(195, 152, 70, 0.38);
+        border-radius: 26px;
+        background: rgba(255, 253, 248, 0.9);
+      }
+
+      .v5 .double-card .photo {
+        height: 340px;
+        border-radius: 20px;
+      }
+
+      .v5 .double-card p {
+        margin: 14px 4px 0;
+      }
+
+      .v6 .layout {
+        display: grid;
+        grid-template-columns: 180px 1fr 180px;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .v6 .center {
+        height: 430px;
+        border-radius: 260px 260px 28px 28px;
+      }
+
+      .v6 .stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .v6 .stack .photo {
+        height: 198px;
+        border-radius: 18px;
+      }
+
+      .v7 .layout {
+        display: grid;
+        grid-template-columns: 0.8fr 1.15fr 0.8fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .v7 .photo {
+        border-radius: 22px;
+      }
+
+      .v7 .side-card {
+        height: 318px;
+      }
+
+      .v7 .focus {
+        height: 430px;
+        border: 8px solid rgba(255, 253, 248, 0.95);
+      }
+
+      .v8 .layout {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+
+      .v8 .photo {
+        height: 420px;
+        border-radius: 160px 160px 20px 20px;
+      }
+
+      .v8 .photo:nth-child(even) {
+        margin-top: 34px;
+      }
+
+      .v9 .layout {
+        position: relative;
+        height: 440px;
+      }
+
+      .v9 .paper {
+        position: absolute;
+        width: 300px;
+        height: 390px;
+        padding: 12px 12px 38px;
+        border: 1px solid rgba(195, 152, 70, 0.35);
+        background: #fffdf8;
+      }
+
+      .v9 .paper .photo {
+        height: 100%;
+        border-radius: 8px;
+      }
+
+      .v9 .p1 {
+        left: 48px;
+        top: 30px;
+        transform: rotate(-3deg);
+      }
+
+      .v9 .p2 {
+        left: 330px;
+        top: 2px;
+        z-index: 2;
+        width: 320px;
+        height: 420px;
+        transform: rotate(1deg);
+      }
+
+      .v9 .p3 {
+        right: 44px;
+        top: 34px;
+        transform: rotate(3deg);
+      }
+
+      .v10 .layout {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 22px;
+      }
+
+      .v10 .album-cover {
+        height: 430px;
+        border-radius: 28px;
+      }
+
+      .v10 .timeline {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .v10 .timeline-item {
+        padding: 10px;
+        border: 1px solid rgba(195, 152, 70, 0.32);
+        border-radius: 20px;
+        background: rgba(255, 253, 248, 0.72);
+      }
+
+      .v10 .timeline-item .photo {
+        height: 146px;
+        border-radius: 15px;
+      }
+
+      .v10 .timeline-item span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font: 11px/1.25 Arial, sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="board-title">
+      <h1>10 вариантов блока с фотографиями</h1>
+      <p>Все варианты используют реальные фотографии из проекта, без замены на временные изображения.</p>
+    </header>
+
+    <main class="options-grid">
+      <section id="variant-01" class="option v1">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 01</span>
+            <h2>Обложка + два акцента</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Один крупный эмоциональный кадр и две поддерживающие фотографии справа.</p>
+        </div>
+        <div class="layout">
+          <div class="photo main ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+          <div class="side">
+            <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+            <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-02" class="option v2">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 02</span>
+            <h2>Арочный портрет</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Самый свадебный вариант: высокий арочный кадр и компактная галерея рядом.</p>
+        </div>
+        <div class="layout">
+          <div class="photo cover brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+          <div class="right">
+            <div class="photo wide studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+            <div class="thumbs">
+              <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+              <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+              <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-03" class="option v3">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 03</span>
+            <h2>Крупная мозаика</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Плотная журнальная сетка: много фото, но без ощущения мелкой ленты.</p>
+        </div>
+        <div class="layout">
+          <div class="photo a studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+          <div class="photo b ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+          <div class="photo c brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+          <div class="photo d lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+          <div class="photo e heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+        </div>
+      </section>
+
+      <section id="variant-04" class="option v4">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 04</span>
+            <h2>Широкий кадр и кинолента</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Хорошо встанет между таймером и таймингом: крупный верх и спокойный ряд снизу.</p>
+        </div>
+        <div class="layout">
+          <div class="photo hero-photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+          <div class="film">
+            <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+            <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+            <div class="photo brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+            <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-05" class="option v5">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 05</span>
+            <h2>Две большие главы</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Минимальный, премиальный блок: меньше карточек, зато фотографии крупные.</p>
+        </div>
+        <div class="layout">
+          <article class="double-card">
+            <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+            <p class="caption">Первая глава</p>
+          </article>
+          <article class="double-card">
+            <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+            <p class="caption">Момент, который всё изменил</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="variant-06" class="option v6">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 06</span>
+            <h2>Центральная история</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Акцент на одном высоком фото, боковые кадры дают ощущение альбома.</p>
+        </div>
+        <div class="layout">
+          <div class="stack">
+            <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+            <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+          </div>
+          <div class="photo center brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+          <div class="stack">
+            <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+            <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="variant-07" class="option v7">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 07</span>
+            <h2>Галерея-витрина</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Похоже на аккуратную карусель: центральный кадр самый крупный.</p>
+        </div>
+        <div class="layout">
+          <div class="photo side-card ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+          <div class="photo focus heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+          <div class="photo side-card studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+        </div>
+      </section>
+
+      <section id="variant-08" class="option v8">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 08</span>
+            <h2>Пять арок</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Торжественный ритм: все пять фото видны сразу и стали заметно крупнее.</p>
+        </div>
+        <div class="layout">
+          <div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+          <div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div>
+          <div class="photo brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div>
+          <div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div>
+          <div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div>
+        </div>
+      </section>
+
+      <section id="variant-09" class="option v9">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 09</span>
+            <h2>XL-полароиды</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Сохраняет текущую идею полароидов, но делает её крупной и выразительной.</p>
+        </div>
+        <div class="layout">
+          <div class="paper p1"><div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div></div>
+          <div class="paper p2"><div class="photo ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div></div>
+          <div class="paper p3"><div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div></div>
+        </div>
+      </section>
+
+      <section id="variant-10" class="option v10">
+        <div class="option-header">
+          <div>
+            <span class="option-kicker">Вариант 10</span>
+            <h2>Фото-альбом</h2>
+            <div class="divider"></div>
+          </div>
+          <p class="option-note">Самый повествовательный вариант: крупная обложка и четыре страницы рядом.</p>
+        </div>
+        <div class="layout">
+          <div class="photo album-cover ring"><img src="../../../public/images/couple/couple-ring-night.jpg" alt="" /></div>
+          <div class="timeline">
+            <div class="timeline-item"><div class="photo studio"><img src="../../../public/images/couple/couple-studio-seated.jpg" alt="" /></div><span>Студия</span></div>
+            <div class="timeline-item"><div class="photo brick"><img src="../../../public/images/couple/couple-brick-wall.jpg" alt="" /></div><span>Портрет</span></div>
+            <div class="timeline-item"><div class="photo lake"><img src="../../../public/images/couple/couple-lake-view.jpg" alt="" /></div><span>Прогулка</span></div>
+            <div class="timeline-item"><div class="photo heli"><img src="../../../public/images/couple/couple-helicopter-ring.jpg" alt="" /></div><span>Помолвка</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
