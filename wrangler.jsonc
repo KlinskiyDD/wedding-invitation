@@ -1,11 +1,17 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "wedding-invitation",
+  "main": "worker/index.js",
   "compatibility_date": "2026-06-29",
   "build": {
     "command": "npm run build"
   },
+  "vars": {
+    "GOOGLE_SHEETS_SPREADSHEET_ID": "16G2I3VjyQARXGqSTsDbU8OxMTU-zBNUfrVK69yPQhSk",
+    "GOOGLE_SHEETS_SHEET_NAME": "Список гостей"
+  },
   "assets": {
+    "binding": "ASSETS",
     "directory": "./out",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
