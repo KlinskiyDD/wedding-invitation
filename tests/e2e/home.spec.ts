@@ -79,15 +79,20 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(schedule).toContainText("15:30");
   await expect(schedule).toContainText("Сбор гостей у ЗАГСА");
   await expect(schedule).toContainText("16:00");
-  await expect(schedule).toContainText("16:30");
+  await expect(schedule).toContainText("15:45");
   await expect(schedule).toContainText("18:00");
   await expect(schedule).toContainText("Начало праздничного банкета");
+  await expect(schedule).not.toContainText("16:30");
   await expect(schedule).not.toContainText("20:00");
   await expect(schedule).not.toContainText("Танцы");
 
   const location = page.getByTestId("location");
   await location.scrollIntoViewIfNeeded();
   await expect(location).toContainText("Ресторан «Пироговский дворик»");
+  await expect(location.locator(".venue-photo img")).toHaveAttribute(
+    "src",
+    /restaurant-interior-banquet\.jpg/,
+  );
   await expect(location).toContainText("Пирогово");
   await expect(page.getByLabel("Открыть в Яндекс Картах")).toHaveAttribute(
     "href",
@@ -128,8 +133,9 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(page.getByPlaceholder("Имя и фамилия")).toBeVisible();
   await expect(page.getByRole("combobox", { name: "Подтверждение участия" }))
     .toBeVisible();
-  await expect(page.getByRole("combobox", { name: "Количество гостей" }))
-    .toBeVisible();
+  await expect(
+    page.getByRole("combobox", { name: "Количество гостей" }),
+  ).toHaveCount(0);
   await expect(page.getByRole("combobox", { name: "Предпочтение по еде" }))
     .toBeVisible();
   await expect(page.getByRole("combobox", { name: "Предпочтение по алкоголю" }))
@@ -152,9 +158,6 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
 
   await page.getByPlaceholder("Имя и фамилия").fill("Иван Иванов");
   await page
-    .getByRole("combobox", { name: "Количество гостей" })
-    .selectOption("2 гостя");
-  await page
     .getByRole("combobox", { name: "Предпочтение по еде" })
     .selectOption("Птица");
   await page
@@ -171,11 +174,11 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   expect(rsvpPayload).toMatchObject({
     guestName: "Иван Иванов",
     attendance: "Подтверждаю участие",
-    companions: "2 гостя",
     foodPreference: "Птица",
     drinkPreference: "Вино белое",
     foodRestrictions: "Без орехов",
   });
+  expect(rsvpPayload).not.toHaveProperty("companions");
 });
 
 test("keeps content visible when reduced motion is requested", async ({ browser }) => {

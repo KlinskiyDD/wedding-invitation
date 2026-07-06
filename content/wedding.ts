@@ -36,7 +36,6 @@ export type CalendarLinks = {
 
 export type GuestFormContent = {
   attendance: string[];
-  companions: string[];
   ceremony: string[];
   food: string[];
   drinks: string[];
@@ -157,7 +156,6 @@ export const weddingContent: WeddingContent = {
       "Ответы из анкеты сохраняются в список гостей.",
     questions: [
       "Подтверждаю участие",
-      "Количество гостей",
       "Предпочтение по еде",
       "Ограничения по блюдам / аллергии",
       "Предпочтение по алкоголю",
@@ -178,7 +176,7 @@ export const weddingContent: WeddingContent = {
       icon: "heart",
     },
     {
-      time: "16:30",
+      time: "15:45",
       title: "Поздравления",
       description: "и фотосессия",
       icon: "glasses",
@@ -239,7 +237,6 @@ export const weddingContent: WeddingContent = {
   },
   guestForm: {
     attendance: ["Подтверждаю участие", "Не смогу присутствовать"],
-    companions: ["1 гость", "2 гостя", "3 гостя"],
     ceremony: ["Поеду на роспись", "Приеду сразу на банкет"],
     food: [
       "Без предпочтений",

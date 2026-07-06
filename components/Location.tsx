@@ -16,7 +16,7 @@ export function Location({ event }: LocationProps) {
     >
       <div className="venue-photo" aria-hidden="true">
         <Image
-          src="/images/venue/restaurant-interior.png"
+          src="/images/venue/restaurant-interior-banquet.jpg"
           alt=""
           fill
           sizes="(min-width: 900px) 52vw, 100vw"

@@ -59,7 +59,6 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
               body: JSON.stringify({
                 guestName: readFormValue(formData, "guestName"),
                 attendance: readFormValue(formData, "attendance"),
-                companions: readFormValue(formData, "companions"),
                 foodPreference: readFormValue(formData, "foodPreference"),
                 drinkPreference: readFormValue(formData, "drinkPreference"),
                 foodRestrictions: readFormValue(formData, "foodRestrictions"),
@@ -115,24 +114,6 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
             disabled={isSubmitting}
           >
             {guestForm.attendance.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="compact-field">
-          <span className="field-icon" aria-hidden="true">
-            <Image src="/images/generated/icon-guests-premium.png" alt="" width={24} height={24} />
-          </span>
-          <span className="sr-only">Количество гостей</span>
-          <select
-            name="companions"
-            defaultValue={guestForm.companions[0]}
-            disabled={isSubmitting}
-          >
-            {guestForm.companions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>

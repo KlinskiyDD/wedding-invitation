@@ -6,7 +6,6 @@ const sheetsScope = "https://www.googleapis.com/auth/spreadsheets";
 const requiredFields = [
   "guestName",
   "attendance",
-  "companions",
   "foodPreference",
   "drinkPreference",
   "foodRestrictions",
@@ -15,7 +14,6 @@ const requiredFields = [
 const textLimits = {
   guestName: 120,
   attendance: 80,
-  companions: 40,
   foodPreference: 120,
   drinkPreference: 120,
   foodRestrictions: 500,
@@ -195,7 +193,7 @@ async function appendRsvpToSheet(env, form) {
   const spreadsheetId = requireEnv(env, "GOOGLE_SHEETS_SPREADSHEET_ID");
   const sheetName = requireEnv(env, "GOOGLE_SHEETS_SHEET_NAME");
   const token = await getGoogleAccessToken(env);
-  const range = encodeURIComponent(`'${sheetName}'!A:G`);
+  const range = encodeURIComponent(`'${sheetName}'!A:F`);
   const response = await fetch(
     `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
     {
@@ -210,7 +208,6 @@ async function appendRsvpToSheet(env, form) {
             getSubmittedAt(),
             form.guestName,
             form.attendance,
-            form.companions,
             form.foodPreference,
             form.drinkPreference,
             form.foodRestrictions,

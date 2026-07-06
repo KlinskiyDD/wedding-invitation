@@ -1291,7 +1291,7 @@ img {
 }
 
 .form-submit {
-  grid-column: span 1;
+  grid-column: 2;
   display: grid;
   justify-items: stretch;
   gap: 10px;
@@ -1583,6 +1583,10 @@ img {
   }
 
   .compact-field-wide {
+    grid-column: auto;
+  }
+
+  .form-submit {
     grid-column: auto;
   }
 
