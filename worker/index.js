@@ -193,9 +193,9 @@ async function appendRsvpToSheet(env, form) {
   const spreadsheetId = requireEnv(env, "GOOGLE_SHEETS_SPREADSHEET_ID");
   const sheetName = requireEnv(env, "GOOGLE_SHEETS_SHEET_NAME");
   const token = await getGoogleAccessToken(env);
-  const range = encodeURIComponent(`'${sheetName}'!A:F`);
+  const range = encodeURIComponent(`'${sheetName}'!A7:F`);
   const response = await fetch(
-    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=OVERWRITE`,
     {
       method: "POST",
       headers: {

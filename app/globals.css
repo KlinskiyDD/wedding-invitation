@@ -1532,32 +1532,64 @@ img {
   }
 
   .schedule-event {
-    grid-template-columns: 64px 72px 1fr;
+    grid-template-columns: 56px 74px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    row-gap: 4px;
     min-height: 84px;
     align-content: center;
+    align-items: center;
     justify-items: start;
     text-align: left;
   }
 
   .schedule-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    justify-self: center;
     height: 52px;
     margin: 0;
+  }
+
+  .schedule-icon-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .schedule-icon-image-rings {
+    --schedule-icon-scale: 1.12;
   }
 
   .schedule-event h3,
   .schedule-event p {
     grid-column: 3;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .schedule-event h3 {
+    grid-row: 1;
+    align-self: end;
+    margin-top: 0;
+  }
+
+  .schedule-event p {
+    grid-row: 2;
+    align-self: start;
   }
 
   .schedule-event-compact h3 {
+    grid-row: 1 / span 2;
+    align-self: center;
     max-width: none;
     margin-top: 0;
   }
 
   .schedule-event time {
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 2;
     align-self: center;
+    justify-self: start;
   }
 
   .venue-section {
@@ -1668,7 +1700,8 @@ img {
   }
 
   .schedule-event {
-    grid-template-columns: 56px 68px 1fr;
+    grid-template-columns: 52px 74px minmax(0, 1fr);
+    column-gap: 10px;
     padding: 14px 12px;
   }
 

@@ -286,3 +286,55 @@ test("keeps the photo collage contained on mobile", async ({ page }) => {
 
   expect(hasNoHorizontalOverflow).toBe(true);
 });
+
+test("keeps the schedule timeline readable on mobile", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto("/");
+
+  const schedule = page.getByTestId("schedule");
+  await schedule.scrollIntoViewIfNeeded();
+
+  const mobileLayout = await schedule.locator("article").evaluateAll((events) =>
+    events.map((event) => {
+      const eventRect = event.getBoundingClientRect();
+      const icon = event.querySelector<HTMLElement>(".schedule-icon-image");
+      const time = event.querySelector<HTMLElement>("time");
+      const title = event.querySelector<HTMLElement>("h3");
+      const description = event.querySelector<HTMLElement>("p");
+
+      if (!icon || !time || !title) {
+        return {
+          hasRequiredElements: false,
+          iconTimeGap: Number.NEGATIVE_INFINITY,
+          textFitsCard: false,
+          titleTimeGap: Number.NEGATIVE_INFINITY,
+        };
+      }
+
+      const iconRect = icon.getBoundingClientRect();
+      const timeRect = time.getBoundingClientRect();
+      const titleRect = title.getBoundingClientRect();
+      const descriptionRect = description?.getBoundingClientRect();
+      const textRight = Math.max(
+        titleRect.right,
+        descriptionRect?.right ?? titleRect.right,
+      );
+
+      return {
+        hasRequiredElements: true,
+        iconTimeGap: timeRect.left - iconRect.right,
+        textFitsCard: textRight <= eventRect.right - 8,
+        titleTimeGap: titleRect.left - timeRect.right,
+      };
+    }),
+  );
+
+  expect(mobileLayout).toHaveLength(4);
+
+  for (const item of mobileLayout) {
+    expect(item.hasRequiredElements).toBe(true);
+    expect(item.iconTimeGap).toBeGreaterThanOrEqual(8);
+    expect(item.titleTimeGap).toBeGreaterThanOrEqual(8);
+    expect(item.textFitsCard).toBe(true);
+  }
+});
