@@ -137,10 +137,45 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(page.getByPlaceholder("Ограничения по блюдам / аллергии"))
     .toBeVisible();
 
+  let rsvpPayload: Record<string, unknown> | null = null;
+  await page.route("**/api/rsvp", async (route) => {
+    rsvpPayload = route.request().postDataJSON() as Record<string, unknown>;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        ok: true,
+        message: "Спасибо! Ваш ответ сохранён.",
+      }),
+    });
+  });
+
+  await page.getByPlaceholder("Имя и фамилия").fill("Иван Иванов");
+  await page
+    .getByRole("combobox", { name: "Количество гостей" })
+    .selectOption("2 гостя");
+  await page
+    .getByRole("combobox", { name: "Предпочтение по еде" })
+    .selectOption("Птица");
+  await page
+    .getByRole("combobox", { name: "Предпочтение по алкоголю" })
+    .selectOption("Вино белое");
+  await page
+    .getByPlaceholder("Ограничения по блюдам / аллергии")
+    .fill("Без орехов");
+
   await page.getByTestId("rsvp-submit").click();
   await expect(page.getByTestId("rsvp-message")).toContainText(
-    "Сейчас ответы не сохраняются",
+    "Спасибо! Ваш ответ сохранён.",
   );
+  expect(rsvpPayload).toMatchObject({
+    guestName: "Иван Иванов",
+    attendance: "Подтверждаю участие",
+    companions: "2 гостя",
+    foodPreference: "Птица",
+    drinkPreference: "Вино белое",
+    foodRestrictions: "Без орехов",
+  });
 });
 
 test("keeps content visible when reduced motion is requested", async ({ browser }) => {

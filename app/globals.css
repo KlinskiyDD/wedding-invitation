@@ -1286,6 +1286,10 @@ img {
   opacity: 1;
 }
 
+.compact-field:has(:disabled) {
+  opacity: 0.76;
+}
+
 .form-submit {
   grid-column: span 1;
   display: grid;
@@ -1307,6 +1311,12 @@ img {
   object-fit: contain;
 }
 
+.form-submit button:disabled {
+  cursor: wait;
+  opacity: 0.76;
+  transform: none;
+}
+
 .form-status {
   max-width: 560px;
   margin: 0;
@@ -1314,6 +1324,14 @@ img {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.88rem;
   line-height: 1.35;
+}
+
+.form-status-success {
+  color: var(--olive-dark);
+}
+
+.form-status-error {
+  color: #9d2f28;
 }
 
 .signature {
