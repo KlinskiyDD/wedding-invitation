@@ -82,9 +82,36 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(schedule).toContainText("15:45");
   await expect(schedule).toContainText("18:00");
   await expect(schedule).toContainText("Начало праздничного банкета");
+  await expect(
+    schedule.locator("article").filter({ hasText: "Церемония" }),
+  ).toContainText("15:45");
+  await expect(
+    schedule.locator("article").filter({ hasText: "Поздравления" }),
+  ).toContainText("16:00");
   await expect(schedule).not.toContainText("16:30");
   await expect(schedule).not.toContainText("20:00");
   await expect(schedule).not.toContainText("Танцы");
+  const scheduleIconMetrics = await schedule
+    .locator('[data-testid="schedule-icon-image"]')
+    .evaluateAll((icons) =>
+      icons.map((icon) => {
+        const rect = icon.getBoundingClientRect();
+
+        return {
+          height: rect.height,
+          type: icon.getAttribute("data-schedule-icon"),
+          width: rect.width,
+        };
+      }),
+    );
+  expect(scheduleIconMetrics).toHaveLength(4);
+  const ringsIcon = scheduleIconMetrics.find((icon) => icon.type === "rings");
+  const largestNonRingsIcon = Math.max(
+    ...scheduleIconMetrics
+      .filter((icon) => icon.type !== "rings")
+      .map((icon) => icon.width),
+  );
+  expect(ringsIcon?.width ?? 0).toBeGreaterThan(largestNonRingsIcon + 4);
 
   const location = page.getByTestId("location");
   await location.scrollIntoViewIfNeeded();
@@ -142,6 +169,29 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
     .toBeVisible();
   await expect(page.getByPlaceholder("Ограничения по блюдам / аллергии"))
     .toBeVisible();
+  const submitButtonGeometry = await page
+    .getByTestId("rsvp-submit")
+    .evaluate((button) => {
+      const buttonRect = button.getBoundingClientRect();
+      const label = button.querySelector("span");
+
+      if (!label) {
+        return { centerDelta: Number.POSITIVE_INFINITY, width: buttonRect.width };
+      }
+
+      const labelRect = label.getBoundingClientRect();
+
+      return {
+        centerDelta: Math.abs(
+          labelRect.left +
+            labelRect.width / 2 -
+            (buttonRect.left + buttonRect.width / 2),
+        ),
+        width: buttonRect.width,
+      };
+    });
+  expect(submitButtonGeometry.width).toBeLessThanOrEqual(250);
+  expect(submitButtonGeometry.centerDelta).toBeLessThanOrEqual(1);
 
   let rsvpPayload: Record<string, unknown> | null = null;
   await page.route("**/api/rsvp", async (route) => {
@@ -197,6 +247,28 @@ test("keeps content visible when reduced motion is requested", async ({ browser 
   await expect(page.getByTestId("rsvp")).toContainText("Анкета гостя");
 
   await context.close();
+});
+
+test("animates reveal sections when motion is allowed", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator("html")).toHaveClass(/motion-ready/);
+
+  const schedule = page.getByTestId("schedule");
+  await expect(schedule).toHaveCSS("opacity", "0");
+
+  await schedule.scrollIntoViewIfNeeded();
+  await expect(schedule).toHaveAttribute("data-motion-visible", "true");
+
+  await page.waitForTimeout(120);
+  const opacityDuringTransition = await schedule.evaluate((element) =>
+    Number.parseFloat(getComputedStyle(element).opacity),
+  );
+
+  expect(opacityDuringTransition).toBeGreaterThan(0);
+  expect(opacityDuringTransition).toBeLessThan(1);
+
+  await expect(schedule).toHaveCSS("opacity", "1");
 });
 
 test("keeps the photo collage contained on mobile", async ({ page }) => {

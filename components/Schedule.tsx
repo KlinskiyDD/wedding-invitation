@@ -35,7 +35,9 @@ function ScheduleIcon({ type }: { type: ScheduleItem["icon"] }) {
       alt={icon.alt}
       width={112}
       height={122}
-      className="schedule-icon-image"
+      data-testid="schedule-icon-image"
+      data-schedule-icon={type}
+      className={`schedule-icon-image schedule-icon-image-${type}`}
     />
   );
 }

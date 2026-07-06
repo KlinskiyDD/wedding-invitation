@@ -866,10 +866,16 @@ img {
 }
 
 .schedule-icon-image {
+  --schedule-icon-scale: 1;
   width: 56px;
   height: 56px;
   object-fit: contain;
+  transform: scale(var(--schedule-icon-scale));
   transition: transform 220ms ease;
+}
+
+.schedule-icon-image-rings {
+  --schedule-icon-scale: 1.22;
 }
 
 .schedule-event time {
@@ -1054,7 +1060,7 @@ img {
   }
 
   .schedule-event:hover .schedule-icon-image {
-    transform: scale(1.04);
+    transform: scale(calc(var(--schedule-icon-scale) * 1.04));
   }
 
   .photo-slot:hover {
@@ -1293,19 +1299,33 @@ img {
 .form-submit {
   grid-column: 2;
   display: grid;
-  justify-items: stretch;
+  justify-items: center;
   gap: 10px;
   min-width: 0;
 }
 
 .form-submit button {
-  gap: 28px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 28px;
+  gap: 10px;
+  justify-self: center;
+  width: min(100%, 236px);
   min-width: 0;
-  min-height: 60px;
-  padding: 0 28px;
+  min-height: 54px;
+  padding: 0 18px;
+}
+
+.form-submit button span {
+  grid-column: 2;
+  min-width: 0;
+  justify-self: center;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .form-submit button img {
+  grid-column: 3;
+  justify-self: center;
   width: 27px;
   height: 27px;
   object-fit: contain;
