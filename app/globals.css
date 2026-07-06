@@ -886,6 +886,11 @@ img {
   line-height: 1.2;
 }
 
+.schedule-event-compact h3 {
+  max-width: 190px;
+  margin-top: 9px;
+}
+
 .schedule-event p {
   margin: 4px 0 0;
   max-width: 135px;
@@ -1078,12 +1083,25 @@ img {
   margin-top: 15px;
 }
 
+.dress-code-copy {
+  max-width: 720px;
+  margin: 16px auto 0;
+  color: #34302a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
 .dress-palette p {
   margin: 12px auto 20px;
   color: #34302a;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.93rem;
   line-height: 1.35;
+}
+
+.dress-palette p span {
+  display: block;
 }
 
 .color-dots {
@@ -1491,6 +1509,11 @@ img {
   .schedule-event h3,
   .schedule-event p {
     grid-column: 3;
+  }
+
+  .schedule-event-compact h3 {
+    max-width: none;
+    margin-top: 0;
   }
 
   .schedule-event time {

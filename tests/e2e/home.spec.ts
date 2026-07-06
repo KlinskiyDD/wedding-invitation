@@ -43,19 +43,45 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(photoStory).toContainText("Наша история в кадрах");
   await expect(photoStory.getByTestId("photo-gallery-card")).toBeVisible();
   await expect(photoStory.getByTestId("photo-slot")).toHaveCount(5);
+  await photoStory.scrollIntoViewIfNeeded();
+  await expect(photoStory).toHaveAttribute("data-motion-visible", "true");
+  await expect(photoStory.getByTestId("photo-slot").first()).toHaveCSS(
+    "opacity",
+    "1",
+  );
+  await page.evaluate(() => window.scrollBy(0, -220));
+  await expect(photoStory).toHaveAttribute("data-motion-visible", "true");
+  await expect(photoStory.getByTestId("photo-slot").first()).toHaveCSS(
+    "opacity",
+    "1",
+  );
+  await expect(
+    photoStory.getByAltText("Дмитрий и Марина в зеркальном зале"),
+  ).toBeVisible();
+  await expect(
+    photoStory.getByAltText("Дмитрий и Марина на уютном селфи"),
+  ).toBeVisible();
+  await expect(
+    photoStory.getByTestId("photo-slot").nth(1).locator("img"),
+  ).toHaveAttribute("src", /couple-mirror-hall\.jpg/);
+  await expect(
+    photoStory.getByTestId("photo-slot").nth(3).locator("img"),
+  ).toHaveAttribute("src", /couple-sofa-selfie\.jpg/);
 
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();
   await expect(schedule).toHaveAttribute("data-motion-visible", "true");
   await page.evaluate(() => window.scrollTo(0, 0));
-  await expect(schedule).not.toHaveAttribute("data-motion-visible", "true");
+  await expect(schedule).toHaveAttribute("data-motion-visible", "true");
   await schedule.scrollIntoViewIfNeeded();
   await expect(schedule).toHaveAttribute("data-motion-visible", "true");
   await expect(schedule).toContainText("Тайминг дня");
   await expect(schedule).toContainText("15:30");
+  await expect(schedule).toContainText("Сбор гостей у ЗАГСА");
   await expect(schedule).toContainText("16:00");
   await expect(schedule).toContainText("16:30");
   await expect(schedule).toContainText("18:00");
+  await expect(schedule).toContainText("Начало праздничного банкета");
   await expect(schedule).not.toContainText("20:00");
   await expect(schedule).not.toContainText("Танцы");
 
@@ -71,6 +97,14 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   const dressCode = page.getByTestId("dress-code");
   await dressCode.scrollIntoViewIfNeeded();
   await expect(dressCode).toContainText("Дресс-код");
+  await expect(dressCode).toContainText("Мы не вводим дресс-код");
+  await expect(dressCode).toContainText(
+    "приходите так, как вам комфортно и красиво",
+  );
+  await expect(dressCode).toContainText("Единственное пожелание");
+  await expect(dressCode).toContainText(
+    "избегать белого, Total Black и ярко-красного цветов",
+  );
   await expect(dressCode.getByLabel("Белый")).toBeVisible();
   await expect(dressCode.getByLabel("Чёрный")).toBeVisible();
   await expect(dressCode.getByLabel("Красный")).toBeVisible();

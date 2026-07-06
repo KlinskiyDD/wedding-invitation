@@ -44,8 +44,7 @@ export function MotionReveal() {
           const target = entry.target as HTMLElement;
           if (entry.isIntersecting) {
             target.dataset.motionVisible = "true";
-          } else {
-            delete target.dataset.motionVisible;
+            observer.unobserve(target);
           }
         });
       },

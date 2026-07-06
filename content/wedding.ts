@@ -167,8 +167,8 @@ export const weddingContent: WeddingContent = {
   schedule: [
     {
       time: "15:30",
-      title: "Сбор гостей",
-      description: "и приветственный фуршет",
+      title: "Сбор гостей у ЗАГСА",
+      description: "",
       icon: "rings",
     },
     {
@@ -185,18 +185,19 @@ export const weddingContent: WeddingContent = {
     },
     {
       time: "18:00",
-      title: "Праздничный",
-      description: "ужин",
+      title: "Начало праздничного банкета",
+      description: "",
       icon: "cloche",
     },
   ],
   dressCode: {
     title: "Дресс-код",
     description:
-      "Просим воздержаться от следующих цветов:",
+      "Мы не вводим дресс-код — приходите так, как вам комфортно и красиво",
     preferredDescription:
       "Нежные природные оттенки для гостей:",
-    avoidDescription: "Просим воздержаться от следующих цветов:",
+    avoidDescription:
+      "Единственное пожелание:\nизбегать белого, Total Black и ярко-красного цветов",
     preferredColors: [],
     stopColors: [
       { name: "Белый", value: "#ffffff", border: "#bcae99" },
@@ -210,9 +211,9 @@ export const weddingContent: WeddingContent = {
       "Место для любимых фотографий Марины и Дмитрия.",
     photos: [
       {
-        src: "/images/couple/couple-ring-night.jpg",
-        alt: "Марина показывает помолвочное кольцо",
-        tone: "couple",
+        src: "/images/couple/couple-mirror-hall.jpg",
+        alt: "Дмитрий и Марина в зеркальном зале",
+        tone: "portrait",
       },
       {
         src: "/images/couple/couple-studio-seated.jpg",
@@ -220,9 +221,9 @@ export const weddingContent: WeddingContent = {
         tone: "field",
       },
       {
-        src: "/images/couple/couple-brick-wall.jpg",
-        alt: "Дмитрий и Марина у кирпичной стены",
-        tone: "portrait",
+        src: "/images/couple/couple-sofa-selfie.jpg",
+        alt: "Дмитрий и Марина на уютном селфи",
+        tone: "couple",
       },
       {
         src: "/images/couple/couple-lake-view.jpg",

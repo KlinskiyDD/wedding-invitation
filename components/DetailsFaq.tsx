@@ -13,7 +13,11 @@ type ColorListProps = {
 function ColorList({ label, colors }: ColorListProps) {
   return (
     <div className="dress-palette">
-      <p>{label}</p>
+      <p>
+        {label.split("\n").map((line, index) => (
+          <span key={`${line}-${index}`}>{line}</span>
+        ))}
+      </p>
       <div className="color-dots">
         {colors.map((color) => (
           <span
@@ -47,7 +51,11 @@ export function DetailsFaq({ dressCode, faq }: DetailsFaqProps) {
       >
         <h2>{dressCode.title}</h2>
         <div className="section-divider" aria-hidden="true" />
-        <ColorList label={dressCode.avoidDescription} colors={dressCode.stopColors} />
+        <p className="dress-code-copy">{dressCode.description}</p>
+        <ColorList
+          label={dressCode.avoidDescription}
+          colors={dressCode.stopColors}
+        />
       </section>
 
       <section

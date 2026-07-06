@@ -58,7 +58,9 @@ export function Schedule({ items, intro }: ScheduleProps) {
         {items.map((item) => (
           <article
             key={`${item.time}-${item.title}`}
-            className="schedule-event"
+            className={`schedule-event${
+              item.description ? "" : " schedule-event-compact"
+            }`}
             role="listitem"
           >
             <div className="schedule-icon">
@@ -66,7 +68,7 @@ export function Schedule({ items, intro }: ScheduleProps) {
             </div>
             <time>{item.time}</time>
             <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            {item.description ? <p>{item.description}</p> : null}
           </article>
         ))}
       </div>
