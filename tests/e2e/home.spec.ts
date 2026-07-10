@@ -86,7 +86,7 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
     schedule.locator("article").filter({ hasText: "Церемония" }),
   ).toContainText("15:45");
   await expect(
-    schedule.locator("article").filter({ hasText: "Поздравления" }),
+    schedule.locator("article").filter({ hasText: "Фотосессия" }),
   ).toContainText("16:00");
   await expect(
     schedule
@@ -100,7 +100,7 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(
     schedule
       .locator("article")
-      .filter({ hasText: "Поздравления" })
+      .filter({ hasText: "Фотосессия" })
       .locator("img"),
   ).toHaveAttribute("src", /icon-photoshoot-custom\.png/);
   await expect(schedule).not.toContainText("16:30");
@@ -261,6 +261,31 @@ test("renders the banquet-only invitation timing", async ({ page }) => {
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();
 
+  const banquetScheduleLineLayout = await schedule
+    .locator(".schedule-line")
+    .evaluate((line) => {
+      const lineRect = line.getBoundingClientRect();
+      const sectionRect = line.closest("section")?.getBoundingClientRect();
+      const gridColumns = getComputedStyle(line).gridTemplateColumns
+        .split(" ")
+        .filter(Boolean);
+
+      return {
+        countAttribute: line.getAttribute("data-schedule-count"),
+        centerDelta: sectionRect
+          ? Math.abs(
+              lineRect.left +
+                lineRect.width / 2 -
+                (sectionRect.left + sectionRect.width / 2),
+            )
+          : Number.POSITIVE_INFINITY,
+        columnCount: gridColumns.length,
+      };
+    });
+
+  expect(banquetScheduleLineLayout.countAttribute).toBe("3");
+  expect(banquetScheduleLineLayout.columnCount).toBe(3);
+  expect(banquetScheduleLineLayout.centerDelta).toBeLessThanOrEqual(1);
   await expect(schedule.locator("article")).toHaveCount(3);
   await expect(schedule).toContainText("Тайминг дня");
   await expect(schedule).toContainText("18:00");
@@ -398,6 +423,51 @@ test("keeps the schedule timeline readable on mobile", async ({ page }) => {
   );
 
   expect(mobileLayout).toHaveLength(4);
+
+  for (const item of mobileLayout) {
+    expect(item.hasRequiredElements).toBe(true);
+    expect(item.iconTimeGap).toBeGreaterThanOrEqual(8);
+    expect(item.titleTimeGap).toBeGreaterThanOrEqual(8);
+    expect(item.textFitsCard).toBe(true);
+  }
+});
+
+test("keeps the banquet schedule readable on mobile", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto("/banquet");
+
+  const schedule = page.getByTestId("schedule");
+  await schedule.scrollIntoViewIfNeeded();
+  await expect(schedule.locator("article")).toHaveCount(3);
+
+  const mobileLayout = await schedule.locator("article").evaluateAll((events) =>
+    events.map((event) => {
+      const eventRect = event.getBoundingClientRect();
+      const icon = event.querySelector<HTMLElement>(".schedule-icon-image");
+      const time = event.querySelector<HTMLElement>("time");
+      const title = event.querySelector<HTMLElement>("h3");
+
+      if (!icon || !time || !title) {
+        return {
+          hasRequiredElements: false,
+          iconTimeGap: Number.NEGATIVE_INFINITY,
+          textFitsCard: false,
+          titleTimeGap: Number.NEGATIVE_INFINITY,
+        };
+      }
+
+      const iconRect = icon.getBoundingClientRect();
+      const timeRect = time.getBoundingClientRect();
+      const titleRect = title.getBoundingClientRect();
+
+      return {
+        hasRequiredElements: true,
+        iconTimeGap: timeRect.left - iconRect.right,
+        textFitsCard: titleRect.right <= eventRect.right - 8,
+        titleTimeGap: titleRect.left - timeRect.right,
+      };
+    }),
+  );
 
   for (const item of mobileLayout) {
     expect(item.hasRequiredElements).toBe(true);

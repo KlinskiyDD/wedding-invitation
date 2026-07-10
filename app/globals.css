@@ -807,6 +807,13 @@ img {
   gap: var(--schedule-gap);
 }
 
+.schedule-line-count-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 820px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .schedule-line::before {
   position: absolute;
   top: 50%;
@@ -1534,6 +1541,11 @@ img {
     margin: 0 auto;
   }
 
+  .schedule-line.schedule-line-count-3 {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
   .schedule-line::before,
   .schedule-event::after {
     display: none;
@@ -1717,8 +1729,12 @@ img {
 
   .schedule-event {
     grid-template-columns: 52px 74px minmax(0, 1fr);
-    column-gap: 10px;
+    column-gap: 12px;
     padding: 14px 12px;
+  }
+
+  .schedule-line .schedule-event {
+    column-gap: 12px;
   }
 
   .color-swatch {

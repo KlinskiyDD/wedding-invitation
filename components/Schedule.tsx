@@ -76,7 +76,11 @@ export function Schedule({ items, intro }: ScheduleProps) {
         <p className="sr-only">{intro}</p>
       </div>
 
-      <div className="schedule-line" role="list">
+      <div
+        className={`schedule-line schedule-line-count-${items.length}`}
+        data-schedule-count={items.length}
+        role="list"
+      >
         {items.map((item) => (
           <article
             key={`${item.time}-${item.title}`}
