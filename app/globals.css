@@ -878,6 +878,14 @@ img {
   --schedule-icon-scale: 1.22;
 }
 
+.schedule-icon-image-dance,
+.schedule-icon-image-finale,
+.schedule-icon-image-guestGathering,
+.schedule-icon-image-ceremony,
+.schedule-icon-image-photoshoot {
+  --schedule-icon-scale: 1.2;
+}
+
 .schedule-event time {
   display: block;
   font-weight: 600;
@@ -1558,6 +1566,14 @@ img {
 
   .schedule-icon-image-rings {
     --schedule-icon-scale: 1.12;
+  }
+
+  .schedule-icon-image-dance,
+  .schedule-icon-image-finale,
+  .schedule-icon-image-guestGathering,
+  .schedule-icon-image-ceremony,
+  .schedule-icon-image-photoshoot {
+    --schedule-icon-scale: 1.18;
   }
 
   .schedule-event h3,

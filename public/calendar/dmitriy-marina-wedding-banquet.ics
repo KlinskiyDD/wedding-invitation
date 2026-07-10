@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dmitriy and Marina Wedding//Wedding Invitation//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:dmitriy-marina-wedding-banquet-20260822@wedding-invitation.local
+DTSTAMP:20260710T120000Z
+DTSTART:20260822T150000Z
+DTEND:20260822T210000Z
+SUMMARY:Свадьба Дмитрия и Марины
+DESCRIPTION:Начало праздничного банкета в 18:00. Ресторан «Пироговский дворик».
+LOCATION:Московская область\, Мытищинский район\, д. Пирогово\, ул. Центральная\, 100Б
+END:VEVENT
+END:VCALENDAR

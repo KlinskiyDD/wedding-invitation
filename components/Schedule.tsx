@@ -24,6 +24,26 @@ const scheduleIcons: Record<ScheduleItem["icon"], { src: string; alt: string }> 
     src: "/images/generated/icon-cloche-premium.png",
     alt: "Декоративная иконка праздничного ужина",
   },
+  dance: {
+    src: "/images/generated/icon-dance-custom.png",
+    alt: "Декоративная иконка танцующей пары",
+  },
+  finale: {
+    src: "/images/generated/icon-evening-finale-custom.png",
+    alt: "Декоративная иконка завершения вечера",
+  },
+  guestGathering: {
+    src: "/images/generated/icon-guest-gathering-custom.png",
+    alt: "Декоративная иконка сбора гостей",
+  },
+  ceremony: {
+    src: "/images/generated/icon-ceremony-custom.png",
+    alt: "Декоративная иконка бракосочетания",
+  },
+  photoshoot: {
+    src: "/images/generated/icon-photoshoot-custom.png",
+    alt: "Декоративная иконка фотосессии",
+  },
 };
 
 function ScheduleIcon({ type }: { type: ScheduleItem["icon"] }) {

@@ -88,9 +88,27 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(
     schedule.locator("article").filter({ hasText: "Поздравления" }),
   ).toContainText("16:00");
+  await expect(
+    schedule
+      .locator("article")
+      .filter({ hasText: "Сбор гостей у ЗАГСА" })
+      .locator("img"),
+  ).toHaveAttribute("src", /icon-guest-gathering-custom\.png/);
+  await expect(
+    schedule.locator("article").filter({ hasText: "Церемония" }).locator("img"),
+  ).toHaveAttribute("src", /icon-ceremony-custom\.png/);
+  await expect(
+    schedule
+      .locator("article")
+      .filter({ hasText: "Поздравления" })
+      .locator("img"),
+  ).toHaveAttribute("src", /icon-photoshoot-custom\.png/);
   await expect(schedule).not.toContainText("16:30");
   await expect(schedule).not.toContainText("20:00");
+  await expect(schedule).not.toContainText("23:00");
+  await expect(schedule).not.toContainText("00:00");
   await expect(schedule).not.toContainText("Танцы");
+  await expect(schedule).not.toContainText("Завершение вечера");
   const scheduleIconMetrics = await schedule
     .locator('[data-testid="schedule-icon-image"]')
     .evaluateAll((icons) =>
@@ -105,13 +123,16 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
       }),
     );
   expect(scheduleIconMetrics).toHaveLength(4);
-  const ringsIcon = scheduleIconMetrics.find((icon) => icon.type === "rings");
-  const largestNonRingsIcon = Math.max(
-    ...scheduleIconMetrics
-      .filter((icon) => icon.type !== "rings")
-      .map((icon) => icon.width),
-  );
-  expect(ringsIcon?.width ?? 0).toBeGreaterThan(largestNonRingsIcon + 4);
+  expect(scheduleIconMetrics.map((icon) => icon.type)).toEqual([
+    "guestGathering",
+    "ceremony",
+    "photoshoot",
+    "cloche",
+  ]);
+  for (const icon of scheduleIconMetrics) {
+    expect(icon.width).toBeGreaterThan(0);
+    expect(icon.height).toBeGreaterThan(0);
+  }
 
   const location = page.getByTestId("location");
   await location.scrollIntoViewIfNeeded();
@@ -155,7 +176,7 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await rsvp.scrollIntoViewIfNeeded();
   await expect(rsvp).toContainText("Анкета гостя");
   await expect(rsvp).toContainText(
-    "подтвердите своё присутствие до 1 июля 2026 года",
+    "подтвердите своё присутствие до 22 июля 2026 года",
   );
   await expect(page.getByPlaceholder("Имя и фамилия")).toBeVisible();
   await expect(page.getByRole("combobox", { name: "Подтверждение участия" }))
@@ -229,6 +250,53 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
     foodRestrictions: "Без орехов",
   });
   expect(rsvpPayload).not.toHaveProperty("companions");
+});
+
+test("renders the banquet-only invitation timing", async ({ page }) => {
+  await page.goto("/banquet");
+
+  await expect(page).toHaveTitle(/Свадебное приглашение/);
+  await expect(page.getByTestId("hero")).toContainText("Дмитрий и Марина");
+
+  const schedule = page.getByTestId("schedule");
+  await schedule.scrollIntoViewIfNeeded();
+
+  await expect(schedule.locator("article")).toHaveCount(3);
+  await expect(schedule).toContainText("Тайминг дня");
+  await expect(schedule).toContainText("18:00");
+  await expect(schedule).toContainText("Начало праздничного банкета");
+  await expect(schedule).toContainText("23:00");
+  await expect(schedule).toContainText("Танцы");
+  await expect(schedule).toContainText("00:00");
+  await expect(schedule).toContainText("Завершение вечера");
+  await expect(
+    schedule.locator("article").filter({ hasText: "Танцы" }).locator("img"),
+  ).toHaveAttribute("src", /icon-dance-custom\.png/);
+  await expect(
+    schedule
+      .locator("article")
+      .filter({ hasText: "Завершение вечера" })
+      .locator("img"),
+  ).toHaveAttribute("src", /icon-evening-finale-custom\.png/);
+  await expect(schedule).not.toContainText("15:30");
+  await expect(schedule).not.toContainText("Сбор гостей у ЗАГСА");
+  await expect(schedule).not.toContainText("15:45");
+  await expect(schedule).not.toContainText("Церемония");
+  await expect(schedule).not.toContainText("16:00");
+  await expect(schedule).not.toContainText("Поздравления");
+
+  await expect(page.getByTestId("rsvp")).toContainText(
+    "подтвердите своё присутствие до 22 июля 2026 года",
+  );
+  await expect(
+    page.getByRole("link", { name: "Добавить свадьбу в Google Calendar" }),
+  ).toHaveAttribute("href", /20260822T180000/);
+  await expect(
+    page.getByRole("link", { name: "Скачать событие для Apple Calendar" }),
+  ).toHaveAttribute(
+    "href",
+    "/calendar/dmitriy-marina-wedding-banquet.ics",
+  );
 });
 
 test("keeps content visible when reduced motion is requested", async ({ browser }) => {

@@ -7,7 +7,16 @@ export type ScheduleItem = {
   time: string;
   title: string;
   description: string;
-  icon: "rings" | "heart" | "glasses" | "cloche";
+  icon:
+    | "rings"
+    | "heart"
+    | "glasses"
+    | "cloche"
+    | "dance"
+    | "finale"
+    | "guestGathering"
+    | "ceremony"
+    | "photoshoot";
 };
 
 export type DressCodeColor = {
@@ -106,6 +115,18 @@ const googleCalendarUrl = `https://calendar.google.com/calendar/render?${new URL
   },
 ).toString()}`;
 
+const banquetGoogleCalendarUrl = `https://calendar.google.com/calendar/render?${new URLSearchParams(
+  {
+    action: "TEMPLATE",
+    text: "Свадьба Дмитрия и Марины",
+    dates: "20260822T180000/20260823T000000",
+    ctz: "Europe/Moscow",
+    details:
+      "Начало праздничного банкета в 18:00. Ресторан «Пироговский дворик».",
+    location: eventAddress,
+  },
+).toString()}`;
+
 export const weddingContent: WeddingContent = {
   navigation: [
     { label: "ГЛАВНАЯ", href: "#invitation" },
@@ -151,7 +172,7 @@ export const weddingContent: WeddingContent = {
   rsvp: {
     url: "",
     deadline:
-      "Пожалуйста, подтвердите своё присутствие до 1 июля 2026 года.",
+      "Пожалуйста, подтвердите своё присутствие до 22 июля 2026 года.",
     description:
       "Ответы из анкеты сохраняются в список гостей.",
     questions: [
@@ -167,19 +188,19 @@ export const weddingContent: WeddingContent = {
       time: "15:30",
       title: "Сбор гостей у ЗАГСА",
       description: "",
-      icon: "rings",
+      icon: "guestGathering",
     },
     {
       time: "15:45",
       title: "Церемония",
       description: "бракосочетания",
-      icon: "heart",
+      icon: "ceremony",
     },
     {
       time: "16:00",
-      title: "Поздравления",
-      description: "и фотосессия",
-      icon: "glasses",
+      title: "Фотосессия",
+      description: "",
+      icon: "photoshoot",
     },
     {
       time: "18:00",
@@ -289,6 +310,40 @@ export const weddingContent: WeddingContent = {
       question: "Что делать, если у меня аллергия / ограничения в еде?",
       answer:
         "Укажите это в анкете гостя, и мы постараемся учесть ваши пожелания при согласовании меню.",
+    },
+  ],
+};
+
+export const banquetWeddingContent: WeddingContent = {
+  ...weddingContent,
+  event: {
+    ...weddingContent.event,
+    timeLabel: "18:00",
+    countdownTarget: "2026-08-22T18:00:00+03:00",
+    calendar: {
+      ...weddingContent.event.calendar,
+      googleUrl: banquetGoogleCalendarUrl,
+      appleUrl: "/calendar/dmitriy-marina-wedding-banquet.ics",
+    },
+  },
+  schedule: [
+    {
+      time: "18:00",
+      title: "Начало праздничного банкета",
+      description: "",
+      icon: "cloche",
+    },
+    {
+      time: "23:00",
+      title: "Танцы",
+      description: "",
+      icon: "dance",
+    },
+    {
+      time: "00:00",
+      title: "Завершение вечера",
+      description: "",
+      icon: "finale",
     },
   ],
 };
