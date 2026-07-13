@@ -1,4 +1,43 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const registryOfficeAddress =
+  "Москва, б-р Маршала Рокоссовского, д. 21/21";
+
+async function expectRegistryOfficeBeforeSchedule(page: Page) {
+  const registryOffice = page.getByTestId("registry-office");
+
+  await expect(registryOffice).toBeVisible();
+  await expect(registryOffice).toContainText("ЗАГС");
+  await expect(registryOffice).toContainText(registryOfficeAddress);
+  await expect(
+    registryOffice.getByRole("link", { name: "Открыть ЗАГС в Яндекс Картах" }),
+  ).toHaveAttribute("href", "https://yandex.ru/maps/-/CTFi4YpF");
+  await expect(
+    registryOffice.getByRole("link", { name: "Открыть ЗАГС в Яндекс Картах" }),
+  ).toHaveAttribute("target", "_blank");
+
+  const map = registryOffice.getByTitle("Интерактивная карта ЗАГСа");
+  await expect(map).toBeVisible();
+  await expect(map).toHaveAttribute(
+    "src",
+    /yandex\.ru\/map-widget\/v1\/.*oid=110858254913/,
+  );
+  await expect(map).toHaveAttribute("loading", "lazy");
+
+  expect(
+    await registryOffice.evaluate((element, scheduleTestId) => {
+      const scheduleElement = document.querySelector(
+        `[data-testid="${scheduleTestId}"]`,
+      );
+
+      return Boolean(
+        scheduleElement &&
+          element.compareDocumentPosition(scheduleElement) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+      );
+    }, "schedule"),
+  ).toBe(true);
+}
 
 test("renders the modern editorial wedding invitation homepage", async ({ page }) => {
   await page.goto("/");
@@ -67,6 +106,8 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   await expect(
     photoStory.getByTestId("photo-slot").nth(3).locator("img"),
   ).toHaveAttribute("src", /couple-sofa-selfie\.jpg/);
+
+  await expectRegistryOfficeBeforeSchedule(page);
 
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();
@@ -260,6 +301,8 @@ test("renders the banquet-only invitation timing", async ({ page }) => {
 
   await expect(page).toHaveTitle(/Свадебное приглашение/);
   await expect(page.getByTestId("hero")).toContainText("Дмитрий и Марина");
+
+  await expectRegistryOfficeBeforeSchedule(page);
 
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();

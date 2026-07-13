@@ -363,6 +363,7 @@ img {
 
 .countdown-section,
 .photo-strip-section,
+.registry-office-section,
 .schedule-section,
 .venue-section,
 .dress-code-section,
@@ -734,6 +735,118 @@ img {
   border: 1px solid var(--line);
   border-radius: 6px;
   background: rgba(255, 253, 248, 0.56);
+}
+
+.registry-office-section {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.42fr);
+  max-width: 1130px;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+  padding: 16px;
+  gap: 18px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(195, 152, 70, 0.1), transparent 34%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.7), transparent 48%),
+    rgba(255, 253, 248, 0.76);
+}
+
+.registry-office-copy {
+  display: grid;
+  align-content: center;
+  min-width: 0;
+  padding: 32px 26px 32px 34px;
+}
+
+.registry-office-eyebrow {
+  margin: 0 0 8px;
+  color: var(--olive-dark);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.registry-office-copy h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.registry-office-address {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  margin: 22px 0 0;
+  color: #34302a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.registry-office-address img {
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  object-fit: contain;
+}
+
+.registry-office-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  gap: 14px;
+  min-height: 44px;
+  margin-top: 24px;
+  border: 1px solid var(--olive-dark);
+  border-radius: 999px;
+  background: var(--olive-dark);
+  padding: 0 22px;
+  color: #fffdf8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.registry-office-link:hover,
+.registry-office-link:focus-visible {
+  border-color: var(--gold-soft);
+  background: var(--olive);
+  box-shadow: 0 10px 22px rgba(79, 67, 50, 0.14);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.registry-office-map-shell {
+  min-height: 370px;
+  overflow: hidden;
+  border: 1px solid rgba(213, 199, 174, 0.9);
+  border-radius: 12px;
+  background: var(--paper-deep);
+  box-shadow: 0 16px 34px rgba(79, 67, 50, 0.09);
+}
+
+.registry-office-map-shell iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 370px;
+  border: 0;
 }
 
 .schedule-section {
@@ -1528,6 +1641,24 @@ img {
 
   .photo-collage-main .photo-image-frame {
     aspect-ratio: 1.08;
+  }
+
+  .registry-office-section {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .registry-office-copy {
+    padding: 26px 22px 16px;
+  }
+
+  .registry-office-link {
+    justify-self: stretch;
+  }
+
+  .registry-office-map-shell,
+  .registry-office-map-shell iframe {
+    min-height: 300px;
   }
 
   .schedule-section {

@@ -45,6 +45,13 @@ export type CalendarLinks = {
   appleUrl: string;
 };
 
+export type RegistryOfficeContent = {
+  name: string;
+  address: string;
+  mapUrl: string;
+  embedUrl: string;
+};
+
 export type GuestFormContent = {
   attendance: string[];
   ceremony: string[];
@@ -83,6 +90,7 @@ export type WeddingContent = {
     description: string;
     questions: string[];
   };
+  registryOffice: RegistryOfficeContent;
   scheduleIntro: string;
   schedule: ScheduleItem[];
   dressCode: {
@@ -104,6 +112,14 @@ export type WeddingContent = {
 
 const eventAddress =
   "Московская область, Мытищинский район, д. Пирогово, ул. Центральная, 100Б";
+
+const registryOffice: RegistryOfficeContent = {
+  name: "ЗАГС",
+  address: "Москва, б-р Маршала Рокоссовского, д. 21/21",
+  mapUrl: "https://yandex.ru/maps/-/CTFi4YpF",
+  embedUrl:
+    "https://yandex.ru/map-widget/v1/?from=mapframe&ll=37.719998%2C55.813663&mode=search&oid=110858254913&ol=biz&z=17",
+};
 
 const googleCalendarUrl = `https://calendar.google.com/calendar/render?${new URLSearchParams(
   {
@@ -184,6 +200,7 @@ export const weddingContent: WeddingContent = {
       "Предпочтение по алкоголю",
     ],
   },
+  registryOffice,
   scheduleIntro: "Мы будем рядом на каждом этапе этого особенного дня.",
   schedule: [
     {

@@ -5,6 +5,7 @@ import { Location } from "@/components/Location";
 import { MotionReveal } from "@/components/MotionReveal";
 import { PhotoStory } from "@/components/PhotoStory";
 import { Rsvp } from "@/components/Rsvp";
+import { RegistryOfficeMap } from "@/components/RegistryOfficeMap";
 import { Schedule } from "@/components/Schedule";
 import { VintageFrame } from "@/components/VintageFrame";
 import type { WeddingContent } from "@/content/wedding";
@@ -28,6 +29,7 @@ export function InvitationPage({ content }: InvitationPageProps) {
           calendar={content.event.calendar}
         />
         <PhotoStory photoStory={content.photoStory} />
+        <RegistryOfficeMap office={content.registryOffice} />
         <Schedule items={content.schedule} intro={content.scheduleIntro} />
         <Location event={content.event} />
         <DetailsFaq dressCode={content.dressCode} faq={content.faq} />
