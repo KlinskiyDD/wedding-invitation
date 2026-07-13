@@ -29,8 +29,10 @@ export function InvitationPage({ content }: InvitationPageProps) {
           calendar={content.event.calendar}
         />
         <PhotoStory photoStory={content.photoStory} />
-        <RegistryOfficeMap office={content.registryOffice} />
         <Schedule items={content.schedule} intro={content.scheduleIntro} />
+        {content.registryOffice ? (
+          <RegistryOfficeMap office={content.registryOffice} />
+        ) : null}
         <Location event={content.event} />
         <DetailsFaq dressCode={content.dressCode} faq={content.faq} />
         <Rsvp guestForm={content.guestForm} rsvp={content.rsvp} />

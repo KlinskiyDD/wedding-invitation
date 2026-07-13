@@ -3,8 +3,10 @@ import { expect, test, type Page } from "@playwright/test";
 const registryOfficeAddress =
   "Москва, б-р Маршала Рокоссовского, д. 21/21";
 
-async function expectRegistryOfficeBeforeSchedule(page: Page) {
+async function expectRegistryOfficeAfterSchedule(page: Page) {
   const registryOffice = page.getByTestId("registry-office");
+  const schedule = page.getByTestId("schedule");
+  const location = page.getByTestId("location");
 
   await expect(registryOffice).toBeVisible();
   await expect(registryOffice).toContainText("ЗАГС");
@@ -25,18 +27,68 @@ async function expectRegistryOfficeBeforeSchedule(page: Page) {
   await expect(map).toHaveAttribute("loading", "lazy");
 
   expect(
-    await registryOffice.evaluate((element, scheduleTestId) => {
-      const scheduleElement = document.querySelector(
-        `[data-testid="${scheduleTestId}"]`,
+    await schedule.evaluate((element) => {
+      const registryOfficeElement = document.querySelector(
+        '[data-testid="registry-office"]',
+      );
+      const locationElement = document.querySelector(
+        '[data-testid="location"]',
       );
 
-      return Boolean(
-        scheduleElement &&
-          element.compareDocumentPosition(scheduleElement) &
-            Node.DOCUMENT_POSITION_FOLLOWING,
+      if (!registryOfficeElement || !locationElement) {
+        return false;
+      }
+
+      const scheduleBeforeRegistry = Boolean(
+        element.compareDocumentPosition(registryOfficeElement) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
       );
-    }, "schedule"),
+      const registryBeforeLocation = Boolean(
+        registryOfficeElement.compareDocumentPosition(locationElement) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      );
+
+      return scheduleBeforeRegistry && registryBeforeLocation;
+    }),
   ).toBe(true);
+
+  const registryMapLink = registryOffice.getByRole("link", {
+    name: "Открыть ЗАГС в Яндекс Картах",
+  });
+  const venueMapLink = location.getByRole("link", {
+    name: "Открыть в Яндекс Картах",
+  });
+
+  await expect(registryMapLink).toHaveClass(/map-action-link/);
+  await expect(venueMapLink).toHaveClass(/map-action-link/);
+  await expect(registryMapLink.locator("img")).toHaveAttribute(
+    "src",
+    /icon-arrow-light\.png/,
+  );
+  await expect(venueMapLink.locator("img")).toHaveAttribute(
+    "src",
+    /icon-arrow-light\.png/,
+  );
+
+  const mapLinkStyles = await Promise.all(
+    [registryMapLink, venueMapLink].map((link) =>
+      link.evaluate((element) => {
+        const styles = getComputedStyle(element);
+
+        return {
+          backgroundColor: styles.backgroundColor,
+          border: styles.border,
+          borderRadius: styles.borderRadius,
+          fontFamily: styles.fontFamily,
+          fontSize: styles.fontSize,
+          minHeight: styles.minHeight,
+          padding: styles.padding,
+        };
+      }),
+    ),
+  );
+
+  expect(mapLinkStyles[0]).toEqual(mapLinkStyles[1]);
 }
 
 test("renders the modern editorial wedding invitation homepage", async ({ page }) => {
@@ -107,7 +159,7 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
     photoStory.getByTestId("photo-slot").nth(3).locator("img"),
   ).toHaveAttribute("src", /couple-sofa-selfie\.jpg/);
 
-  await expectRegistryOfficeBeforeSchedule(page);
+  await expectRegistryOfficeAfterSchedule(page);
 
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();
@@ -302,7 +354,10 @@ test("renders the banquet-only invitation timing", async ({ page }) => {
   await expect(page).toHaveTitle(/Свадебное приглашение/);
   await expect(page.getByTestId("hero")).toContainText("Дмитрий и Марина");
 
-  await expectRegistryOfficeBeforeSchedule(page);
+  await expect(page.getByTestId("registry-office")).toHaveCount(0);
+  await expect(
+    page.getByTitle("Интерактивная карта ЗАГСа"),
+  ).toHaveCount(0);
 
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();
@@ -429,6 +484,8 @@ test("keeps the photo collage contained on mobile", async ({ page }) => {
 test("keeps the schedule timeline readable on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto("/");
+
+  await expectRegistryOfficeAfterSchedule(page);
 
   const schedule = page.getByTestId("schedule");
   await schedule.scrollIntoViewIfNeeded();

@@ -90,7 +90,7 @@ export type WeddingContent = {
     description: string;
     questions: string[];
   };
-  registryOffice: RegistryOfficeContent;
+  registryOffice?: RegistryOfficeContent;
   scheduleIntro: string;
   schedule: ScheduleItem[];
   dressCode: {
@@ -335,6 +335,7 @@ export const weddingContent: WeddingContent = {
 
 export const banquetWeddingContent: WeddingContent = {
   ...weddingContent,
+  registryOffice: undefined,
   event: {
     ...weddingContent.event,
     timeLabel: "18:00",

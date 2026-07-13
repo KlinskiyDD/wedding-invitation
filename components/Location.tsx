@@ -39,6 +39,7 @@ export function Location({ event }: LocationProps) {
         </p>
         <div className="venue-actions">
           <a
+            className="map-action-link"
             href={event.mapUrl}
             target="_blank"
             rel="noreferrer"

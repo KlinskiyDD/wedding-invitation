@@ -27,16 +27,24 @@ export function RegistryOfficeMap({ office }: RegistryOfficeMapProps) {
           />
           <span>{office.address}</span>
         </p>
-        <a
-          className="registry-office-link"
-          href={office.mapUrl}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Открыть ЗАГС в Яндекс Картах"
-        >
-          <span>Открыть в Яндекс Картах</span>
-          <span aria-hidden="true">↗</span>
-        </a>
+        <div className="registry-office-actions">
+          <a
+            className="map-action-link"
+            href={office.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Открыть ЗАГС в Яндекс Картах"
+          >
+            <span>Открыть в Яндекс Картах</span>
+            <Image
+              src={publicAssetPath("/images/generated/icon-arrow-light.png")}
+              alt=""
+              width={32}
+              height={32}
+              aria-hidden="true"
+            />
+          </a>
+        </div>
       </div>
 
       <div className="registry-office-map-shell">
