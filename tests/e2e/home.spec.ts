@@ -215,7 +215,9 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
   expect(submitButtonGeometry.centerDelta).toBeLessThanOrEqual(1);
 
   let rsvpPayload: Record<string, unknown> | null = null;
+  let rsvpRequestUrl = "";
   await page.route("**/api/rsvp", async (route) => {
+    rsvpRequestUrl = route.request().url();
     rsvpPayload = route.request().postDataJSON() as Record<string, unknown>;
     await route.fulfill({
       status: 200,
@@ -250,6 +252,7 @@ test("renders the modern editorial wedding invitation homepage", async ({ page }
     foodRestrictions: "Без орехов",
   });
   expect(rsvpPayload).not.toHaveProperty("companions");
+  expect(new URL(rsvpRequestUrl).pathname).toBe("/api/rsvp");
 });
 
 test("renders the banquet-only invitation timing", async ({ page }) => {

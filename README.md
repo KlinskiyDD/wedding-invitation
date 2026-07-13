@@ -39,6 +39,7 @@ Full local site with RSVP API: `http://127.0.0.1:8787`.
 ```bash
 npm run lint
 npm run typecheck
+npm run test:worker
 npm run test:e2e
 npm run build
 npx wrangler deploy --dry-run
@@ -53,6 +54,49 @@ RSVP responses are saved to Google Sheets through `POST /api/rsvp` in
 `GOOGLE_SERVICE_ACCOUNT_JSON_B64`; production should use a Cloudflare secret
 with the same name.
 
+The RSVP endpoint accepts the GitHub Pages origin through the
+`RSVP_ALLOWED_ORIGINS` value in `wrangler.jsonc`. The Google service account
+remains a Cloudflare secret and is never included in the static site or the
+GitHub Actions workflow.
+
+## GitHub Pages
+
+The workflow in `.github/workflows/deploy-pages.yml` publishes the static
+export to:
+
+```text
+https://klinskiydd.github.io/wedding-invitation/
+```
+
+It runs automatically after a push to `main` and can also be started manually
+from the Actions tab. The workflow obtains the repository base path from
+`actions/configure-pages`, builds `out/`, verifies generated asset and calendar
+URLs, and deploys the artifact without committing `out/`.
+
+The Pages build sends RSVP requests to:
+
+```text
+https://wedding-invitation.skull2932.workers.dev/api/rsvp
+```
+
+Deploy Worker changes before publishing Pages changes that depend on them:
+
+```bash
+npx wrangler deploy
+git push origin main
+```
+
+To verify a Pages export locally in PowerShell:
+
+```powershell
+$env:PAGES_BASE_PATH = "/wedding-invitation"
+$env:NEXT_PUBLIC_BASE_PATH = "/wedding-invitation"
+$env:NEXT_PUBLIC_RSVP_API_URL = "https://wedding-invitation.skull2932.workers.dev/api/rsvp"
+npm run build
+npm run test:pages-export
+Remove-Item Env:PAGES_BASE_PATH, Env:NEXT_PUBLIC_BASE_PATH, Env:NEXT_PUBLIC_RSVP_API_URL
+```
+
 ## Cloudflare
 
 The current deployment path is `npx wrangler deploy`.
@@ -64,3 +108,6 @@ Avoid adding Next.js features that require a Next.js server in the current
 setup, including Server Actions, request-dependent route handlers,
 middleware/proxy, ISR, or default runtime image optimization. Server-side
 behavior should live in the Cloudflare Worker.
+
+The normal Cloudflare build does not set a Pages base path, so existing root
+URLs and the same-origin `/api/rsvp` fallback continue to work.

@@ -239,7 +239,7 @@ img {
 .gold-dust {
   width: 170px;
   height: 240px;
-  background: url("/images/generated/gold-dust-sprinkle.png") center / contain no-repeat;
+  background: var(--asset-gold-dust) center / contain no-repeat;
   opacity: 0.52;
 }
 
@@ -354,7 +354,7 @@ img {
   display: block;
   width: 24px;
   height: 24px;
-  background: url("/images/generated/heart-tiny-gold.png") center / contain no-repeat;
+  background: var(--asset-heart-tiny) center / contain no-repeat;
 }
 
 .hero-heart {
@@ -558,7 +558,7 @@ img {
   z-index: 0;
   width: 186px;
   height: 250px;
-  background: url("/images/generated/hero-sprig-left.png") center / contain no-repeat;
+  background: var(--asset-hero-sprig-left) center / contain no-repeat;
   content: "";
   opacity: 0.16;
   pointer-events: none;
@@ -770,7 +770,7 @@ img {
   left: -18px;
   width: 185px;
   height: 185px;
-  background-image: url("/images/generated/corner-floral-bottom-left.png");
+  background-image: var(--asset-corner-bottom-left);
   opacity: 0.22;
 }
 
@@ -779,7 +779,7 @@ img {
   bottom: -31px;
   width: 205px;
   height: 205px;
-  background-image: url("/images/generated/corner-floral-bottom-right.png");
+  background-image: var(--asset-corner-bottom-right);
   opacity: 0.24;
 }
 
@@ -974,7 +974,7 @@ img {
   margin-left: 22px;
   padding: 32px 54px;
   background:
-    url("/images/generated/section-bg-venue-v3.png") right center / contain no-repeat,
+    var(--asset-section-venue) right center / contain no-repeat,
     rgba(255, 253, 248, 0.26);
 }
 
@@ -1090,7 +1090,7 @@ img {
   margin-right: auto;
   margin-left: auto;
   background:
-    url("/images/generated/section-bg-dresscode-v3.png") center / 100% 100% no-repeat,
+    var(--asset-section-dresscode) center / 100% 100% no-repeat,
     rgba(255, 253, 248, 0.68);
   padding: 34px 46px 35px;
   text-align: center;
@@ -1162,7 +1162,7 @@ img {
   margin-right: auto;
   margin-left: auto;
   background:
-    url("/images/generated/section-bg-faq-v3.png") center 52px / 100% 255px no-repeat,
+    var(--asset-section-faq) center 52px / 100% 255px no-repeat,
     rgba(255, 253, 248, 0.56);
   padding: 34px 36px 30px;
   text-align: center;
@@ -1228,7 +1228,7 @@ img {
   margin-right: auto;
   margin-left: auto;
   background:
-    url("/images/generated/section-bg-rsvp-v3.png") center / 100% 100% no-repeat,
+    var(--asset-section-rsvp) center / 100% 100% no-repeat,
     rgba(255, 253, 248, 0.66);
   padding: 34px 50px 25px;
   text-align: center;

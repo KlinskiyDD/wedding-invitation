@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import type { ScheduleItem } from "@/content/wedding";
+import { publicAssetPath } from "@/lib/public-path";
 
 type ScheduleProps = {
   items: ScheduleItem[];
@@ -9,39 +10,39 @@ type ScheduleProps = {
 
 const scheduleIcons: Record<ScheduleItem["icon"], { src: string; alt: string }> = {
   rings: {
-    src: "/images/generated/icon-rings-premium.png",
+    src: publicAssetPath("/images/generated/icon-rings-premium.png"),
     alt: "Декоративная иконка колец",
   },
   heart: {
-    src: "/images/generated/icon-heart-premium.png",
+    src: publicAssetPath("/images/generated/icon-heart-premium.png"),
     alt: "Декоративная иконка сердца",
   },
   glasses: {
-    src: "/images/generated/icon-glasses-premium.png",
+    src: publicAssetPath("/images/generated/icon-glasses-premium.png"),
     alt: "Декоративная иконка бокалов",
   },
   cloche: {
-    src: "/images/generated/icon-cloche-premium.png",
+    src: publicAssetPath("/images/generated/icon-cloche-premium.png"),
     alt: "Декоративная иконка праздничного ужина",
   },
   dance: {
-    src: "/images/generated/icon-dance-custom.png",
+    src: publicAssetPath("/images/generated/icon-dance-custom.png"),
     alt: "Декоративная иконка танцующей пары",
   },
   finale: {
-    src: "/images/generated/icon-evening-finale-custom.png",
+    src: publicAssetPath("/images/generated/icon-evening-finale-custom.png"),
     alt: "Декоративная иконка завершения вечера",
   },
   guestGathering: {
-    src: "/images/generated/icon-guest-gathering-custom.png",
+    src: publicAssetPath("/images/generated/icon-guest-gathering-custom.png"),
     alt: "Декоративная иконка сбора гостей",
   },
   ceremony: {
-    src: "/images/generated/icon-ceremony-custom.png",
+    src: publicAssetPath("/images/generated/icon-ceremony-custom.png"),
     alt: "Декоративная иконка бракосочетания",
   },
   photoshoot: {
-    src: "/images/generated/icon-photoshoot-custom.png",
+    src: publicAssetPath("/images/generated/icon-photoshoot-custom.png"),
     alt: "Декоративная иконка фотосессии",
   },
 };

@@ -1,3 +1,5 @@
+import { publicAssetPath } from "@/lib/public-path";
+
 export type NavigationItem = {
   label: string;
   href: string;
@@ -166,7 +168,7 @@ export const weddingContent: WeddingContent = {
     calendar: {
       label: "Добавить в календарь",
       googleUrl: googleCalendarUrl,
-      appleUrl: "/calendar/dmitriy-marina-wedding.ics",
+      appleUrl: publicAssetPath("/calendar/dmitriy-marina-wedding.ics"),
     },
   },
   rsvp: {
@@ -230,27 +232,27 @@ export const weddingContent: WeddingContent = {
       "Место для любимых фотографий Марины и Дмитрия.",
     photos: [
       {
-        src: "/images/couple/couple-mirror-hall.jpg",
+        src: publicAssetPath("/images/couple/couple-mirror-hall.jpg"),
         alt: "Дмитрий и Марина в зеркальном зале",
         tone: "portrait",
       },
       {
-        src: "/images/couple/couple-studio-seated.jpg",
+        src: publicAssetPath("/images/couple/couple-studio-seated.jpg"),
         alt: "Дмитрий и Марина в студии",
         tone: "field",
       },
       {
-        src: "/images/couple/couple-sofa-selfie.jpg",
+        src: publicAssetPath("/images/couple/couple-sofa-selfie.jpg"),
         alt: "Дмитрий и Марина на уютном селфи",
         tone: "couple",
       },
       {
-        src: "/images/couple/couple-lake-view.jpg",
+        src: publicAssetPath("/images/couple/couple-lake-view.jpg"),
         alt: "Дмитрий и Марина на прогулке у воды",
         tone: "walk",
       },
       {
-        src: "/images/couple/couple-helicopter-ring.jpg",
+        src: publicAssetPath("/images/couple/couple-helicopter-ring.jpg"),
         alt: "Дмитрий и Марина с помолвочным кольцом",
         tone: "kiss",
       },
@@ -323,7 +325,9 @@ export const banquetWeddingContent: WeddingContent = {
     calendar: {
       ...weddingContent.event.calendar,
       googleUrl: banquetGoogleCalendarUrl,
-      appleUrl: "/calendar/dmitriy-marina-wedding-banquet.ics",
+      appleUrl: publicAssetPath(
+        "/calendar/dmitriy-marina-wedding-banquet.ics",
+      ),
     },
   },
   schedule: [

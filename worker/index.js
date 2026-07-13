@@ -1,5 +1,11 @@
 /* global Response, URL, URLSearchParams, TextEncoder, TextDecoder, crypto, atob, btoa, fetch */
 
+import {
+  createCorsPreflightResponse,
+  isOriginAllowed,
+  withCorsHeaders,
+} from "./cors.mjs";
+
 const googleTokenUrl = "https://oauth2.googleapis.com/token";
 const sheetsScope = "https://www.googleapis.com/auth/spreadsheets";
 
@@ -251,16 +257,30 @@ const worker = {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/rsvp") {
+      if (!isOriginAllowed(request, env.RSVP_ALLOWED_ORIGINS)) {
+        return jsonResponse(
+          { ok: false, error: "Источник запроса не разрешён." },
+          { status: 403 },
+        );
+      }
+
+      if (request.method === "OPTIONS") {
+        return createCorsPreflightResponse(request);
+      }
+
       try {
-        return await handleRsvp(request, env);
+        return withCorsHeaders(await handleRsvp(request, env), request);
       } catch (error) {
         console.error(error);
-        return jsonResponse(
-          {
-            ok: false,
-            error: "Не получилось сохранить ответ. Попробуйте отправить форму ещё раз.",
-          },
-          { status: 500 },
+        return withCorsHeaders(
+          jsonResponse(
+            {
+              ok: false,
+              error: "Не получилось сохранить ответ. Попробуйте отправить форму ещё раз.",
+            },
+            { status: 500 },
+          ),
+          request,
         );
       }
     }

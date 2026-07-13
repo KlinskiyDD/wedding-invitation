@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import type { WeddingContent } from "@/content/wedding";
+import { publicAssetPath } from "@/lib/public-path";
 
 type LocationProps = {
   event: WeddingContent["event"];
@@ -16,7 +17,7 @@ export function Location({ event }: LocationProps) {
     >
       <div className="venue-photo" aria-hidden="true">
         <Image
-          src="/images/venue/restaurant-interior-banquet.jpg"
+          src={publicAssetPath("/images/venue/restaurant-interior-banquet.jpg")}
           alt=""
           fill
           sizes="(min-width: 900px) 52vw, 100vw"
@@ -28,7 +29,7 @@ export function Location({ event }: LocationProps) {
         <h2>{event.placeName}</h2>
         <p className="venue-address">
           <Image
-            src="/images/generated/icon-pin-premium.png"
+            src={publicAssetPath("/images/generated/icon-pin-premium.png")}
             alt=""
             width={28}
             height={28}
@@ -45,7 +46,7 @@ export function Location({ event }: LocationProps) {
           >
             <span>Посмотреть на карте</span>
             <Image
-              src="/images/generated/icon-arrow-light.png"
+              src={publicAssetPath("/images/generated/icon-arrow-light.png")}
               alt=""
               width={32}
               height={32}

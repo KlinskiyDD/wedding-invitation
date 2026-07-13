@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import type { WeddingContent } from "@/content/wedding";
+import { getRsvpApiUrl, publicAssetPath } from "@/lib/public-path";
 
 type RsvpProps = {
   guestForm: WeddingContent["guestForm"];
@@ -53,7 +54,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
           setMessage("Отправляем ответ...");
 
           try {
-            const response = await fetch("/api/rsvp", {
+            const response = await fetch(getRsvpApiUrl(), {
               method: "POST",
               headers: { "content-type": "application/json" },
               body: JSON.stringify({
@@ -90,7 +91,12 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
       >
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            <Image src="/images/generated/icon-user-premium.png" alt="" width={24} height={24} />
+            <Image
+              src={publicAssetPath("/images/generated/icon-user-premium.png")}
+              alt=""
+              width={24}
+              height={24}
+            />
           </span>
           <span className="sr-only">Имя и фамилия</span>
           <input
@@ -105,7 +111,12 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            <Image src="/images/generated/icon-envelope-premium.png" alt="" width={24} height={24} />
+            <Image
+              src={publicAssetPath("/images/generated/icon-envelope-premium.png")}
+              alt=""
+              width={24}
+              height={24}
+            />
           </span>
           <span className="sr-only">Подтверждение участия</span>
           <select
@@ -123,7 +134,12 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            <Image src="/images/generated/icon-food-premium.png" alt="" width={24} height={24} />
+            <Image
+              src={publicAssetPath("/images/generated/icon-food-premium.png")}
+              alt=""
+              width={24}
+              height={24}
+            />
           </span>
           <span className="sr-only">Предпочтение по еде</span>
           <select
@@ -141,7 +157,12 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field">
           <span className="field-icon" aria-hidden="true">
-            <Image src="/images/generated/icon-drink-premium.png" alt="" width={24} height={24} />
+            <Image
+              src={publicAssetPath("/images/generated/icon-drink-premium.png")}
+              alt=""
+              width={24}
+              height={24}
+            />
           </span>
           <span className="sr-only">Предпочтение по алкоголю</span>
           <select
@@ -159,7 +180,12 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
 
         <label className="compact-field compact-field-wide compact-field-textarea">
           <span className="field-icon" aria-hidden="true">
-            <Image src="/images/generated/icon-note-premium.png" alt="" width={24} height={24} />
+            <Image
+              src={publicAssetPath("/images/generated/icon-note-premium.png")}
+              alt=""
+              width={24}
+              height={24}
+            />
           </span>
           <span className="sr-only">Ограничения по блюдам / аллергии</span>
           <textarea
@@ -173,7 +199,7 @@ export function Rsvp({ guestForm, rsvp }: RsvpProps) {
           <button type="submit" data-testid="rsvp-submit" disabled={isSubmitting}>
             <span>{isSubmitting ? "Отправляем..." : "Отправить ответ"}</span>
             <Image
-              src="/images/generated/button-heart-light.png"
+              src={publicAssetPath("/images/generated/button-heart-light.png")}
               alt=""
               width={28}
               height={28}

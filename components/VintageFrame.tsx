@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
+import { publicAssetPath } from "@/lib/public-path";
+
 type VintageFrameProps = {
   children: ReactNode;
 };
@@ -11,7 +13,7 @@ export function VintageFrame({ children }: VintageFrameProps) {
       <div className="vintage-page">
         <span className="page-branch page-branch-left" aria-hidden="true">
           <Image
-            src="/images/generated/botanical-spray-left.png"
+            src={publicAssetPath("/images/generated/botanical-spray-left.png")}
             alt=""
             fill
             sizes="420px"
@@ -19,7 +21,7 @@ export function VintageFrame({ children }: VintageFrameProps) {
         </span>
         <span className="page-branch page-branch-right" aria-hidden="true">
           <Image
-            src="/images/generated/botanical-spray-right.png"
+            src={publicAssetPath("/images/generated/botanical-spray-right.png")}
             alt=""
             fill
             sizes="420px"
@@ -27,7 +29,7 @@ export function VintageFrame({ children }: VintageFrameProps) {
         </span>
         <span className="page-branch page-branch-bottom" aria-hidden="true">
           <Image
-            src="/images/generated/hero-sprig-right.png"
+            src={publicAssetPath("/images/generated/hero-sprig-right.png")}
             alt=""
             fill
             sizes="260px"
@@ -35,7 +37,9 @@ export function VintageFrame({ children }: VintageFrameProps) {
         </span>
         <span className="page-corner page-corner-bottom-right" aria-hidden="true">
           <Image
-            src="/images/generated/corner-floral-bottom-right.png"
+            src={publicAssetPath(
+              "/images/generated/corner-floral-bottom-right.png",
+            )}
             alt=""
             fill
             sizes="260px"

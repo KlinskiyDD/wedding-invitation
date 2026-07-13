@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import type { WeddingContent } from "@/content/wedding";
+import { publicAssetPath } from "@/lib/public-path";
 
 type HeroProps = {
   couple: WeddingContent["couple"];
@@ -24,7 +25,7 @@ export function Hero({ couple, event, navigation }: HeroProps) {
         </div>
         <div className="monogram" aria-label={`Монограмма ${couple.monogram}`}>
           <Image
-            src="/images/generated/monogram-premium.png"
+            src={publicAssetPath("/images/generated/monogram-premium.png")}
             alt=""
             width={360}
             height={270}
