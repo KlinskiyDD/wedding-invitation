@@ -270,7 +270,7 @@ Outcome contract:
 - [x] `npm run build` без Pages env остаётся успешным и формирует root deployment для Cloudflare.
 - [x] Pages build с `/wedding-invitation` успешен.
 - [x] Export audit не находит непредусмотренных root-relative `/_next`, `/images` и `/calendar` ссылок.
-- [ ] Главная и `/banquet` доступны на Pages; изображения, backgrounds, JS/CSS и оба `.ics` загружаются без 404.
+- [x] Главная и `/banquet` доступны на Pages; изображения, backgrounds, JS/CSS и оба `.ics` загружаются без 404.
 - [x] Pages bundle отправляет RSVP на точный HTTPS Worker endpoint; local/Cloudflare build использует `/api/rsvp`.
 - [x] Разрешённый GitHub origin получает корректный `OPTIONS 204` и CORS headers.
 - [x] Разрешённые RSVP 2xx/4xx/5xx responses содержат читаемые браузером CORS headers.
@@ -279,7 +279,7 @@ Outcome contract:
 - [x] RSVP payload, Google Sheets target и пользовательские сообщения не изменились.
 - [x] В GitHub workflow, client bundle и tracked files отсутствует `GOOGLE_SERVICE_ACCOUNT_JSON_B64` и его значение.
 - [x] Lint, typecheck, Worker tests, Playwright, оба build modes и Wrangler dry-run проходят.
-- [ ] Production Worker развёрнут до Pages, Pages Actions run успешен, post-deploy smoke evidence зафиксирован.
+- [x] Production Worker развёрнут до Pages, Pages Actions run успешен, post-deploy smoke evidence зафиксирован.
 
 ### Автоматические тесты
 - Обновить Playwright:
@@ -551,3 +551,4 @@ Invoke-WebRequest -Method Options -Headers $headers -Uri '<FACTUAL_WORKER_HTTPS_
 | EXEC | Реализовать CORS, workflow и автоматические проверки | 0.98 | Нет | Выполнить post-EXEC review | Нет | Нет | 7 CORS tests, 7 Playwright tests, Pages export audit, оба build modes и Wrangler dry-run проходят | `worker/cors.mjs`, `worker/index.js`, `wrangler.jsonc`, `.github/workflows/deploy-pages.yml`, `tests/**`, `README.md` |
 | EXEC | Выполнить post-EXEC review и полный local gate | 0.98 | Live deployment evidence | Задеплоить Worker первым | Нет | Нет | Критичных отклонений нет; lint/typecheck/tests/build/dry-run/startup green, residual advisories задокументированы | Эта спецификация, `eslint.config.mjs`, `worker-configuration.d.ts` |
 | EXEC | Развернуть Worker и выполнить production CORS smoke | 0.99 | GitHub Pages deployment | Commit/push `main` и проверить Actions | Нет | Нет | Wrangler asset-session transport завершался `fetch failed/terminated`; официальный Version Upload API с `keep_assets: true` безопасно переиспользовал текущие assets и унаследовал secret. Версия `8a3340f3-529b-4ded-9d80-d7528891741d` развёрнута на 100%; live smoke: preflight 204, allowed validation POST 400 с CORS, disallowed POST 403, static root 200. Локальные временные обходы удалены, `npm ci` восстановил зависимости | Cloudflare Worker deployment, эта спецификация |
+| EXEC | Опубликовать GitHub Pages и выполнить end-to-end smoke | 1.0 | Нет | Зафиксировать audit trail и завершить задачу | Нет | Нет | Commit `f345875` отправлен в `main`; Actions run `29269406855` завершился `success`. Pages `/`, `/banquet`, representative image, JS chunk и оба `.ics` отвечают 200. Headless browser с origin `https://klinskiydd.github.io` отправил безопасный пустой RSVP на factual Worker URL, получил 400, точный CORS origin и пользовательское validation-сообщение; Google Sheets не вызывался | GitHub Pages production, GitHub Actions, эта спецификация |
